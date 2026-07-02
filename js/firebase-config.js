@@ -34,8 +34,8 @@ window.DOCSCAN_CONTACT_TO = "schanen.sebastien@outlook.de";
 window.DOCSCAN_FUNCTIONS_URL = "https://europe-west3-schanensebastien-contact.cloudfunctions.net";
 
 /* Send yourself an e-mail when someone visits (once per browser session).
-   Requires a /notifyVisit endpoint on the backend — disabled for now. */
-window.DOCSCAN_VISIT_NOTIFY = false;
+   Uses POST /notifyVisit on the backend. */
+window.DOCSCAN_VISIT_NOTIFY = true;
 
 /* If true, the visit e-mail is only sent after the visitor accepts the
    "analytics" category in the cookie banner. Default false: a minimal,
