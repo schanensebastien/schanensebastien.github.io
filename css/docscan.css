@@ -578,6 +578,7 @@ footer .foot-links { display: flex; flex-wrap: wrap; gap: 8px 16px; }
 .consent p a { text-decoration: underline; }
 .consent-actions { display: flex; flex-wrap: wrap; gap: 10px; }
 .consent-actions .btn { padding: 11px 16px; font-size: .92rem; }
+.consent-actions [hidden] { display: none !important; }
 .consent-actions .btn-text {
     background: none; border: none; color: var(--muted);
     font-weight: 500; cursor: pointer; padding: 11px 8px; text-decoration: underline;

@@ -44,6 +44,22 @@ window.DocScanConsent = (function () {
     /* ---------- UI ---------- */
     var el = null;
 
+    function setSettingsOpen(open) {
+        var d = el.querySelector(".consent-detail");
+        var saveBtn = el.querySelector('[data-act="save"]');
+        var toggleBtn = el.querySelector('[data-act="toggle"]');
+        if (open) {
+            d.removeAttribute("hidden");
+            saveBtn.removeAttribute("hidden");
+            if (toggleBtn) toggleBtn.textContent = "Einstellungen schließen";
+            if (state) el.querySelector("#consent-analytics").checked = !!state.analytics;
+        } else {
+            d.setAttribute("hidden", "");
+            saveBtn.setAttribute("hidden", "");
+            if (toggleBtn) toggleBtn.textContent = "Einstellungen";
+        }
+    }
+
     function build() {
         if (el) return el;
         el = document.createElement("section");
@@ -81,11 +97,7 @@ window.DocScanConsent = (function () {
             else if (act === "necessary") { save({ analytics: false }); hide(); }
             else if (act === "toggle") {
                 var d = el.querySelector(".consent-detail");
-                var saveBtn = el.querySelector('[data-act="save"]');
-                var show = d.hasAttribute("hidden");
-                d.toggleAttribute("hidden", !show);
-                saveBtn.toggleAttribute("hidden", !show);
-                if (show && state) el.querySelector("#consent-analytics").checked = !!state.analytics;
+                setSettingsOpen(d.hasAttribute("hidden"));
             }
             else if (act === "save") {
                 save({ analytics: !!el.querySelector("#consent-analytics").checked });
@@ -102,10 +114,7 @@ window.DocScanConsent = (function () {
 
     function open() {
         build();
-        var d = el.querySelector(".consent-detail");
-        d.removeAttribute("hidden");
-        el.querySelector('[data-act="save"]').removeAttribute("hidden");
-        if (state) el.querySelector("#consent-analytics").checked = !!state.analytics;
+        setSettingsOpen(true);
         show();
     }
 
