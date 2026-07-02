@@ -43,6 +43,7 @@ window.DOCSCAN_VISIT_NOTIFY = true;
    "Statistik / Analyse" in the cookie banner (recommended for GDPR). */
 window.DOCSCAN_VISIT_REQUIRE_CONSENT = true;
 
+
 /* Firebase JS SDK version loaded on demand from the official CDN. */
 window.DOCSCAN_FIREBASE_SDK = "10.12.2";
 
