@@ -128,18 +128,23 @@
 
             <h2>8. Besuchsbenachrichtigung per E-Mail</h2>
             <p>
-                Wenn Sie in den Cookie-Einstellungen <strong>„Statistik / Analyse"</strong>
-                akzeptieren, wird beim Aufruf einer Seite einmal pro Sitzung und Seite eine
-                technische Benachrichtigung an mich ausgelöst, damit ich erkenne, dass und welche
-                Seite besucht wurde. Übertragen werden dabei ausschließlich aufgerufene Seite,
-                Verweis-Adresse (Referrer), Browsersprache, Bildschirmgröße sowie die
-                Browser-Kennung (User-Agent). <strong>Es wird bewusst keine IP-Adresse gespeichert
-                oder versendet.</strong> Die Zustellung erfolgt über eine in der EU (Frankfurt)
-                betriebene Server-Funktion (Firebase Cloud Functions, Google) an ein
-                Google-/Gmail-Konto. Rechtsgrundlage ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a
-                DSGVO), die Sie jederzeit über „Cookie-Einstellungen" widerrufen können. Zur
-                Vermeidung von Mehrfachbenachrichtigungen auf derselben Seite wird ein technisch
-                notwendiger Eintrag im <em>sessionStorage</em> gesetzt (Schlüssel
+                Nachdem Sie im Cookie-Banner eine Auswahl getroffen haben, wird beim Aufruf einer
+                Seite einmal pro Sitzung und Seite eine technische Benachrichtigung an mich
+                ausgelöst, damit ich erkenne, dass und welche Seite besucht wurde. Übertragen
+                werden dabei ausschließlich aufgerufene Seite, Verweis-Adresse (Referrer),
+                Browsersprache, Bildschirmgröße, die Browser-Kennung (User-Agent) sowie Ihre im
+                Banner getroffene Auswahl (Statistik/Analyse erlaubt oder abgelehnt).
+                <strong>Es wird bewusst keine IP-Adresse gespeichert oder versendet.</strong>
+                Die Zustellung erfolgt über eine in der EU (Frankfurt) betriebene Server-Funktion
+                (Firebase Cloud Functions, Google) an ein Google-/Gmail-Konto. Rechtsgrundlage ist
+                mein berechtigtes Interesse an der Reichweiten- und Funktionskontrolle der Website
+                (Art. 6 Abs. 1 lit. f DSGVO); die Benachrichtigung erfolgt erst nach Ihrer
+                Banner-Auswahl. Bei erlaubter Statistik/Analyse werden zusätzlich Klicks auf
+                Links und Schaltflächen (angeklicktes Element, Ziel, Seite) übermittelt
+                (Art. 6 Abs. 1 lit. a DSGVO); diese Einwilligung können Sie jederzeit über
+                „Cookie-Einstellungen" widerrufen. Zur Vermeidung von Mehrfachbenachrichtigungen
+                auf derselben Seite wird ein technisch notwendiger Eintrag im
+                <em>sessionStorage</em> gesetzt (Schlüssel
                 <code>docscan-visit-pinged:&lt;seite&gt;</code>), der beim Schließen des Tabs
                 gelöscht wird.
             </p>

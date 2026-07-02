@@ -1,10 +1,11 @@
 /* ============================================================
    Visit + click notifications
    ------------------------------------------------------------
-   E-mails you when someone views a page (once per page per session)
-   and on every click on a link/button (via the trackClick endpoint).
-   Both require analytics consent when DOCSCAN_VISIT_REQUIRE_CONSENT
-   is true.
+   Visit e-mail: sent once per page per session, AFTER the visitor
+   made a choice in the consent banner (either choice). The e-mail
+   includes which "Datenschutz & Tracking" option was selected.
+   Click e-mails: sent for every link/button click, but only when
+   "Statistik / Analyse" was allowed.
    ============================================================ */
 
 (function () {
@@ -37,6 +38,18 @@
         } catch (e) {}
     }
 
+    /* Human-readable state of the "Datenschutz & Tracking" choice. */
+    function consentLabel() {
+        try {
+            if (window.DocScanConsent && window.DocScanConsent.decided()) {
+                return window.DocScanConsent.has("analytics")
+                    ? "Statistik/Analyse erlaubt"
+                    : "Nur notwendige (Tracking abgelehnt)";
+            }
+        } catch (e) {}
+        return "keine Auswahl getroffen";
+    }
+
     function send() {
         if (!url || alreadyPinged()) return;
         markPinged();
@@ -45,7 +58,8 @@
             title: document.title,
             referrer: document.referrer || "",
             language: navigator.language || "",
-            screen: (window.screen ? window.screen.width + "x" + window.screen.height : "")
+            screen: (window.screen ? window.screen.width + "x" + window.screen.height : ""),
+            consent: consentLabel()
         });
     }
 
@@ -75,17 +89,20 @@
 
     function activate() {
         send();
-        wireClicks();
+        /* Click e-mails only when tracking was explicitly allowed. */
+        if (window.DocScanConsent && window.DocScanConsent.has("analytics")) wireClicks();
     }
 
     function run() {
-        if (window.DOCSCAN_VISIT_REQUIRE_CONSENT) {
-            if (window.DocScanConsent && window.DocScanConsent.has("analytics")) {
+        if (window.DOCSCAN_VISIT_REQUIRE_CONSENT && window.DocScanConsent) {
+            if (window.DocScanConsent.decided()) {
                 activate();
-            } else if (window.DocScanConsent) {
-                window.DocScanConsent.onChange(function (s) { if (s && s.analytics) activate(); });
+            } else {
+                /* Wait for the banner choice — fires on accept AND decline,
+                   so the visit e-mail can report the chosen state. */
+                window.DocScanConsent.onChange(function () { activate(); });
             }
-        } else {
+        } else if (!window.DOCSCAN_VISIT_REQUIRE_CONSENT) {
             activate();
         }
     }
