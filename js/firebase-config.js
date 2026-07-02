@@ -28,15 +28,14 @@ window.DOCSCAN_MESSAGES_COLLECTION = "contact_messages";
 /* Where contact-form messages are e-mailed to. */
 window.DOCSCAN_CONTACT_TO = "schanen.sebastien@outlook.de";
 
-/* ---- Cloud Functions endpoints (visit notification & contact e-mail) ----
-   Base URL of your deployed functions, WITHOUT a trailing slash, e.g.
-   "https://europe-west3-yourproject.cloudfunctions.net".
-   Leave empty to disable the endpoint path (the contact form then falls
-   back to Firestore/mailto and no visit e-mail is sent). See SETUP.md. */
-window.DOCSCAN_FUNCTIONS_URL = "";
+/* ---- Cloud Functions backend (form-to-email via ../backend/) ----
+   Base URL of your deployed functions, WITHOUT a trailing slash.
+   Each form in backend/functions/forms.js is POST /<name>, e.g. /contact. */
+window.DOCSCAN_FUNCTIONS_URL = "https://europe-west3-schanensebastien-contact.cloudfunctions.net";
 
-/* Send yourself an e-mail when someone visits (once per browser session). */
-window.DOCSCAN_VISIT_NOTIFY = true;
+/* Send yourself an e-mail when someone visits (once per browser session).
+   Requires a /notifyVisit endpoint on the backend — disabled for now. */
+window.DOCSCAN_VISIT_NOTIFY = false;
 
 /* If true, the visit e-mail is only sent after the visitor accepts the
    "analytics" category in the cookie banner. Default false: a minimal,

@@ -32,7 +32,7 @@ you deploy it (see [`../backend/README.md`](../backend/README.md)), point the
 form at the deployed endpoint URL, e.g.:
 
 ```js
-await fetch("https://europe-west3-YOURPROJECT.cloudfunctions.net/contact", {
+await fetch("https://europe-west3-schanensebastien-contact.cloudfunctions.net/contact", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({ name, email, phone, message }),

@@ -1,13 +1,8 @@
 /* ============================================================
-   Contact form -> Firestore -> e-mail (Trigger Email extension)
+   Contact form -> Cloud Function backend (../backend/)
    ------------------------------------------------------------
-   On submit the message is written to Firestore. The Firebase
-   "Trigger Email" extension turns the document in the mail
-   collection into an e-mail to you. A copy is also stored in
-   the messages collection so nothing is ever lost.
-
-   If Firebase is not configured yet, the form gracefully falls
-   back to opening the visitor's e-mail client (mailto:).
+   On submit the message is POSTed to DOCSCAN_FUNCTIONS_URL/contact.
+   Falls back to Firestore or mailto: if no functions URL is configured.
    ============================================================ */
 
 (function () {
@@ -58,11 +53,11 @@
         if (submitBtn) { submitBtn.disabled = true; }
         setStatus("Wird gesendet …", "");
 
-        /* Preferred path: Cloud Function endpoint (Gmail OAuth2). */
+        /* Preferred path: Cloud Function endpoint (../backend/). */
         var fnBase = (window.DOCSCAN_FUNCTIONS_URL || "").replace(/\/+$/, "");
         if (fnBase) {
             try {
-                var resp = await fetch(fnBase + "/sendContact", {
+                var resp = await fetch(fnBase + "/contact", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ name: data.name, email: data.email, phone: data.phone, message: data.message }),
