@@ -1,16 +1,14 @@
 /* ============================================================
    Visit notification
    ------------------------------------------------------------
-   Pings the /notifyVisit Cloud Function so you get an e-mail when
-   someone visits. Sent at most once per browser session and only
-   if a functions URL is configured. No personal data is collected
+   Pings DOCSCAN_NOTIFY_VISIT_URL so you get an e-mail when someone visits.
    client-side; the request carries page, referrer, language and
    screen size only.
    ============================================================ */
 
 (function () {
-    var base = (window.DOCSCAN_FUNCTIONS_URL || "").replace(/\/+$/, "");
-    if (!base || !window.DOCSCAN_VISIT_NOTIFY) return;
+    var url = (window.DOCSCAN_NOTIFY_VISIT_URL || "").replace(/\/+$/, "");
+    if (!url || !window.DOCSCAN_VISIT_NOTIFY) return;
 
     var KEY = "docscan-visit-pinged";
 
@@ -32,7 +30,7 @@
             screen: (window.screen ? window.screen.width + "x" + window.screen.height : "")
         };
         try {
-            fetch(base + "/notifyVisit", {
+            fetch(url, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload),

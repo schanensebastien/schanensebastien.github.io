@@ -28,10 +28,11 @@ window.DOCSCAN_MESSAGES_COLLECTION = "contact_messages";
 /* Where contact-form messages are e-mailed to. */
 window.DOCSCAN_CONTACT_TO = "schanen.sebastien@outlook.de";
 
-/* ---- Cloud Functions backend (form-to-email via ../backend/) ----
-   Base URL of your deployed functions, WITHOUT a trailing slash.
-   Each form in backend/functions/forms.js is POST /<name>, e.g. /contact. */
-window.DOCSCAN_FUNCTIONS_URL = "https://europe-west3-schanensebastien-contact.cloudfunctions.net";
+/* ---- Cloud Functions backend (../backend/) ----
+   Firebase Functions v2 gives each function its own URL (*.run.app).
+   Paste the full URLs from `firebase deploy` output — no trailing slash. */
+window.DOCSCAN_CONTACT_URL = "https://contact-7tacntja7a-ey.a.run.app";
+window.DOCSCAN_NOTIFY_VISIT_URL = "https://notifyvisit-7tacntja7a-ey.a.run.app";
 
 /* Send yourself an e-mail when someone visits (once per browser session).
    Uses POST /notifyVisit on the backend. */

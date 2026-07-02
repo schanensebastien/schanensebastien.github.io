@@ -1,7 +1,7 @@
 /* ============================================================
    Contact form -> Cloud Function backend (../backend/)
    ------------------------------------------------------------
-   On submit the message is POSTed to DOCSCAN_FUNCTIONS_URL/contact.
+   On submit the message is POSTed to DOCSCAN_CONTACT_URL.
    Falls back to Firestore or mailto: if no functions URL is configured.
    ============================================================ */
 
@@ -54,10 +54,10 @@
         setStatus("Wird gesendet …", "");
 
         /* Preferred path: Cloud Function endpoint (../backend/). */
-        var fnBase = (window.DOCSCAN_FUNCTIONS_URL || "").replace(/\/+$/, "");
-        if (fnBase) {
+        var contactUrl = (window.DOCSCAN_CONTACT_URL || "").replace(/\/+$/, "");
+        if (contactUrl) {
             try {
-                var resp = await fetch(fnBase + "/contact", {
+                var resp = await fetch(contactUrl, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ name: data.name, email: data.email, phone: data.phone, message: data.message }),

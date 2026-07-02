@@ -28,19 +28,16 @@ git push
 ## Connect the contact form to the backend
 
 The email backend lives in the separate `../backend/` folder (Firebase). After
-you deploy it (see [`../backend/README.md`](../backend/README.md)), point the
-form at the deployed endpoint URL, e.g.:
+you deploy it (see [`../backend/README.md`](../backend/README.md)), paste each
+function URL into [`js/firebase-config.js`](js/firebase-config.js) (Firebase v2
+gives separate `*.run.app` URLs per function):
 
 ```js
-await fetch("https://europe-west3-schanensebastien-contact.cloudfunctions.net/contact", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ name, email, phone, message }),
-  mode: "cors"
-});
+window.DOCSCAN_CONTACT_URL = "https://contact-xxxxx-ey.a.run.app";
+window.DOCSCAN_NOTIFY_VISIT_URL = "https://notifyvisit-xxxxx-ey.a.run.app";
 ```
 
-The backend already allows the `schanensebastien.com` origin via CORS.
+The backend allows the `schanensebastien.com` origin via CORS.
 
 > The older `functions/` folder inside **this** repo is the previous Gmail-OAuth2
 > backend. The active backend is now `../backend/`. You can ignore or delete the
