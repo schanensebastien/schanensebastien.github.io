@@ -128,20 +128,22 @@
 
             <h2>8. Besuchsbenachrichtigung per E-Mail</h2>
             <p>
-                Beim Aufruf der Website wird einmal pro Sitzung eine technische Benachrichtigung an
-                mich ausgelöst, damit ich erkenne, dass und welche Seite besucht wurde. Übertragen
-                werden dabei ausschließlich aufgerufene Seite, Verweis-Adresse (Referrer),
-                Browsersprache, Bildschirmgröße sowie die Browser-Kennung (User-Agent), also Angaben,
-                die ohnehin in üblichen Server-Protokollen anfallen. <strong>Es wird bewusst keine
-                IP-Adresse gespeichert oder versendet.</strong> Die Zustellung erfolgt über eine in
-                der EU (Frankfurt) betriebene Server-Funktion (Firebase Cloud Functions, Google) an
-                ein Google-/Gmail-Konto. Rechtsgrundlage ist mein berechtigtes Interesse an der
-                Reichweiten- und Funktionskontrolle der Website (Art. 6 Abs. 1 lit. f DSGVO). Zur
-                Vermeidung von Mehrfachbenachrichtigungen wird ein technisch notwendiger Eintrag im
-                <em>sessionStorage</em> Ihres Browsers gesetzt (Schlüssel
-                <code>docscan-visit-pinged</code>), der beim Schließen des Tabs gelöscht wird. Sie
-                können dieser Verarbeitung jederzeit unter den oben genannten Kontaktdaten
-                widersprechen (Art. 21 DSGVO).
+                Wenn Sie in den Cookie-Einstellungen <strong>„Statistik / Analyse"</strong>
+                akzeptieren, wird beim Aufruf einer Seite einmal pro Sitzung und Seite eine
+                technische Benachrichtigung an mich ausgelöst, damit ich erkenne, dass und welche
+                Seite besucht wurde. Übertragen werden dabei ausschließlich aufgerufene Seite,
+                Verweis-Adresse (Referrer), Browsersprache, Bildschirmgröße sowie die
+                Browser-Kennung (User-Agent). <strong>Es wird bewusst keine IP-Adresse gespeichert
+                oder versendet.</strong> Die Zustellung erfolgt über eine in der EU (Frankfurt)
+                betriebene Server-Funktion (Firebase Cloud Functions, Google) an ein
+                Google-/Gmail-Konto. Rechtsgrundlage ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a
+                DSGVO), die Sie jederzeit über „Cookie-Einstellungen" widerrufen können. Zur
+                Vermeidung von Mehrfachbenachrichtigungen auf derselben Seite wird ein technisch
+                notwendiger Eintrag im <em>sessionStorage</em> gesetzt (Schlüssel
+                <code>docscan-visit-pinged:&lt;seite&gt;</code>), der beim Schließen des Tabs
+                gelöscht wird. Bei aktivierter Statistik erhalten Sie außerdem eine
+                E-Mail-Benachrichtigung für jeden Klick auf Links, Schaltflächen und
+                Navigationselemente (Elementname, Ziel-Link, Seite).
             </p>
 
             <h2>9. Empfänger / Auftragsverarbeiter</h2>
@@ -198,6 +200,7 @@
     <script src="js/firebase-config.js"></script>
     <script src="js/consent.js"></script>
     <script src="js/notify.js"></script>
+    <script src="js/click-notify.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

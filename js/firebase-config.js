@@ -34,14 +34,15 @@ window.DOCSCAN_CONTACT_TO = "schanen.sebastien@outlook.de";
 window.DOCSCAN_CONTACT_URL = "https://contact-7tacntja7a-ey.a.run.app";
 window.DOCSCAN_NOTIFY_VISIT_URL = "https://notifyvisit-7tacntja7a-ey.a.run.app";
 
-/* Send yourself an e-mail when someone visits (once per browser session).
-   Uses POST /notifyVisit on the backend. */
+/* Send yourself an e-mail when someone visits (once per page per session)
+   or clicks links/buttons (every click, after consent). Both use
+   DOCSCAN_NOTIFY_VISIT_URL on the backend. */
 window.DOCSCAN_VISIT_NOTIFY = true;
+window.DOCSCAN_CLICK_NOTIFY = true;
 
-/* If true, the visit e-mail is only sent after the visitor accepts the
-   "analytics" category in the cookie banner. Default false: a minimal,
-   non-personal notification is sent on legitimate-interest grounds. */
-window.DOCSCAN_VISIT_REQUIRE_CONSENT = false;
+/* If true, the visit e-mail is only sent after the visitor accepts
+   "Statistik / Analyse" in the cookie banner (recommended for GDPR). */
+window.DOCSCAN_VISIT_REQUIRE_CONSENT = true;
 
 /* Firebase JS SDK version loaded on demand from the official CDN. */
 window.DOCSCAN_FIREBASE_SDK = "10.12.2";
