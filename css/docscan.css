@@ -584,6 +584,39 @@ footer .foot-links { display: flex; flex-wrap: wrap; gap: 8px 16px; }
     background: none; border: none; color: var(--muted);
     font-weight: 500; cursor: pointer; padding: 11px 8px; text-decoration: underline;
 }
+
+/* Mobile: Einstellungen above Nur notwendige (left), Alle akzeptieren (right) */
+@media (max-width: 560px) {
+    .consent-actions {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto;
+        gap: 8px 12px;
+        align-items: center;
+    }
+    .consent-actions [data-act="toggle"] {
+        grid-column: 1;
+        grid-row: 1;
+        justify-self: start;
+        padding: 6px 0;
+    }
+    .consent-actions [data-act="necessary"] {
+        grid-column: 1;
+        grid-row: 2;
+        justify-self: start;
+    }
+    .consent-actions [data-act="all"] {
+        grid-column: 2;
+        grid-row: 1 / 3;
+        justify-self: end;
+        align-self: center;
+    }
+    .consent-actions [data-act="save"] {
+        grid-column: 1 / -1;
+        justify-self: stretch;
+        width: 100%;
+    }
+}
 .consent-detail {
     margin-top: 14px; padding-top: 14px;
     border-top: 1px solid var(--line);
