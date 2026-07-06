@@ -86,69 +86,31 @@ key to your domain (`schanensebastien.com`, `*.github.io`) under
 
 ---
 
-# Part B — Visit e-mail + contact via Cloud Functions (Gmail OAuth2)
+# Part B — Contact & visit e-mail (separate backend)
 
-This is the "endpoint the frontend triggers" approach: a Cloud Function sends
-mail from your Gmail account using OAuth2 tokens (no password stored). It powers:
+The e-mail endpoints are provided by a **separate backend** (`../backend/`, its
+own Firebase Cloud Functions project) and are **not** part of this repository.
+The frontend just calls each function's URL.
 
-- **`/notifyVisit`** — e-mails you when someone visits (once per session).
-- **`/sendContact`** — e-mails you contact-form messages.
-
-If you use this, you do **not** need the Trigger Email extension above; the
-contact form automatically prefers the endpoint once `DOCSCAN_FUNCTIONS_URL` is set.
-
-### B1. Get Gmail OAuth2 tokens
-
-1. Google Cloud Console (same project as Firebase) → **APIs & Services → OAuth
-   consent screen**: configure it, add yourself as a test user.
-2. **APIs & Services → Credentials → Create credentials → OAuth client ID**.
-   Choose **Web application** and add
-   `https://developers.google.com/oauthplayground` as an authorized redirect URI.
-   Note the **Client ID** and **Client secret**.
-3. Open the [OAuth 2.0 Playground](https://developers.google.com/oauthplayground/):
-   - Gear icon → tick **Use your own OAuth credentials**, paste Client ID/secret.
-   - In the scope box enter `https://mail.google.com/` → **Authorize APIs**,
-     sign in with the **sending Gmail account**.
-   - **Exchange authorization code for tokens** → copy the **Refresh token**.
-
-### B2. Configure the functions
-
-1. Copy `functions/.env.example` to `functions/.env` and fill in
-   `GMAIL_USER`, `GMAIL_CLIENT_ID`, `MAIL_TO`, `ALLOWED_ORIGINS`.
-2. Store the two secrets (never commit these):
-
-   ```bash
-   cd functions
-   firebase functions:secrets:set GMAIL_CLIENT_SECRET
-   firebase functions:secrets:set GMAIL_REFRESH_TOKEN
-   ```
-
-### B3. Deploy
-
-```bash
-# from the repo root
-firebase use --add            # pick your Firebase project (first time only)
-cd functions && npm install && cd ..
-firebase deploy --only functions
-```
-
-Firebase prints the function URLs, e.g.
-`https://europe-west3-yourproject.cloudfunctions.net/notifyVisit`.
-
-### B4. Point the frontend at it
-
-In [`js/firebase-config.js`](js/firebase-config.js) set the base URL (no trailing
-slash, no function name):
+Set the deployed URLs in [`js/firebase-config.js`](js/firebase-config.js)
+(full `*.run.app` URLs from the backend deploy, no trailing slash):
 
 ```js
-window.DOCSCAN_FUNCTIONS_URL = "https://europe-west3-yourproject.cloudfunctions.net";
+window.DOCSCAN_CONTACT_URL      = "https://contact-xxxxx-ey.a.run.app";
+window.DOCSCAN_NOTIFY_VISIT_URL = "https://notifyvisit-xxxxx-ey.a.run.app";
+window.DOCSCAN_TRACK_CLICK_URL  = "https://trackclick-xxxxx-ey.a.run.app";
 ```
 
-That's it — visit e-mails start arriving and the contact form uses the endpoint.
+Then:
 
+- The contact form POSTs to `DOCSCAN_CONTACT_URL` (and falls back to Firestore or
+  a `mailto:` link if it is left empty).
+- A visit POSTs to `DOCSCAN_NOTIFY_VISIT_URL` once per browser session.
 - Turn visit e-mails off: `window.DOCSCAN_VISIT_NOTIFY = false;`
 - Only notify after consent: `window.DOCSCAN_VISIT_REQUIRE_CONSENT = true;`
-- The function only accepts requests from origins in `ALLOWED_ORIGINS` (CORS).
+
+The backend's CORS allow-list must include `https://schanensebastien.com`. Deploy
+and secret setup for the backend live in `../backend/README.md`.
 
 ---
 
@@ -158,8 +120,8 @@ That's it — visit e-mails start arriving and the contact form uses the endpoin
 - The visit e-mail sends only minimal, non-personal data and never stores/sends
   the IP. It is documented in `datenschutz.html` (legitimate interest). Set
   `DOCSCAN_VISIT_REQUIRE_CONSENT = true` if you prefer to gate it behind consent.
-- The contact form (Firestore) is loaded only on submit, and the privacy
-  checkbox + [`datenschutz.html`](datenschutz.html) cover the legal basis.
+- The contact form is sent only on submit, and the privacy checkbox +
+  [`datenschutz.html`](datenschutz.html) cover the legal basis.
 - Fonts are self-hosted (`assets/fonts/`) — no Google Fonts CDN calls.
 - Fill in your address in `impressum.html` and `datenschutz.html`, and have the
   privacy policy reviewed before going live.

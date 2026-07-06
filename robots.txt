@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /impressum.html
+Disallow: /datenschutz.html
+Disallow: /404.html
+Disallow: /SETUP.md
+
+Sitemap: https://schanensebastien.com/sitemap.xml

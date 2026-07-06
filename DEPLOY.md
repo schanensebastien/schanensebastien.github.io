@@ -39,9 +39,9 @@ window.DOCSCAN_NOTIFY_VISIT_URL = "https://notifyvisit-xxxxx-ey.a.run.app";
 
 The backend allows the `schanensebastien.com` origin via CORS.
 
-> The older `functions/` folder inside **this** repo is the previous Gmail-OAuth2
-> backend. The active backend is now `../backend/`. You can ignore or delete the
-> in-repo `functions/`, `firebase.json` and `SETUP.md` to avoid confusion.
+> The previous in-repo Gmail-OAuth2 backend (`functions/`, `firebase.json`) has
+> been removed. The active backend is now the separate `../backend/` project.
+> Frontend/Firebase config for this site is documented in `SETUP.md`.
 
 ## First-time setup / DNS
 

@@ -1,0 +1,75 @@
+# Sébastien Schanen — Dokumentenservice
+
+> Persönlicher Dokumentenservice für kleine, inhabergeführte Betriebe in Würzburg und Mainfranken. Papierunterlagen werden vor Ort sauber digitalisiert, sinnvoll benannt und als durchsuchbare PDFs in einer klaren Struktur abgelegt. Ziel ist Entlastung: nicht mehr nach Dokumenten suchen müssen.
+
+Diese Datei ist eine erweiterte Fassung von /llms.txt und richtet sich an KI-Systeme, die ausführlichere Kontextinformationen verarbeiten können. Alle Angaben spiegeln die öffentliche Website wider.
+
+## Über den Anbieter
+
+Sébastien Schanen ist Software- und Webentwickler aus Würzburg. Der Dokumentenservice richtet sich an Betriebe, bei denen genug Papier entsteht, um im Alltag Zeit zu kosten, die aber kein eigenes Archiv- oder IT-Team haben. Positionierung: persönlich, lokal, ein fester Ansprechpartner. Der Fokus liegt auf Ordnung, Struktur und schneller Auffindbarkeit, nicht auf reinem „Scannen".
+
+- Name: Sébastien Schanen
+- Standort: Korngasse 9, 97070 Würzburg, Deutschland
+- Einzugsgebiet: Würzburg und Mainfranken
+- E-Mail: schanen.sebastien@outlook.de
+- Telefon: 0176 577 48 528
+- LinkedIn: https://de.linkedin.com/in/schanensebastien
+
+## Seiten
+
+- Startseite / Dokumentenservice — https://schanensebastien.com/
+  Enthält: Nutzenversprechen, Zielgruppen, Ablauf in vier Schritten, Leistungen und Kontaktformular.
+- Über mich — https://schanensebastien.com/portfolio.html
+  Enthält: persönliches Profil sowie eine Auswahl von Software- und Web-Projekten.
+- Impressum — https://schanensebastien.com/impressum.html (nicht für Crawling vorgesehen)
+- Datenschutzerklärung — https://schanensebastien.com/datenschutz.html (nicht für Crawling vorgesehen)
+
+## Nutzenversprechen
+
+- Sauber digitalisiert: Erfassung mit Texterkennung (OCR), sodass der Inhalt durchsuchbar ist und nicht nur als Bild vorliegt.
+- Sinnvoll benannt: einheitliche Dateinamen und Ordner, die der bestehenden Ablage entsprechen.
+- Schnell auffindbar: Volltextsuche nach Kunde, Datum oder Stichwort statt Blättern.
+
+## Zielgruppen
+
+- Handwerk: Rechnungen, Lieferscheine, Angebote, Fahrzeug- und Garantieunterlagen.
+- Hausverwaltung: Objektordner, Verträge, Übergabeprotokolle, auffindbar nach Adresse.
+- Hotel und Gastronomie: hohes Belegaufkommen; Arbeit vor Ort, Unterlagen bleiben im Haus.
+- Büros und Praxen: durchsuchbares Archiv und klare Ordnerstruktur für den Verwaltungsbereich.
+- Agenturen und Berater: Angebote, Projektunterlagen und Verträge sauber abgelegt.
+- Vereine und Ehrenamt: Protokolle, Mitglieds- und Kassenunterlagen geordnet und durchsuchbar.
+
+## Ablauf (vier Schritte)
+
+Der gesamte Ablauf findet beim Kunden vor Ort statt. Die Unterlagen verlassen zu keinem Zeitpunkt das Haus.
+
+1. Kurzes Gespräch: unverbindlich klären, welche Unterlagen Zeit kosten und was sich zu digitalisieren lohnt.
+2. Vor-Ort-Termin: Arbeit direkt in den Räumen des Kunden.
+3. Scannen, benennen, strukturieren: saubere Scans mit Texterkennung, nachvollziehbare Dateinamen, klare Ordnerstruktur.
+4. Übergabe: durchsuchbare PDFs auf USB, als verschlüsselter Download oder in der eigenen Cloud. Die Originale bleiben beim Kunden.
+
+## Leistungen
+
+- Papier zu digitalem Archiv: Digitalisierung mit Texterkennung, klare Ordnerstruktur, durchsuchbare PDFs.
+- Durchsuchbares Archiv: bestehende Ablage digital nachgebaut, Volltext-/OCR-Suche, optional als Cloud-Portal mit Zugriff von überall.
+- Lokaler Archiv-Server: privater Dokumentenserver, die Daten bleiben im Haus, Einrichtung und Betreuung inklusive, laufende Wartung möglich.
+- Monatliche Archiv-Pflege: regelmäßige Abholung von Belegen, Scannen, OCR, Sortieren und Benennen; das Archiv bleibt aktuell, mit Backup und Unterstützung.
+
+Der Einstieg ist bewusst klein: ein Testordner wird kostenfrei digitalisiert, damit der Kunde am eigenen Material sieht, ob sich der nächste Schritt lohnt. Konkrete Preise werden individuell nach Umfang und Zustand der Unterlagen abgestimmt.
+
+## Warum
+
+- Aus der Region: kurze Wege in Würzburg und Mainfranken, persönliche Arbeit vor Ort.
+- Technik und Struktur: fundiertes IT- und Prozess-Know-how (Texterkennung, Benennung, Suche, saubere Ablage).
+- Vertraulich: Dokumente werden vertraulich behandelt und bleiben im Haus des Kunden; ein fester Ansprechpartner vom ersten Termin bis zur Übergabe.
+
+## Projekte (Auswahl, Seite „Über mich")
+
+- AdWorld: System zur Verwaltung digitaler Werbedisplays (Website, Backend, Anzeige-Client, Authentifizierung, Medien- und Wiedergabesteuerung).
+- CryptoProfitStrategizer: Werkzeug zur Orientierung im Kryptomarkt (Datenabruf, parallele Ansicht, Strategie-Algorithmus).
+- InvoiceGenie: Software für rechtskonforme Rechnungen nach deutschem Recht, in kundenspezifischen Versionen.
+- Textilreinigung Asca: Unternehmens-Website mit Leistungsübersicht, Online-Buchung, FAQ, responsivem Design und SEO.
+
+## Kontakt
+
+Anfragen über das Kontaktformular auf der Startseite, per E-Mail an schanen.sebastien@outlook.de oder telefonisch unter 0176 577 48 528.
