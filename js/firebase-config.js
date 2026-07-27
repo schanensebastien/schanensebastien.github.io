@@ -5,7 +5,7 @@
    Firebase console -> Project settings -> "Your apps" -> Web app.
 
    Until the apiKey below is replaced, the contact form falls back
-   to a normal e-mail link and analytics stays off — the site keeps
+   to a normal e-mail link and analytics stays off, the site keeps
    working with NO third-party requests. See SETUP.md.
    ============================================================ */
 
@@ -30,7 +30,7 @@ window.DOCSCAN_CONTACT_TO = "schanen.sebastien@outlook.de";
 
 /* ---- Cloud Functions backend (../backend/) ----
    Firebase Functions v2 gives each function its own URL (*.run.app).
-   Paste the full URLs from `firebase deploy` output — no trailing slash. */
+   Paste the full URLs from `firebase deploy` output, no trailing slash. */
 window.DOCSCAN_CONTACT_URL = "https://contact-7tacntja7a-ey.a.run.app";
 window.DOCSCAN_NOTIFY_VISIT_URL = "https://notifyvisit-7tacntja7a-ey.a.run.app";
 window.DOCSCAN_TRACK_CLICK_URL = "https://trackclick-7tacntja7a-ey.a.run.app";

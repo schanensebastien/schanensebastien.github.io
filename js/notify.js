@@ -98,7 +98,7 @@
             if (window.DocScanConsent.decided()) {
                 activate();
             } else {
-                /* Wait for the banner choice — fires on accept AND decline,
+                /* Wait for the banner choice: fires on accept AND decline,
                    so the visit e-mail can report the chosen state. */
                 window.DocScanConsent.onChange(function () { activate(); });
             }

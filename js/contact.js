@@ -22,9 +22,9 @@
 
     function mailtoFallback(data) {
         var to = window.DOCSCAN_CONTACT_TO || "schanen.sebastien@outlook.de";
-        var subject = encodeURIComponent("Anfrage über schanensebastien.com — " + data.name);
+        var subject = encodeURIComponent("Anfrage über schanensebastien.com · " + data.name);
         var body = encodeURIComponent(
-            data.message + "\n\n—\nName: " + data.name +
+            data.message + "\n\n·\nName: " + data.name +
             "\nE-Mail: " + data.email +
             (data.phone ? "\nTelefon: " + data.phone : "")
         );
@@ -34,7 +34,7 @@
     form.addEventListener("submit", async function (e) {
         e.preventDefault();
 
-        /* Honeypot — bots fill hidden fields, humans do not. */
+        /* Honeypot: bots fill hidden fields, humans do not. */
         var hp = form.querySelector('input[name="company"]');
         if (hp && hp.value) return;
 
@@ -66,7 +66,7 @@
                 });
                 if (!resp.ok) throw new Error("status " + resp.status);
                 form.reset();
-                setStatus("Vielen Dank! Ihre Nachricht ist angekommen — ich melde mich verlässlich zurück.", "ok");
+                setStatus("Vielen Dank! Ihre Nachricht ist angekommen, ich melde mich verlässlich zurück.", "ok");
             } catch (err) {
                 setStatus("Senden hat nicht geklappt. Bitte schreiben Sie direkt an " +
                           (window.DOCSCAN_CONTACT_TO || "") + ".", "err");
@@ -114,12 +114,12 @@
             await window.DocScanFirebase.addDocument(
                 window.DOCSCAN_MAIL_COLLECTION || "mail",
                 { to: [to], replyTo: data.email,
-                  message: { subject: "Anfrage über schanensebastien.com — " + data.name,
+                  message: { subject: "Anfrage über schanensebastien.com · " + data.name,
                              text: textBody, html: htmlBody } }
             );
 
             form.reset();
-            setStatus("Vielen Dank! Ihre Nachricht ist angekommen — ich melde mich verlässlich zurück.", "ok");
+            setStatus("Vielen Dank! Ihre Nachricht ist angekommen, ich melde mich verlässlich zurück.", "ok");
         } catch (err) {
             setStatus("Senden hat nicht geklappt. Bitte schreiben Sie direkt an " +
                       (window.DOCSCAN_CONTACT_TO || "") + ".", "err");

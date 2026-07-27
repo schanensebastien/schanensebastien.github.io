@@ -1,4 +1,4 @@
-# Sébastien Schanen — Dokumentenservice
+# Sébastien Schanen · Dokumentenservice
 
 > Persönlicher Dokumentenservice für kleine, inhabergeführte Betriebe in Würzburg und Mainfranken. Papierunterlagen werden vor Ort sauber digitalisiert, sinnvoll benannt und als durchsuchbare PDFs in einer klaren Struktur abgelegt. Ziel ist Entlastung: nicht mehr nach Dokumenten suchen müssen.
 
@@ -6,7 +6,7 @@ Diese Datei ist eine erweiterte Fassung von /llms.txt und richtet sich an KI-Sys
 
 ## Über den Anbieter
 
-Sébastien Schanen ist Software- und Webentwickler aus Würzburg. Der Dokumentenservice richtet sich an Betriebe, bei denen genug Papier entsteht, um im Alltag Zeit zu kosten, die aber kein eigenes Archiv- oder IT-Team haben. Positionierung: persönlich, lokal, ein fester Ansprechpartner. Der Fokus liegt auf Ordnung, Struktur und schneller Auffindbarkeit, nicht auf reinem „Scannen".
+Sébastien Schanen ist Software- und Webentwickler aus Würzburg. Der Dokumentenservice richtet sich an Betriebe, bei denen genug Papier entsteht, um im Alltag Zeit zu kosten, die aber kein eigenes Archiv- oder IT-Team haben. Positionierung: persönlich, lokal, ein fester Ansprechpartner. Der Fokus liegt auf Ordnung, Struktur und schneller Auffindbarkeit, nicht auf reinem „Scannen“.
 
 - Name: Sébastien Schanen
 - Standort: Korngasse 9, 97070 Würzburg, Deutschland
@@ -17,12 +17,12 @@ Sébastien Schanen ist Software- und Webentwickler aus Würzburg. Der Dokumenten
 
 ## Seiten
 
-- Startseite / Dokumentenservice — https://schanensebastien.com/
-  Enthält: Nutzenversprechen, Zielgruppen, Ablauf in vier Schritten, Leistungen und Kontaktformular.
-- Über mich — https://schanensebastien.com/portfolio.html
+- Startseite / Dokumentenservice: https://schanensebastien.com/
+  Enthält: Nutzenversprechen, Zielgruppen, Vorgehen, Ablauf in vier Schritten, Leistungen, Passung zur Zusammenarbeit und Kontaktformular.
+- Über mich: https://schanensebastien.com/portfolio.html
   Enthält: persönliches Profil sowie eine Auswahl von Software- und Web-Projekten.
-- Impressum — https://schanensebastien.com/impressum.html (nicht für Crawling vorgesehen)
-- Datenschutzerklärung — https://schanensebastien.com/datenschutz.html (nicht für Crawling vorgesehen)
+- Impressum: https://schanensebastien.com/impressum.html (nicht für Crawling vorgesehen)
+- Datenschutzerklärung: https://schanensebastien.com/datenschutz.html (nicht für Crawling vorgesehen)
 
 ## Nutzenversprechen
 
@@ -38,6 +38,38 @@ Sébastien Schanen ist Software- und Webentwickler aus Würzburg. Der Dokumenten
 - Büros und Praxen: durchsuchbares Archiv und klare Ordnerstruktur für den Verwaltungsbereich.
 - Agenturen und Berater: Angebote, Projektunterlagen und Verträge sauber abgelegt.
 - Vereine und Ehrenamt: Protokolle, Mitglieds- und Kassenunterlagen geordnet und durchsuchbar.
+
+## Vorgehen und Haltung
+
+Leitsatz: „Ich scanne nicht einfach Dokumente. Ich baue eine Struktur, in der sie gefunden und genutzt werden.“
+
+Digitalisierung wird nicht primär als Scan-Projekt verstanden, sondern als Frage danach, wie Informationen organisiert sein müssen, damit sie schnell gefunden, verstanden und weiterverwendet werden können.
+
+- Zuerst verstehen, dann scannen: Vor der Digitalisierung wird geklärt, welche Unterlagen regelmäßig gebraucht werden, wie das Team heute sucht, welche Ordner, Namen und Abläufe bereits bestehen, wer Zugriff braucht und an welcher Stelle Zeit verloren geht. Erst danach wird festgelegt, wie gescannt, benannt, strukturiert und abgelegt wird.
+- Was funktioniert, bleibt: Die bestehende Ablage und eingespielte Gewohnheiten sind die Grundlage. Papierordner werden in eine klare digitale Struktur übersetzt, während doppelte Ablagen, unterschiedliche Schreibweisen und unklare Kategorien nach und nach verschwinden. Das Ergebnis bleibt vertraut, ist aber schneller durchsuchbar.
+- Auffindbarkeit zählt mehr als der Scan: Ergebnis sind nicht Bilddateien, sondern durchsuchbare PDFs mit einheitlichen Namen und einer Struktur, die zum Zweck der Dokumente passt. Ziel ist weniger Suchzeit, nicht nur weniger Papier.
+- Kleiner erster Schritt: Statt einer Entscheidung über das gesamte Archiv beginnt die Zusammenarbeit mit einem ausgewählten Testordner. Daran zeigt sich die Arbeitsweise am eigenen Material; die Entscheidung über den Rest folgt anhand eines echten Ergebnisses.
+- Ein System, das nutzbar bleibt: Es wird mitgedacht, wie neue Dokumente hinzukommen und wie die Struktur einheitlich bleibt. Wo sinnvoll, gehört ein zentraler, gesicherter Dokumentenserver dazu, auf dem berechtigte Mitarbeiter finden, was sie brauchen. Die richtige Lösung ist nicht die komplizierteste, sondern die täglich verlässlich nutzbare.
+
+## Passung der Zusammenarbeit
+
+Geeignet für Betriebe, die
+
+- mehr erwarten, als dass Papier durch einen Scanner gezogen wird,
+- eine klare, durchsuchbare Struktur wollen, die zur tatsächlichen Arbeitsweise passt,
+- Unterlagen sorgfältig, vertraulich und detailgenau behandelt sehen möchten,
+- Benennung, Texterkennung, Qualitätskontrolle und Ordnung als genauso wichtig ansehen wie den Scan selbst,
+- eine verlässliche Lösung für Jahre bevorzugen statt der günstigsten Zwischenlösung,
+- offen für praktische Vorschläge sind, auch wenn dafür ineffiziente Abläufe verändert werden,
+- einen persönlichen Ansprechpartner statt anonymer Massenabwicklung möchten.
+
+Weniger geeignet, wenn
+
+- ausschließlich der niedrigste Preis pro Seite zählt,
+- ohne Prüfung von Qualität, Benennung und Struktur gescannt werden soll,
+- eine Standardlösung erwartet wird, ohne über die spätere Nutzung der Dateien zu sprechen.
+
+Für reine Massenscans zum Seitenpreis gibt es größere Anbieter, die genau darauf ausgelegt sind.
 
 ## Ablauf (vier Schritte)
 
@@ -63,7 +95,7 @@ Der Einstieg ist bewusst klein: ein Testordner wird kostenfrei digitalisiert, da
 - Technik und Struktur: fundiertes IT- und Prozess-Know-how (Texterkennung, Benennung, Suche, saubere Ablage).
 - Vertraulich: Dokumente werden vertraulich behandelt und bleiben im Haus des Kunden; ein fester Ansprechpartner vom ersten Termin bis zur Übergabe.
 
-## Projekte (Auswahl, Seite „Über mich")
+## Projekte (Auswahl, Seite „Über mich“)
 
 - AdWorld: System zur Verwaltung digitaler Werbedisplays (Website, Backend, Anzeige-Client, Authentifizierung, Medien- und Wiedergabesteuerung).
 - CryptoProfitStrategizer: Werkzeug zur Orientierung im Kryptomarkt (Datenabruf, parallele Ansicht, Strategie-Algorithmus).

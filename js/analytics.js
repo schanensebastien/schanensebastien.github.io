@@ -1,5 +1,5 @@
 /* ============================================================
-   Analytics — consent-gated click & page tracking via Firebase
+   Analytics: consent-gated click & page tracking via Firebase
    ------------------------------------------------------------
    Runs ONLY after the visitor accepts "Statistik / Analyse".
    Logs a page_view on every page load and every click on links,

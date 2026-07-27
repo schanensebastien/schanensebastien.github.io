@@ -80,7 +80,7 @@ window.DocScanConsent = (function () {
               '</label>' +
               '<label class="consent-opt">' +
                 '<input type="checkbox" id="consent-analytics">' +
-                '<span><strong>Statistik / Analyse</strong>Firebase &amp; Google Analytics — anonymisierte Nutzungsmessung.</span>' +
+                '<span><strong>Statistik / Analyse</strong>Firebase &amp; Google Analytics: anonymisierte Nutzungsmessung.</span>' +
               '</label>' +
             '</div>' +
             '<div class="consent-actions">' +

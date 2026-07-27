@@ -1,4 +1,4 @@
-# Sébastien Schanen — Dokumentenservice
+# Sébastien Schanen · Dokumentenservice
 
 > Persönlicher Dokumentenservice für kleine, inhabergeführte Betriebe in Würzburg und Mainfranken. Papierunterlagen werden vor Ort sauber digitalisiert, sinnvoll benannt und als durchsuchbare PDFs in klarer Struktur abgelegt. Die Unterlagen verlassen dabei nicht das Haus des Kunden.
 
@@ -11,6 +11,16 @@
 - Durchsuchbares Archiv: bestehende Ablage digital nachgebaut, Volltext-/OCR-Suche, optional als Cloud-Portal.
 - Lokaler Archiv-Server: privater Dokumentenserver, die Daten bleiben im Haus.
 - Monatliche Archiv-Pflege: regelmäßiges Scannen, Sortieren und Benennen; das Archiv bleibt aktuell.
+
+## Vorgehen
+- Digitalisieren wird nicht als Scan-Projekt verstanden, sondern als Frage der Ordnung: erst Abläufe und Suchgewohnheiten klären, dann scannen.
+- Die bestehende Ablage bleibt Grundlage; doppelte Ablagen und unklare Benennungen werden bereinigt.
+- Auffindbarkeit zählt mehr als der Scan: durchsuchbare PDFs, einheitliche Namen, sinnvolle Struktur.
+- Ziel ist ein System, das dauerhaft pflegbar bleibt, bei Bedarf mit zentralem, gesichertem Dokumentenserver.
+
+## Passung
+- Geeignet für Betriebe, die Sorgfalt, Vertraulichkeit, klare Struktur und einen persönlichen Ansprechpartner erwarten.
+- Weniger geeignet, wenn ausschließlich der niedrigste Preis pro Seite zählt oder Qualität, Benennung und Struktur nicht geprüft werden sollen.
 
 ## Kontakt
 - E-Mail: schanen.sebastien@outlook.de

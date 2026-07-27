@@ -1,7 +1,7 @@
 /* ============================================================
-   DocScan — Sébastien Schanen
+   DocScan · Sébastien Schanen
    Shared design system. "Quiet Ledger": calm, premium, severe.
-   Self-hosted fonts (see assets/fonts/fonts.css) — no third-party
+   Self-hosted fonts (see assets/fonts/fonts.css), no third-party
    font CDN, for GDPR compliance.
    ============================================================ */
 
@@ -326,6 +326,74 @@ section:last-of-type { border-bottom: none; }
     padding: 5px 12px;
     border-radius: 999px;
 }
+/* ---------- Reusable bullet list (same marker as packages) ---------- */
+.dot-list {
+    list-style: none;
+    margin: 12px 0 0; padding: 0;
+    display: grid; gap: 9px;
+}
+.dot-list li {
+    position: relative;
+    padding-left: 24px;
+    color: var(--ink-soft);
+    font-size: .97rem;
+}
+.dot-list li::before {
+    content: "";
+    position: absolute; left: 0; top: .55em;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: .6;
+}
+
+/* ---------- Positioning claim ---------- */
+.claim {
+    margin: 30px 0 0;
+    padding: 24px 30px;
+    background: var(--paper-2);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    line-height: 1.45;
+    color: var(--ink);
+    max-width: 46ch;
+}
+@media (max-width: 560px) {
+    .claim { font-size: 1.15rem; padding: 20px 22px; }
+}
+
+/* ---------- Client fit / no fit ---------- */
+.fit-grid { align-items: start; }
+.fit h3 { margin-bottom: .2rem; }
+.fit ul {
+    list-style: none;
+    margin: 14px 0 0; padding: 0;
+    display: grid; gap: 11px;
+}
+.fit li {
+    position: relative;
+    padding-left: 30px;
+    color: var(--ink-soft);
+    font-size: .97rem;
+    line-height: 1.55;
+}
+.fit li::before {
+    position: absolute; left: 0; top: 0;
+    font-weight: 700;
+}
+.fit-yes li::before { content: "\2713"; color: var(--accent); }
+.fit-no { background: var(--paper-2); }
+.fit-no li::before { content: "\2715"; color: var(--muted); font-size: .9rem; }
+.fit-foot {
+    margin: 18px 0 0;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    font-size: .92rem;
+    color: var(--muted);
+}
+
 .note {
     margin-top: 26px;
     padding: 18px 22px;
@@ -336,6 +404,7 @@ section:last-of-type { border-bottom: none; }
     font-size: .98rem;
     max-width: 70ch;
 }
+.note a { text-decoration: underline; }
 
 /* ---------- "Für wen": organic, non-hierarchical scatter ----------
    The six cards sit in a 3-column grid but each is nudged to its own
@@ -605,35 +674,32 @@ footer .foot-links { display: flex; flex-wrap: wrap; gap: 8px 16px; }
     font-weight: 500; cursor: pointer; padding: 11px 8px; text-decoration: underline;
 }
 
-/* Mobile: Einstellungen above Nur notwendige (left), Alle akzeptieren (right) */
+/* Mobile: Einstellungen on top, then two equally sized buttons side by side */
 @media (max-width: 560px) {
     .consent-actions {
         display: grid;
-        grid-template-columns: 1fr auto;
-        grid-template-rows: auto auto;
-        gap: 8px 12px;
-        align-items: center;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px 10px;
+        align-items: stretch;
     }
     .consent-actions [data-act="toggle"] {
-        grid-column: 1;
+        grid-column: 1 / -1;
         grid-row: 1;
         justify-self: start;
-        padding: 6px 0;
+        padding: 4px 0 2px;
     }
-    .consent-actions [data-act="necessary"] {
-        grid-column: 1;
-        grid-row: 2;
-        justify-self: start;
-    }
+    .consent-actions [data-act="necessary"] { grid-column: 1; grid-row: 2; }
+    .consent-actions [data-act="all"] { grid-column: 2; grid-row: 2; }
+    .consent-actions [data-act="necessary"],
     .consent-actions [data-act="all"] {
-        grid-column: 2;
-        grid-row: 1 / 3;
-        justify-self: end;
-        align-self: center;
+        width: 100%;
+        padding: 11px 8px;
+        font-size: .88rem;
+        text-align: center;
     }
     .consent-actions [data-act="save"] {
         grid-column: 1 / -1;
-        justify-self: stretch;
+        grid-row: 3;
         width: 100%;
     }
 }
