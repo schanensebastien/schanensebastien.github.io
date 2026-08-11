@@ -2,14 +2,15 @@
    Consent manager (GDPR / TDDDG)
    ------------------------------------------------------------
    - "Necessary" is always on and stores nothing trackable.
-   - "Analytics" is strictly opt-in. Nothing tracking-related runs
-     and no Google request is made until the visitor accepts.
+   - Analytics and marketing are separate, strict opt-ins.
+   - No Google or Meta request is made until the visitor accepts
+     the corresponding purpose.
    - Choice is remembered in localStorage and can be changed any
      time via the footer "Cookie-Einstellungen" link.
    ============================================================ */
 
 window.DocScanConsent = (function () {
-    var KEY = "docscan-consent-v1";
+    var KEY = "docscan-consent-v2";
     var listeners = [];
     var state = load();
 
@@ -52,7 +53,10 @@ window.DocScanConsent = (function () {
             d.removeAttribute("hidden");
             saveBtn.removeAttribute("hidden");
             if (toggleBtn) toggleBtn.textContent = "Einstellungen schließen";
-            if (state) el.querySelector("#consent-analytics").checked = !!state.analytics;
+            if (state) {
+                el.querySelector("#consent-analytics").checked = !!state.analytics;
+                el.querySelector("#consent-marketing").checked = !!state.marketing;
+            }
         } else {
             d.setAttribute("hidden", "");
             saveBtn.setAttribute("hidden", "");
@@ -69,9 +73,8 @@ window.DocScanConsent = (function () {
         el.setAttribute("aria-label", "Cookie- und Tracking-Einstellungen");
         el.innerHTML =
             '<h2>Datenschutz &amp; Tracking</h2>' +
-            '<p>Diese Website nutzt nur technisch notwendige Speicherung. Optional messe ich ' +
-            'mit Firebase/Google Analytics anonymisiert, wie die Seite genutzt wird, um sie zu ' +
-            'verbessern. Das geschieht erst mit Ihrer Einwilligung. Mehr dazu in der ' +
+            '<p>Google Analytics/Tag Manager und der Meta Pixel starten jeweils erst nach Ihrer ausdrücklichen ' +
+            'Einwilligung. Mehr dazu in der ' +
             '<a href="datenschutz.html">Datenschutz&shy;erklärung</a>.</p>' +
             '<div class="consent-detail" hidden>' +
               '<label class="consent-opt">' +
@@ -80,7 +83,11 @@ window.DocScanConsent = (function () {
               '</label>' +
               '<label class="consent-opt">' +
                 '<input type="checkbox" id="consent-analytics">' +
-                '<span><strong>Statistik / Analyse</strong>Firebase &amp; Google Analytics: anonymisierte Nutzungsmessung.</span>' +
+                '<span><strong>Statistik</strong>Google Analytics/Tag Manager: Seitenaufrufe, Herkunft und Nutzung messen.</span>' +
+              '</label>' +
+              '<label class="consent-opt">' +
+                '<input type="checkbox" id="consent-marketing">' +
+                '<span><strong>Meta</strong>Meta Pixel: Besuche und Kontaktaktionen aus Facebook und Instagram zuordnen.</span>' +
               '</label>' +
             '</div>' +
             '<div class="consent-actions">' +
@@ -93,14 +100,17 @@ window.DocScanConsent = (function () {
         el.addEventListener("click", function (e) {
             var act = e.target.getAttribute && e.target.getAttribute("data-act");
             if (!act) return;
-            if (act === "all") { save({ analytics: true }); hide(); }
-            else if (act === "necessary") { save({ analytics: false }); hide(); }
+            if (act === "all") { save({ analytics: true, marketing: true }); hide(); }
+            else if (act === "necessary") { save({ analytics: false, marketing: false }); hide(); }
             else if (act === "toggle") {
                 var d = el.querySelector(".consent-detail");
                 setSettingsOpen(d.hasAttribute("hidden"));
             }
             else if (act === "save") {
-                save({ analytics: !!el.querySelector("#consent-analytics").checked });
+                save({
+                    analytics: !!el.querySelector("#consent-analytics").checked,
+                    marketing: !!el.querySelector("#consent-marketing").checked
+                });
                 hide();
             }
         });

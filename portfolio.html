@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Über Sébastien Schanen, Software- und Webentwickler aus Würzburg, sowie eine Auswahl seiner Projekte: AdWorld, CryptoProfitStrategizer, InvoiceGenie und die Website Textilreinigung Asca.">
+    <meta name="theme-color" content="#FBFAF6">
+    <meta name="theme-color" content="#102019" media="(prefers-color-scheme: dark)">
+    <meta name="description" content="Über Sébastien Schanen: Dokumentendigitalisierung, OCR, klare Ablagestrukturen sowie Software- und KI-Lösungen für regionale Betriebe in Würzburg und Mainfranken.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://schanensebastien.com/portfolio.html">
     <meta property="og:title" content="Über mich · Sébastien Schanen">
@@ -23,8 +25,9 @@
     <meta name="twitter:description" content="Über Sébastien Schanen und eine Auswahl seiner Software- und Web-Projekte.">
     <meta name="twitter:image" content="https://schanensebastien.com/images/linkedin-preview.jpg">
     <title>Über mich · Sébastien Schanen</title>
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="css/docscan.css">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
+    <link rel="stylesheet" href="css/docscan.min.css">
 
     <script type="application/ld+json">
     {
@@ -34,10 +37,16 @@
           "@type": "Person",
           "@id": "https://schanensebastien.com/portfolio.html#person",
           "name": "Sébastien Schanen",
-          "jobTitle": "Software- und Webentwickler",
+          "jobTitle": "Softwareentwickler und Dienstleister für Dokumentendigitalisierung",
           "url": "https://schanensebastien.com/portfolio.html",
+          "image": "https://schanensebastien.com/images/sebastien-schanen-portrait-640.webp",
           "address": { "@type": "PostalAddress", "addressLocality": "Würzburg", "addressCountry": "DE" },
-          "sameAs": [ "https://de.linkedin.com/in/schanensebastien" ],
+          "sameAs": [
+            "https://de.linkedin.com/in/schanensebastien",
+            "https://www.instagram.com/schanensebastien/",
+            "https://www.facebook.com/schanensebastien/",
+            "https://medium.com/@schanensebastien"
+          ],
           "worksFor": { "@id": "https://schanensebastien.com/#business" }
         },
         {
@@ -58,14 +67,17 @@
         <div class="wrap">
             <div class="brand">
                 <a href="index.html">Sébastien Schanen</a>
-                <small>Dokumentenscan · Struktur · durchsuchbare PDFs</small>
+                <small>Dokumente · OCR · klare Ablage</small>
             </div>
-            <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="primary-nav">Menü</button>
+            <button class="nav-toggle" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="primary-nav">Menü</button>
             <nav class="nav" id="primary-nav" aria-label="Hauptnavigation">
-                <a href="index.html#leistungen">Leistungen</a>
-                <a href="index.html#ablauf">Ablauf</a>
-                <a href="index.html#kontakt" class="nav-cta">Kontakt</a>
-                <a href="portfolio.html">Über mich</a>
+                <a href="index.html">Start</a>
+                <a href="dokumente-digitalisieren-wuerzburg.html">Digitalisieren</a>
+                <a href="dokumentenmanagement-wuerzburg.html">Archiv &amp; OCR</a>
+                <a href="digitalisierung-handwerk-wuerzburg.html">Für Handwerk</a>
+                <a href="private-dokumenten-ki.html">Software &amp; KI</a>
+                <a href="portfolio.html" aria-current="page">Über mich</a>
+                <a href="testordner.html" class="nav-cta">Testordner</a>
             </nav>
         </div>
     </header>
@@ -80,16 +92,25 @@
             </div>
         </nav>
 
-        <section class="hero" style="padding-bottom:48px;">
-            <div class="wrap">
-                <p class="kicker">Über mich</p>
-                <h1>Über mich</h1>
-                <p class="lead">
-                    Softwareentwickler aus Würzburg. Neben meinem
-                    <a href="index.html">Dokumentenservice für Betriebe in Würzburg und Mainfranken</a>
-                    entwickle ich eigene Software- und Web-Projekte. Hier finden Sie einen Einblick und
-                    eine Auswahl meiner Arbeit.
-                </p>
+        <section class="hero portfolio-hero">
+            <div class="wrap portfolio-hero-grid">
+                <div class="portfolio-hero-copy">
+                    <p class="kicker">Über Sébastien Schanen</p>
+                    <h1>Dokumente, Software und verlässliche Abläufe.</h1>
+                    <p class="lead">
+                        Ich unterstütze regionale Betriebe in Würzburg und Mainfranken dabei,
+                        Dokumente zuverlässig zu digitalisieren, per OCR durchsuchbar zu machen
+                        und in klare Ablagestrukturen zu überführen. Ergänzend entwickle ich
+                        Software, Schnittstellen und private KI-Lösungen für wiederkehrende
+                        Dokumentenprozesse.
+                    </p>
+                </div>
+                <figure class="profile-photo">
+                    <picture>
+                        <source srcset="images/sebastien-schanen-portrait-320.webp 320w, images/sebastien-schanen-portrait-640.webp 640w" sizes="(max-width: 640px) 250px, 340px" type="image/webp">
+                        <img src="images/sebastien-schanen-portrait-640.webp" width="640" height="630" alt="Sébastien Schanen, Softwareentwickler und Dokumentenservice aus Würzburg" decoding="async" fetchpriority="high">
+                    </picture>
+                </figure>
             </div>
         </section>
 
@@ -99,29 +120,34 @@
                 <div class="about-grid">
                     <div>
                         <h2>Sébastien Schanen</h2>
-                        <p style="color:var(--ink-soft);">
-                            Software- und Webentwickler aus Würzburg, mit Fokus auf saubere,
-                            verlässliche Lösungen und stetiges Dazulernen.
+                        <p class="soft-copy">
+                            Softwareentwickler und persönlicher Ansprechpartner für
+                            Dokumentendigitalisierung, OCR und digitale Ablage in Würzburg und
+                            Mainfranken.
                         </p>
                     </div>
                     <div>
-                        <h3>Was ich mache</h3>
+                        <h3>Dokumentendigitalisierung &amp; Ablage</h3>
                         <p>
-                            Ich entwickle praxisnahe Software- und Weblösungen und vertiefe dabei
-                            kontinuierlich meine Kenntnisse in Programmiersprachen und Frameworks,
-                            in Projekten, die meine technischen Fähigkeiten fordern.
+                            Ich überführe Papierunterlagen und bestehende digitale Dateien in
+                            geprüfte, durchsuchbare Bestände. Dazu gehören Scanqualität,
+                            OCR-Texterkennung, verständliche Dateinamen, klare Ordnerstrukturen und
+                            die Übergabe an vorhandene Systeme – persönlich und abgestimmt auf den
+                            Arbeitsalltag des Betriebs.
                         </p>
-                        <h3>Ziele</h3>
+                        <h3>Software &amp; Automatisierung</h3>
                         <p>
-                            Mein Ziel ist Software, die Menschen im Alltag wirklich weiterhilft:
-                            robuste Projekte von Grund auf, sauber umgesetzt. Sprechen Sie mich gern
-                            zu Technik oder einer möglichen Zusammenarbeit an.
+                            Für wiederkehrende Dokumentenprozesse entwickle ich eigene Anwendungen,
+                            Schnittstellen und private KI-Komponenten. Sie können Dokumentarten
+                            erkennen, Informationen vorschlagen und geprüfte Ergebnisse an DMS,
+                            Nextcloud, Lexware oder andere Zielsysteme übergeben.
                         </p>
-                        <h3>Neben dem Code</h3>
+                        <h3>Arbeitsweise</h3>
                         <p>
-                            Abseits der Entwicklung schätze ich Schach für seine strategische Tiefe,
-                            Spaziergänge und Wanderungen zum Kopf-Freibekommen, das Reisen für neue
-                            Perspektiven sowie regelmäßiges Training.
+                            Am Anfang steht kein pauschales Softwarepaket, sondern der konkrete
+                            Such- oder Ablageprozess. Mit einem repräsentativen Testordner oder einem
+                            klar begrenzten Pilot wird geprüft, welche Struktur funktioniert und wo
+                            sich Zeit messbar einsparen lässt.
                         </p>
                     </div>
                 </div>
@@ -133,8 +159,8 @@
                 <p class="section-label">Projekte</p>
                 <h2>Ausgewählte Arbeiten</h2>
                 <p class="section-intro">
-                    Abgeschlossene und laufende Projekte, von vollständigen Systemen über
-                    Desktop-Werkzeuge bis zu Unternehmens-Websites.
+                    Abgeschlossene und laufende Projekte aus Softwareentwicklung,
+                    Automatisierung und datengetriebener Verarbeitung.
                 </p>
 
                 <!-- AdWorld -->
@@ -179,7 +205,7 @@
                             <button class="carousel-btn next" type="button" aria-label="Nächstes Bild">&#8250;</button>
                         </div>
                         <div class="carousel-caption"></div>
-                        <div class="carousel-dots" aria-label="Bild wählen"></div>
+                        <div class="carousel-dots" role="group" aria-label="Bild wählen"></div>
                     </div>
                 </article>
 
@@ -214,68 +240,26 @@
                             <button class="carousel-btn next" type="button" aria-label="Nächstes Bild">&#8250;</button>
                         </div>
                         <div class="carousel-caption"></div>
-                        <div class="carousel-dots" aria-label="Bild wählen"></div>
-                    </div>
-                </article>
-
-                <!-- Textilreinigung Asca -->
-                <article class="proj">
-                    <div class="proj-head">
-                        <h3>Textilreinigung Asca, Unternehmens-Website</h3>
-                        <a href="https://textilreinigung-asca.com/" target="_blank" rel="noopener" data-track="proj-asca-site">Website ansehen</a>
-                    </div>
-                    <p>Der Online-Auftritt für Textilreinigung Asca, der die Leistungen und
-                    Informationen des Betriebs im Netz präsentiert:</p>
-                    <ul>
-                        <li><strong>Leistungsübersicht</strong>: ausführliche Beschreibungen aller Reinigungsleistungen samt Sonderbehandlungen und Preisen.</li>
-                        <li><strong>Online-Buchung</strong>: Kunden buchen Leistungen direkt über die Website.</li>
-                        <li><strong>Kundenservice</strong>: Kontaktdaten und ein interaktiver FAQ-Bereich.</li>
-                        <li><strong>Responsives Design</strong>: funktioniert zuverlässig auf allen Geräten.</li>
-                        <li><strong>SEO-Optimierung</strong>: für gute Sichtbarkeit in Suchmaschinen gebaut.</li>
-                    </ul>
-                    <div class="carousel" data-carousel>
-                        <div class="carousel-viewport">
-                            <div class="carousel-track">
-                                <div class="carousel-slide" data-caption="Startseite">
-                                    <img loading="lazy" src="assets/carousel_images/textilreinigung_asca/homepage_textilreinigung-asca.webp" alt="Textilreinigung Asca: Startseite">
-                                </div>
-                                <div class="carousel-slide" data-caption="Mobile Startseite (englisch)">
-                                    <img loading="lazy" src="assets/carousel_images/textilreinigung_asca/english_mobile_homepage_textilreinigung-asca.webp" alt="Textilreinigung Asca: englische mobile Startseite">
-                                </div>
-                                <div class="carousel-slide" data-caption="Preise">
-                                    <img loading="lazy" src="assets/carousel_images/textilreinigung_asca/prices_textilreinigung-asca.webp" alt="Textilreinigung Asca: Preisseite">
-                                </div>
-                            </div>
-                            <button class="carousel-btn prev" type="button" aria-label="Vorheriges Bild">&#8249;</button>
-                            <button class="carousel-btn next" type="button" aria-label="Nächstes Bild">&#8250;</button>
-                        </div>
-                        <div class="carousel-caption"></div>
-                        <div class="carousel-dots" aria-label="Bild wählen"></div>
+                        <div class="carousel-dots" role="group" aria-label="Bild wählen"></div>
                     </div>
                 </article>
             </div>
         </section>
     </main>
 
-    <footer>
+    <footer class="site-footer">
         <div class="wrap">
-            <div>&copy; <span data-year>2026</span> Sébastien Schanen</div>
-            <div class="foot-links">
-                <a href="index.html">Start</a>
-                <a href="impressum.html">Impressum</a>
-                <a href="datenschutz.html">Datenschutz</a>
-                <button type="button" class="consent-reopen" data-cookie-settings>Cookie-Einstellungen</button>
-                <a href="https://de.linkedin.com/in/schanensebastien" target="_blank" rel="noopener">LinkedIn</a>
+            <div class="footer-grid">
+                <div class="footer-brand"><strong>Sébastien Schanen</strong><p>Nicht nur gescannt, sondern auffindbar. Dokumentendigitalisierung, OCR und klare Ablagestrukturen für Würzburg &amp; Mainfranken.</p></div>
+                <div class="footer-col"><strong>Leistungen</strong><a href="dokumente-digitalisieren-wuerzburg.html">Dokumente digitalisieren</a><a href="dokumentenmanagement-wuerzburg.html">Archiv &amp; OCR</a><a href="digitalisierung-handwerk-wuerzburg.html">Für Handwerk</a><a href="private-dokumenten-ki.html">Software &amp; private KI</a></div>
+                <div class="footer-col"><strong>Kontakt</strong><a href="testordner.html">Kostenloser Testordner</a><a href="tel:+4917657748528">0176&nbsp;577&nbsp;48&nbsp;528</a><a href="mailto:schanen.sebastien@outlook.de">E-Mail schreiben</a></div>
+                <div class="footer-col"><strong>Mehr</strong><a href="portfolio.html">Über mich</a><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><button type="button" class="consent-reopen" data-cookie-settings>Cookie-Einstellungen</button><div class="footer-social" aria-label="Social Media"><a href="https://de.linkedin.com/in/schanensebastien" target="_blank" rel="noopener" data-track="social-linkedin">LinkedIn</a><a href="https://www.instagram.com/schanensebastien/" target="_blank" rel="noopener" data-track="social-instagram">Instagram</a><a href="https://www.facebook.com/schanensebastien/" target="_blank" rel="noopener" data-track="social-facebook">Facebook</a><a href="https://medium.com/@schanensebastien" target="_blank" rel="noopener" data-track="social-medium">Medium</a></div></div>
             </div>
+            <div class="footer-bottom"><span>&copy; <span data-year>2026</span> Sébastien Schanen</span><span>Würzburg · Mainfranken · persönlich vor Ort</span></div>
         </div>
     </footer>
 
-    <script src="js/firebase-config.js"></script>
-    <script src="js/firebase-loader.js"></script>
-    <script src="js/consent.js"></script>
-    <script src="js/analytics.js"></script>
-    <script src="js/carousel.js"></script>
-    <script src="js/notify.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/site.min.js" defer></script>
+    <script src="js/carousel.min.js" defer></script>
 </body>
 </html>

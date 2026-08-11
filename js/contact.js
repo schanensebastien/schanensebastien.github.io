@@ -20,6 +20,12 @@
 
     function valid(email) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); }
 
+    function trackLead() {
+        if (window.DocScanAnalytics && window.DocScanAnalytics.lead) {
+            window.DocScanAnalytics.lead(form.id || "contact-form");
+        }
+    }
+
     function mailtoFallback(data) {
         var to = window.DOCSCAN_CONTACT_TO || "schanen.sebastien@outlook.de";
         var subject = encodeURIComponent("Anfrage über schanensebastien.com · " + data.name);
@@ -67,6 +73,7 @@
                 if (!resp.ok) throw new Error("status " + resp.status);
                 form.reset();
                 setStatus("Vielen Dank! Ihre Nachricht ist angekommen, ich melde mich verlässlich zurück.", "ok");
+                trackLead();
             } catch (err) {
                 setStatus("Senden hat nicht geklappt. Bitte schreiben Sie direkt an " +
                           (window.DOCSCAN_CONTACT_TO || "") + ".", "err");
@@ -120,6 +127,7 @@
 
             form.reset();
             setStatus("Vielen Dank! Ihre Nachricht ist angekommen, ich melde mich verlässlich zurück.", "ok");
+            trackLead();
         } catch (err) {
             setStatus("Senden hat nicht geklappt. Bitte schreiben Sie direkt an " +
                       (window.DOCSCAN_CONTACT_TO || "") + ".", "err");

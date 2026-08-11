@@ -1,9 +1,8 @@
 /* ============================================================
    Visit + click notifications
    ------------------------------------------------------------
-   Visit e-mail: sent once per page per session, AFTER the visitor
-   made a choice in the consent banner (either choice). The e-mail
-   includes which "Datenschutz & Tracking" option was selected.
+   Visit e-mail: sent once per page per session, only AFTER the visitor
+   explicitly accepts statistics in the consent banner.
    Click e-mails: sent for every link/button click, but only when
    "Statistik / Analyse" was allowed.
    ============================================================ */
@@ -42,9 +41,9 @@
     function consentLabel() {
         try {
             if (window.DocScanConsent && window.DocScanConsent.decided()) {
-                return window.DocScanConsent.has("analytics")
-                    ? "Statistik/Analyse erlaubt"
-                    : "Nur notwendige (Tracking abgelehnt)";
+                var analytics = window.DocScanConsent.has("analytics") ? "Statistik erlaubt" : "Statistik abgelehnt";
+                var marketing = window.DocScanConsent.has("marketing") ? "Meta erlaubt" : "Meta abgelehnt";
+                return analytics + ", " + marketing;
             }
         } catch (e) {}
         return "keine Auswahl getroffen";
@@ -89,18 +88,18 @@
 
     function activate() {
         send();
-        /* Click e-mails only when tracking was explicitly allowed. */
+        /* Click e-mails only when statistics were explicitly allowed. */
         if (window.DocScanConsent && window.DocScanConsent.has("analytics")) wireClicks();
     }
 
     function run() {
         if (window.DOCSCAN_VISIT_REQUIRE_CONSENT && window.DocScanConsent) {
-            if (window.DocScanConsent.decided()) {
+            if (window.DocScanConsent.decided() && window.DocScanConsent.has("analytics")) {
                 activate();
             } else {
-                /* Wait for the banner choice: fires on accept AND decline,
-                   so the visit e-mail can report the chosen state. */
-                window.DocScanConsent.onChange(function () { activate(); });
+                window.DocScanConsent.onChange(function (state) {
+                    if (state && state.analytics) activate();
+                });
             }
         } else if (!window.DOCSCAN_VISIT_REQUIRE_CONSENT) {
             activate();
