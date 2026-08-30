@@ -25,6 +25,23 @@ git commit -m "Update website"
 git push
 ```
 
+## Rebuild the bundled assets
+
+Pages load `js/site.min.js`, not the individual scripts. After editing any of
+`js/firebase-config.js`, `js/tracking-config.js`, `js/consent.js`,
+`js/analytics.js`, `js/notify.js` or `js/main.js`, rebuild it in that order:
+
+```bash
+cd schanensebastien.github.io
+printf 'import "./firebase-config.js";\nimport "./tracking-config.js";\nimport "./consent.js";\nimport "./analytics.js";\nimport "./notify.js";\nimport "./main.js";\n' > js/_site-entry.js
+npx esbuild js/_site-entry.js --bundle --minify --charset=utf8 --target=es2015 '--banner:js="use strict";' --outfile=js/site.min.js
+rm js/_site-entry.js
+```
+
+`js/contact.js` → `js/contact.min.js` and `css/docscan.css` → `css/docscan.min.css`
+are built the same way. `js/estimator.js` and `css/estimator.css` are served
+unminified and only on `kostenschaetzer.html`.
+
 ## Connect the contact form to the backend
 
 The email backend lives in the separate `../backend/` folder (Firebase). After

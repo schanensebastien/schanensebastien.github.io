@@ -73,6 +73,9 @@
             var node = e.target && e.target.closest &&
                 e.target.closest("a[href], button, input[type='submit'], input[type='button'], [role='button'], [data-track]");
             if (!node) return;
+            /* The Kostenschätzer sends its own detailed answer e-mails,
+               so its question screens must not also send click e-mails. */
+            if (node.closest('[data-screen="question"]')) return;
             var label = (node.getAttribute("data-track") ||
                          node.getAttribute("aria-label") ||
                          (node.textContent || "").trim()).slice(0, 120);

@@ -14,6 +14,7 @@ Relevante deutsche Suchformulierungen: „Dokumente digitalisieren Würzburg“,
 - [Digitalisierung im Handwerk](https://schanensebastien.com/digitalisierung-handwerk-wuerzburg.html): digitale Projektakten für Angebot, Auftrag, Ausführung und Rechnung.
 - [Private Dokumenten-KI](https://schanensebastien.com/private-dokumenten-ki.html): Softwarelizenz, private KI-Infrastruktur und White-Label-/OEM-Integration für automatisierte Dokumentenprozesse.
 - [Kostenloser Testordner](https://schanensebastien.com/testordner.html): Arbeitsweise an einem repräsentativen Ordner prüfen.
+- [Kostenschätzer](https://schanensebastien.com/kostenschaetzer.html): wenige Fragen zu Art, Umfang, Zustand und gewünschter Ablage der Unterlagen ergeben sofort eine unverbindliche Einschätzung des Projektwerts, ohne E-Mail-Adresse.
 - [Über Sébastien Schanen](https://schanensebastien.com/portfolio.html): Profil und ausgewählte Softwareprojekte.
 
 ## Kernaussagen
@@ -33,3 +34,4 @@ Relevante deutsche Suchformulierungen: „Dokumente digitalisieren Würzburg“,
 - Facebook: https://www.facebook.com/schanensebastien/
 - Medium: https://medium.com/@schanensebastien
 - Kostenloser Einstieg: https://schanensebastien.com/testordner.html
+- Unverbindliche Kostenschätzung: https://schanensebastien.com/kostenschaetzer.html

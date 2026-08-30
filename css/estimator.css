@@ -1,0 +1,660 @@
+/* ============================================================
+   Kostenschätzer
+   ------------------------------------------------------------
+   Loaded only on kostenschaetzer.html, on top of docscan.min.css.
+   Design goals:
+     - one question per screen, no vertical scrolling
+     - large tap targets (>= 48px) and large type for older users
+     - calm B2B look, the question dominates the screen
+   ============================================================ */
+
+/* ---------- shell & viewport ----------
+   svh is the *smallest* viewport height, so the layout still fits
+   while a mobile address bar is expanded. vh is the fallback. */
+
+.est-body { margin: 0; background: var(--paper); }
+
+.est-shell {
+    --est-vh: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: var(--est-vh);
+}
+
+@supports (height: 100svh) {
+    .est-shell { --est-vh: 100svh; }
+}
+
+/* Question and intro screens are locked to the viewport.
+   The result screen is allowed to scroll. */
+.est-body.is-locked { overflow: hidden; }
+.est-body.is-locked .est-shell { height: var(--est-vh); }
+
+/* Keep the cookie banner clear of the fixed navigation bar. */
+.est-body.has-consent .est-foot { padding-bottom: clamp(14px, 3vh, 22px); }
+.est-body.has-consent .est-shell { padding-bottom: 0; }
+
+/* ---------- header ---------- */
+
+.est-head {
+    flex: 0 0 auto;
+    border-bottom: 1px solid var(--line);
+    background: var(--paper);
+}
+
+.est-head-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: clamp(8px, 1.6vh, 16px) 20px clamp(6px, 1.2vh, 12px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.est-brand {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--serif);
+    font-size: clamp(.95rem, 2.4vw, 1.05rem);
+    line-height: 1.2;
+    color: var(--ink);
+    text-decoration: none;
+}
+.est-brand:hover { text-decoration: none; color: var(--accent); }
+.est-brand small {
+    font-family: var(--sans);
+    font-size: .68rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 2px;
+}
+
+.est-step-label {
+    font-family: var(--sans);
+    font-size: clamp(.82rem, 2.2vw, .92rem);
+    font-weight: 600;
+    color: var(--muted);
+    margin: 0;
+    white-space: nowrap;
+}
+
+.est-progress {
+    height: 6px;
+    background: var(--line);
+}
+.est-progress-bar {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: var(--accent);
+    transition: width .28s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .est-progress-bar { transition: none; }
+}
+
+/* ---------- stage ---------- */
+
+.est-stage {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.est-screen {
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: clamp(12px, 2.6vh, 32px) 20px clamp(8px, 1.6vh, 20px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(10px, 2vh, 22px);
+}
+.est-screen[hidden] { display: none; }
+
+.est-question {
+    font-family: var(--serif);
+    font-weight: 500;
+    line-height: 1.14;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    font-size: clamp(1.35rem, 1.4vh + 3.4vw, 2.1rem);
+    margin: 0;
+}
+
+.est-hint {
+    font-size: clamp(.9rem, 2.4vw, 1rem);
+    color: var(--muted);
+    margin: -6px 0 0;
+}
+
+/* ---------- option buttons ---------- */
+
+.est-options {
+    flex: 1 1 auto;
+    min-height: 0;
+    /* Last-resort scroll for very small viewports: the page itself
+       still never scrolls and no control is ever clipped. */
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    display: grid;
+    /* minmax(0, 1fr) lets a column shrink below the width of its
+       longest label instead of pushing the grid off screen. */
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(8px, 1.4vh, 14px);
+    align-content: start;
+    margin: 0;
+    padding: 2px;
+    list-style: none;
+}
+
+@media (min-width: 344px) {
+    .est-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .est-options.est-options-wide { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (min-width: 700px) {
+    .est-options.est-options-wide { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.est-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-width: 0;
+    overflow-wrap: break-word;
+    min-height: clamp(52px, 8.4vh, 78px);
+    padding: 12px 16px;
+    text-align: left;
+    font-family: var(--sans);
+    font-size: clamp(.95rem, 2.6vw, 1.06rem);
+    font-weight: 500;
+    line-height: 1.25;
+    color: var(--ink);
+    background: var(--white);
+    border: 2px solid var(--line-strong);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: border-color .12s ease, background .12s ease;
+}
+.est-option:hover { border-color: var(--accent); }
+
+/* Wide rows carry longer labels and set their own height. */
+.est-options-wide .est-option { min-height: clamp(48px, 6.4vh, 70px); }
+
+/* Selected state uses border, background AND a check mark, never colour alone. */
+.est-option[aria-pressed="true"] {
+    border-color: var(--accent);
+    background: #EDF2EF;
+}
+/* Without min-width the label keeps the width of its longest word
+   ("Unterschiedliche") and pushes the button past the column. */
+.est-option .est-label {
+    min-width: 0;
+    hyphens: auto;
+    overflow-wrap: break-word;
+}
+
+.est-option .est-check {
+    flex: 0 0 auto;
+    width: 26px;
+    height: 26px;
+    border: 2px solid var(--line-strong);
+    border-radius: 50%;
+    position: relative;
+}
+.est-option[aria-pressed="true"] .est-check {
+    border-color: var(--accent);
+    background: var(--accent);
+}
+.est-option[aria-pressed="true"] .est-check::after {
+    content: "";
+    position: absolute;
+    left: 7px; top: 3px;
+    width: 6px; height: 12px;
+    border: solid #fff;
+    border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg);
+}
+
+/* Narrow phones: give the label more room instead of letting the
+   option list scroll. The selected state stays visible through the
+   border, the background and the (smaller) check mark. */
+@media (max-width: 430px) {
+    .est-option { padding: 10px 12px; gap: 10px; }
+    .est-option .est-check { width: 22px; height: 22px; }
+    .est-option[aria-pressed="true"] .est-check::after { left: 5px; top: 2px; width: 5px; height: 11px; }
+}
+
+/* ---------- free text for "Sonstiges" ---------- */
+
+.est-extra { margin: 0; }
+.est-extra[hidden] { display: none; }
+.est-extra label {
+    display: block;
+    font-size: .86rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+}
+.est-input {
+    width: 100%;
+    min-height: 52px;
+    font-family: var(--sans);
+    font-size: 1.05rem;
+    color: var(--ink);
+    background: var(--white);
+    border: 2px solid var(--line-strong);
+    border-radius: 12px;
+    padding: 12px 14px;
+}
+.est-input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+/* ---------- slider ---------- */
+
+.est-slider-block {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: clamp(12px, 2.6vh, 28px);
+}
+
+.est-value {
+    text-align: center;
+    font-family: var(--serif);
+    font-weight: 500;
+    line-height: 1.1;
+    color: var(--accent-ink);
+    font-size: clamp(1.6rem, 2vh + 4.4vw, 2.8rem);
+    margin: 0;
+    min-height: 1.1em;
+}
+.est-value.is-muted { color: var(--muted); }
+
+.est-slider-row {
+    display: flex;
+    align-items: center;
+    gap: clamp(8px, 2vw, 16px);
+}
+
+.est-nudge {
+    flex: 0 0 auto;
+    width: 56px;
+    height: 56px;
+    font-size: 1.6rem;
+    line-height: 1;
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--white);
+    border: 2px solid var(--line-strong);
+    border-radius: 12px;
+    cursor: pointer;
+}
+.est-nudge:hover { border-color: var(--accent); }
+.est-nudge[disabled] { opacity: .4; cursor: not-allowed; }
+
+.est-range {
+    flex: 1 1 auto;
+    min-width: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 44px;
+    background: transparent;
+    cursor: pointer;
+}
+.est-range:focus { outline: none; }
+.est-range:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 8px; }
+
+.est-range::-webkit-slider-runnable-track {
+    height: 10px;
+    border-radius: 5px;
+    background: var(--line-strong);
+}
+.est-range::-moz-range-track {
+    height: 10px;
+    border-radius: 5px;
+    background: var(--line-strong);
+}
+.est-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 40px;
+    height: 40px;
+    margin-top: -15px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 4px solid var(--white);
+    box-shadow: 0 2px 8px rgba(26,26,23,.28);
+}
+.est-range::-moz-range-thumb {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 4px solid var(--white);
+    box-shadow: 0 2px 8px rgba(26,26,23,.28);
+}
+.est-range.is-inactive::-webkit-slider-thumb { background: var(--muted); }
+.est-range.is-inactive::-moz-range-thumb { background: var(--muted); }
+
+.est-scale {
+    display: flex;
+    justify-content: space-between;
+    font-size: .8rem;
+    color: var(--muted);
+    padding: 0 clamp(8px, 2vw, 16px);
+    margin: 0;
+}
+
+/* ---------- "Weiß ich nicht" ---------- */
+
+.est-unsure {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    align-self: center;
+    min-height: 48px;
+    padding: 10px 20px;
+    font-family: var(--sans);
+    font-size: .98rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+    background: transparent;
+    border: 2px solid var(--line-strong);
+    border-radius: 12px;
+    cursor: pointer;
+}
+.est-unsure:hover { border-color: var(--accent); }
+.est-unsure[aria-pressed="true"] {
+    border-color: var(--accent);
+    background: #EDF2EF;
+    color: var(--accent-ink);
+}
+
+/* ---------- postcode ---------- */
+
+.est-postcode-block {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: clamp(10px, 2vh, 20px);
+}
+.est-postcode {
+    width: 100%;
+    max-width: 300px;
+    min-height: 64px;
+    font-family: var(--sans);
+    font-size: clamp(1.4rem, 5vw, 1.8rem);
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-align: center;
+    color: var(--ink);
+    background: var(--white);
+    border: 2px solid var(--line-strong);
+    border-radius: 12px;
+    padding: 10px 14px;
+}
+.est-postcode:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+.est-error {
+    color: #8A2B20;
+    font-size: .95rem;
+    font-weight: 600;
+    margin: 0;
+    min-height: 1.2em;
+}
+
+/* ---------- footer navigation ---------- */
+
+.est-foot {
+    flex: 0 0 auto;
+    border-top: 1px solid var(--line);
+    background: var(--paper);
+}
+.est-foot[hidden] { display: none; }
+.est-foot-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: clamp(10px, 1.8vh, 18px) 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+}
+.est-foot .btn { min-height: 52px; }
+.est-foot .btn-next { min-width: 160px; }
+.est-foot .btn[hidden] { display: none; }
+
+/* ---------- intro ---------- */
+
+.est-intro {
+    justify-content: center;
+    text-align: left;
+}
+.est-intro h1 {
+    font-size: clamp(1.7rem, 2vh + 3.6vw, 2.6rem);
+    margin: 0;
+}
+.est-intro .est-lead {
+    font-size: clamp(1rem, 2.8vw, 1.15rem);
+    color: var(--ink-soft);
+    margin: 0;
+    max-width: 52ch;
+}
+.est-facts {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+@media (min-width: 620px) {
+    .est-facts { grid-template-columns: repeat(3, 1fr); }
+}
+.est-facts li {
+    font-size: .95rem;
+    color: var(--ink-soft);
+    padding-left: 22px;
+    position: relative;
+}
+.est-facts li::before {
+    content: "";
+    position: absolute;
+    left: 2px; top: .55em;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+.est-intro-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.est-intro-actions .btn { min-height: 56px; }
+.est-legal {
+    font-size: .85rem;
+    color: var(--muted);
+    margin: 0;
+}
+.est-legal a { color: var(--muted); text-decoration: underline; }
+
+/* ---------- result ---------- */
+
+.est-result { justify-content: flex-start; padding-bottom: 48px; }
+
+.est-price-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: clamp(22px, 4vw, 38px);
+    text-align: center;
+}
+.est-price-label {
+    font-family: var(--sans);
+    font-size: .78rem;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 .6rem;
+}
+.est-price-title {
+    font-family: var(--sans);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--muted);
+    margin: 0 0 .3rem;
+}
+.est-price {
+    font-family: var(--serif);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--accent-ink);
+    font-size: clamp(2.6rem, 9vw, 4.4rem);
+    margin: 0;
+}
+/* Words instead of a figure, e.g. when the calculation was unavailable. */
+.est-price.est-price-text { font-size: clamp(1.9rem, 6vw, 2.9rem); }
+.est-price-note {
+    font-size: .95rem;
+    color: var(--muted);
+    margin: .6rem 0 0;
+}
+
+.est-result h2 { font-size: clamp(1.3rem, 3vw, 1.7rem); margin: 0 0 .6rem; }
+.est-result p { color: var(--ink-soft); }
+
+.est-considered {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 8px;
+}
+@media (min-width: 620px) {
+    .est-considered { grid-template-columns: 1fr 1fr; }
+}
+.est-considered li {
+    position: relative;
+    padding-left: 22px;
+    font-size: .96rem;
+    color: var(--ink-soft);
+}
+.est-considered li::before {
+    content: "";
+    position: absolute;
+    left: 2px; top: .55em;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--line-strong);
+}
+
+.est-review {
+    border-left: 3px solid var(--accent);
+    background: var(--paper-2);
+    border-radius: 0 10px 10px 0;
+    padding: 14px 18px;
+    font-size: .98rem;
+    color: var(--ink-soft);
+    margin: 0;
+}
+.est-review[hidden] { display: none; }
+
+.est-panel {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: clamp(20px, 3.4vw, 30px);
+}
+
+.est-result-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.est-result-actions .btn { min-height: 56px; flex: 1 1 240px; }
+
+/* ---------- quote form ---------- */
+
+.est-form[hidden] { display: none; }
+.est-form .est-field { margin-bottom: 16px; }
+.est-form label {
+    display: block;
+    font-size: .88rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+}
+.est-form .est-input { min-height: 56px; }
+.est-form .est-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    min-height: 48px;
+    padding: 12px 14px;
+    border: 2px solid var(--line-strong);
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: .98rem;
+    color: var(--ink);
+    margin-bottom: 16px;
+}
+.est-form .est-checkbox input { width: 24px; height: 24px; margin-top: 2px; flex: 0 0 auto; }
+.est-form .est-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: .88rem;
+    color: var(--ink-soft);
+    margin-bottom: 18px;
+}
+.est-form .est-consent input { width: 24px; height: 24px; margin-top: 1px; flex: 0 0 auto; }
+.est-form .btn { min-height: 56px; width: 100%; }
+.est-status { margin: 12px 0 0; font-size: .95rem; min-height: 1.2em; }
+.est-status.ok { color: var(--accent); font-weight: 600; }
+.est-status.err { color: #8A2B20; font-weight: 600; }
+
+/* ---------- direct contact ---------- */
+
+.est-contact-lines { display: grid; gap: 4px; margin: 0 0 18px; }
+.est-contact-lines strong { font-family: var(--serif); font-size: 1.15rem; font-weight: 500; }
+.est-contact-lines span { color: var(--muted); font-size: .95rem; }
+
+.est-contact-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.est-contact-actions .btn { min-height: 52px; flex: 1 1 180px; }
+
+.est-result-foot {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    font-size: .85rem;
+    color: var(--muted);
+}
+.est-result-foot a { color: var(--muted); text-decoration: underline; }
+
+/* ---------- very small viewports ---------- */
+
+@media (max-height: 620px) {
+    .est-screen { gap: 8px; padding-top: 10px; }
+    .est-option { min-height: 48px; padding: 8px 12px; font-size: .92rem; }
+    .est-option .est-check { width: 22px; height: 22px; }
+    .est-option[aria-pressed="true"] .est-check::after { left: 5px; top: 2px; height: 10px; }
+    .est-nudge { width: 48px; height: 48px; }
+    .est-foot .btn { min-height: 48px; }
+    .est-intro-actions .btn { min-height: 48px; }
+}
+
+@media (max-height: 520px) {
+    .est-question { font-size: 1.15rem; }
+    .est-hint { display: none; }
+    .est-facts { display: none; }
+    .est-scale { display: none; }
+}

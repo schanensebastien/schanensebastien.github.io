@@ -64,6 +64,14 @@ Seite: https://schanensebastien.com/testordner.html
 
 Ein kleiner, repräsentativer Ordner wird kostenlos und unverbindlich als Beispiel umgesetzt. Der Test zeigt Scanqualität, OCR-Erkennung, Benennungsregeln, mögliche Ordnerstruktur und den realistischen Abstimmungsaufwand. Er ist als Diagnose gedacht: Der Kunde prüft an eigenem Material, ob das Ergebnis verständlich und im Alltag auffindbar ist. Danach besteht keine Auftragspflicht.
 
+## Kostenschätzer
+
+Seite: https://schanensebastien.com/kostenschaetzer.html
+
+Ein kurzer Fragebogen ermittelt eine unverbindliche Kostenschätzung für ein Digitalisierungsprojekt. Gefragt werden Art der Unterlagen, ungefährer Umfang, Zustand und Sortiergrad, die gewünschte spätere Ablage- oder Archivlösung, bei Archivsystemen die Anzahl der Nutzer, die gewünschte Verarbeitungsweise sowie die Postleitzahl. Durchsuchbare PDFs, verständliche Dateinamen und eine klare Struktur gehören immer zum Leistungsumfang und werden nicht separat abgefragt.
+
+Das Ergebnis ist ein einzelner, bewusst vorsichtig kalkulierter Nettoprojektwert. Er erscheint sofort nach der letzten Frage, ohne dass eine E-Mail-Adresse oder Telefonnummer eingegeben werden muss, und es wird keine automatische E-Mail an Interessenten versendet. Preise pro Seite, Ordner oder Komponente werden nicht veröffentlicht. Die endgültigen Kosten richten sich nach dem tatsächlichen Umfang und Zustand der Unterlagen; ein verbindliches Festpreisangebot folgt nach einer kurzen Sichtung. Im Anschluss können ein verbindliches Angebot oder ein Rückruf angefordert werden.
+
 ## Private Dokumenten-KI, Software und API
 
 Seite: https://schanensebastien.com/private-dokumenten-ki.html

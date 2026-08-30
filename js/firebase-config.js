@@ -35,6 +35,13 @@ window.DOCSCAN_CONTACT_URL = "https://contact-7tacntja7a-ey.a.run.app";
 window.DOCSCAN_NOTIFY_VISIT_URL = "https://notifyvisit-7tacntja7a-ey.a.run.app";
 window.DOCSCAN_TRACK_CLICK_URL = "https://trackclick-7tacntja7a-ey.a.run.app";
 
+/* Kostenschätzer endpoints (kostenschaetzer.html). Function names are
+   lower-cased in the URL; verify them against the `firebase deploy`
+   output after the first deployment. */
+window.DOCSCAN_ESTIMATOR_ANSWER_URL = "https://submitestimatoranswer-7tacntja7a-ey.a.run.app";
+window.DOCSCAN_ESTIMATOR_ESTIMATE_URL = "https://calculateestimate-7tacntja7a-ey.a.run.app";
+window.DOCSCAN_ESTIMATOR_CONTACT_URL = "https://submitestimatorcontact-7tacntja7a-ey.a.run.app";
+
 /* Send yourself an e-mail when someone visits (once per browser session).
    Uses POST /notifyVisit on the backend. */
 window.DOCSCAN_VISIT_NOTIFY = true;
