@@ -157,8 +157,8 @@
     function trackedNode(target) {
         if (!target || !target.closest) return null;
         return target.closest(
-            "[data-track], a[href^='tel:'], a[href^='mailto:'], " +
-            "a[href*='testordner'], button[type='submit']"
+            "[data-track], [data-estimator-cta], a[href^='tel:'], a[href^='mailto:'], " +
+            "a[href*='testordner'], a[href*='kostenschaetzer'], button[type='submit']"
         );
     }
 
@@ -186,12 +186,61 @@
                marker.indexOf("contact") !== -1 || node.matches("button[type='submit']");
     }
 
+    function estimatorHref(node) {
+        var href = node.getAttribute("href") || "";
+        try {
+            return new URL(href, location.href).pathname.indexOf("kostenschaetzer") !== -1;
+        } catch (e) { return false; }
+    }
+
+    function estimatorLocation(node) {
+        var loc = String(node.getAttribute("data-estimator-cta") || "").replace(/[^a-z0-9_]/gi, "").slice(0, 80);
+        if (loc === "navigation") {
+            var nav = node.closest(".nav");
+            if (nav && nav.classList.contains("open")) return "mobile_navigation";
+        }
+        return loc || "internal_link";
+    }
+
+    function rememberEstimatorEntry(locationId) {
+        try {
+            sessionStorage.setItem("docscan-estimator-entry", JSON.stringify({
+                cta: locationId,
+                page: location.pathname || "/",
+                at: new Date().toISOString()
+            }));
+        } catch (e) {}
+    }
+
+    function trackEstimatorCta(node) {
+        if (location.pathname.indexOf("kostenschaetzer") !== -1) return;
+        var ctaLocation = estimatorLocation(node);
+        rememberEstimatorEntry(ctaLocation);
+        var text = (node.textContent || "").replace(/\s+/g, " ").trim().slice(0, 80);
+        googleEvent("cost_estimator_cta_click", {
+            cta_location: ctaLocation,
+            source_page: location.pathname || "/",
+            link_target: "/kostenschaetzer.html",
+            cta_text: text
+        });
+        metaEvent("CostEstimatorCTA", {
+            location: ctaLocation,
+            source_page: location.pathname || "/"
+        }, true);
+    }
+
     function wireClicks() {
         if (clicksWired) return;
         clicksWired = true;
         document.addEventListener("click", function (event) {
             var node = trackedNode(event.target);
             if (!node) return;
+
+            if (node.getAttribute("data-estimator-cta") || estimatorHref(node)) {
+                try { trackEstimatorCta(node); } catch (e) {}
+                return;
+            }
+
             var label = (node.getAttribute("data-track") ||
                          node.getAttribute("aria-label") ||
                          (node.textContent || "").trim()).slice(0, 80) || "cta";

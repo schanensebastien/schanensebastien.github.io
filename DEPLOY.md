@@ -25,6 +25,30 @@ git commit -m "Update website"
 git push
 ```
 
+## IndexNow
+
+Search engines that support IndexNow (Bing, Yandex and others) are notified after
+public pages change. The verification key is the public file
+`0d59d9155264aa566b0a831706cd33d08785aa3c70c240739d534a744a10794e.txt`
+at the site root. GitHub Actions (`.github/workflows/indexnow.yml`) submits
+added, updated or deleted **indexable** HTML URLs after a push to `main`.
+Impressum, Datenschutz and the 404 page are never submitted.
+
+Manual commands, from this folder:
+
+```bash
+# one or more URLs
+npm run indexnow -- https://schanensebastien.com/kostenschaetzer.html
+
+# every URL in sitemap.xml (first-time / full recrawl hint)
+npm run indexnow:sitemap
+
+# print the payload without sending
+npm run indexnow:dry
+```
+
+A failed IndexNow ping does not affect the live website.
+
 ## Rebuild the bundled assets
 
 Pages load `js/site.min.js`, not the individual scripts. After editing any of

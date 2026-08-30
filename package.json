@@ -1,0 +1,10 @@
+{
+  "name": "schanensebastien-website",
+  "private": true,
+  "description": "Static website for schanensebastien.com (GitHub Pages).",
+  "scripts": {
+    "indexnow": "node scripts/indexnow-submit.js",
+    "indexnow:sitemap": "node scripts/indexnow-submit.js --sitemap",
+    "indexnow:dry": "node scripts/indexnow-submit.js --dry-run --sitemap"
+  }
+}

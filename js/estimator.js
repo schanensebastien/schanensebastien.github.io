@@ -331,6 +331,17 @@
         /* Analytics identifiers only exist once the visitor allowed them. */
         state.meta.gaClientId = consentFor("analytics") ? cookie("_ga") : "";
         state.meta.metaBrowserId = consentFor("marketing") ? cookie("_fbp") : "";
+
+        if (!state.meta.entryCta) {
+            try {
+                var raw = sessionStorage.getItem("docscan-estimator-entry");
+                if (raw) {
+                    var entry = JSON.parse(raw);
+                    state.meta.entryCta = String(entry.cta || "").slice(0, 80);
+                    state.meta.entryPage = String(entry.page || "").slice(0, 200);
+                }
+            } catch (e) {}
+        }
     }
 
     function consentFor(category) {
