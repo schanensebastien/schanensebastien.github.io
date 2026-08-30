@@ -8,6 +8,7 @@ on:
       - "sitemap.xml"
       - "scripts/indexnow-submit.js"
       - "scripts/indexnow.json"
+      - "3fd1942cbe37480cb97ea59c0257bbe8.txt"
       - ".github/workflows/indexnow.yml"
   workflow_dispatch:
     inputs:

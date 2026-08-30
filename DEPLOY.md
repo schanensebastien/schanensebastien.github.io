@@ -29,8 +29,8 @@ git push
 
 Search engines that support IndexNow (Bing, Yandex and others) are notified after
 public pages change. The verification key is the public file
-`0d59d9155264aa566b0a831706cd33d08785aa3c70c240739d534a744a10794e.txt`
-at the site root. GitHub Actions (`.github/workflows/indexnow.yml`) submits
+`3fd1942cbe37480cb97ea59c0257bbe8.txt`
+at the site root (the key issued in Bing / IndexNow). GitHub Actions (`.github/workflows/indexnow.yml`) submits
 added, updated or deleted **indexable** HTML URLs after a push to `main`.
 Impressum, Datenschutz and the 404 page are never submitted.
 
