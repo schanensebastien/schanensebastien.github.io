@@ -223,6 +223,12 @@
             link_target: "/kostenschaetzer.html",
             cta_text: text
         });
+        if (ctaLocation === "about") {
+            googleEvent("about_estimator_cta_click", {
+                cta_location: ctaLocation,
+                source_page: location.pathname || "/"
+            });
+        }
         metaEvent("CostEstimatorCTA", {
             location: ctaLocation,
             source_page: location.pathname || "/"
@@ -235,6 +241,14 @@
         document.addEventListener("click", function (event) {
             var node = trackedNode(event.target);
             if (!node) return;
+
+            if ((node.getAttribute("data-track") || "") === "about-contact") {
+                googleEvent("about_contact_cta_click", {
+                    source_page: location.pathname || "/",
+                    cta_destination: destination(node)
+                });
+                metaEvent("AboutContactCTA", { source_page: location.pathname || "/" }, true);
+            }
 
             if (node.getAttribute("data-estimator-cta") || estimatorHref(node)) {
                 try { trackEstimatorCta(node); } catch (e) {}

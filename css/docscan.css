@@ -680,9 +680,84 @@ footer .foot-links { display: flex; flex-wrap: wrap; gap: 8px 16px; }
     object-position: 64% center;
 }
 .soft-copy { color: var(--ink-soft); }
+.about-facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin: 0;
+}
+.about-fact {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+}
+.about-fact strong {
+    display: block;
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(1.25rem, 2.4vw, 1.55rem);
+    color: var(--accent-ink);
+    margin: 0 0 6px;
+    line-height: 1.2;
+}
+.about-fact span {
+    display: block;
+    font-size: .92rem;
+    color: var(--ink-soft);
+}
+.about-timeline {
+    display: grid;
+    gap: 18px;
+}
+.about-role {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+}
+.about-role h3 { margin: 0 0 4px; }
+.about-role .about-role-meta {
+    font-size: .88rem;
+    color: var(--muted);
+    margin: 0 0 12px;
+}
+.about-role ul { margin: 0; padding-left: 1.15em; color: var(--ink-soft); }
+.about-role li { margin-bottom: .35rem; }
+.about-skills {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+.about-skill {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+}
+.about-skill h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.about-skill ul { margin: 0; padding-left: 1.15em; color: var(--ink-soft); }
+.about-skill li { margin-bottom: .3rem; }
+.about-principles {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+.about-principle {
+    background: var(--paper-2);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+}
+.about-principle h3 { margin: 0 0 8px; font-size: 1.05rem; }
+.about-principle p { margin: 0; color: var(--ink-soft); }
 @media (max-width: 820px) {
     .about-grid, .portfolio-hero-grid { grid-template-columns: 1fr; }
     .profile-photo { order: -1; justify-self: start; width: min(68vw, 280px); }
+    .about-skills { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+    .about-facts,
+    .about-principles { grid-template-columns: 1fr; }
 }
 
 /* ============================================================
@@ -867,6 +942,21 @@ footer .foot-links { display: flex; flex-wrap: wrap; gap: 8px 16px; }
     margin: 12px 0 0;
     color: var(--muted);
     font-size: .86rem;
+}
+.cta-context {
+    margin: 22px 0 4px;
+    max-width: 48ch;
+}
+.cta-context-title {
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0 0 4px;
+    font-size: 1.02rem;
+}
+.cta-context-copy {
+    margin: 0;
+    font-size: .95rem;
+    color: var(--ink-soft);
 }
 .cta-row + .hero-reassure { margin-top: 12px; }
 .hero-reassure + .hero-subclaim { margin-top: 14px; }
@@ -1612,6 +1702,7 @@ footer .foot-links { display: flex; flex-wrap: wrap; gap: 8px 16px; }
 }
 .cta-band h2 { color: #fff; margin-bottom: 10px; }
 .cta-band p { margin: 0; color: #c6d4cd; max-width: 62ch; }
+.cta-band p a { color: #fff; text-decoration: underline; }
 .cta-band .btn-light { min-width: 230px; }
 
 .flow-line {

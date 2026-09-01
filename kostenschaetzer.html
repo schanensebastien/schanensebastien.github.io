@@ -70,12 +70,15 @@
 
             <section class="est-screen est-intro" data-screen="intro">
                 <h1>Was kostet die Digitalisierung Ihrer Unterlagen?</h1>
-                <p class="est-lead">Beantworten Sie wenige kurze Fragen zu Art, Umfang und Zustand Ihrer Unterlagen. Sie erhalten sofort eine unverbindliche Einschätzung des voraussichtlichen Projektwerts.</p>
+                <p class="est-lead">Mit wenigen Angaben zu Umfang, Zustand und gewünschter Ablage erhalten Sie direkt eine unverbindliche Kostenschätzung.</p>
                 <ul class="est-facts">
-                    <li>In etwa zwei Minuten beantwortet</li>
+                    <li>Wenige kurze Fragen</li>
                     <li>Ergebnis sofort sichtbar</li>
-                    <li>Ohne E-Mail-Adresse</li>
+                    <li>Unverbindlich, ohne E-Mail-Adresse</li>
                 </ul>
+                <div class="est-example">
+                    <p><strong>Beispiel.</strong> 40 Aktenordner, strukturierte Digitalisierung und eine lokale Archivlösung: Die Projektkosten werden anhand Ihrer Angaben individuell geschätzt. Es erscheint ein einzelner unverbindlicher Nettowert, keine Preisliste.</p>
+                </div>
                 <div class="est-intro-actions">
                     <button type="button" class="btn btn-primary" data-act="start" data-track="estimator-start">Kostenschätzung starten</button>
                     <a class="btn btn-ghost" href="index.html">Zurück zur Website</a>
@@ -115,29 +118,11 @@
                 </div>
 
                 <div class="est-result-actions">
-                    <button type="button" class="btn btn-primary" data-act="quote" data-track="estimator-angebot">Verbindliches Angebot anfordern</button>
+                    <button type="button" class="btn btn-primary" data-act="quote" data-track="estimator-angebot">Anfrage senden</button>
                     <button type="button" class="btn btn-ghost" data-act="callback" data-track="estimator-rueckruf">Rückruf anfordern</button>
                 </div>
 
-                <form class="est-panel est-form" data-quote-form hidden novalidate aria-labelledby="est-form-heading">
-                    <h2 id="est-form-heading">Ihre Angaben</h2>
-                    <p>Ich sehe mir Ihre Angaben persönlich an und melde mich mit einem konkreten Vorschlag zurück.</p>
-                    <div class="est-field"><label for="est-company">Unternehmen</label><input id="est-company" class="est-input" type="text" autocomplete="organization" required></div>
-                    <div class="est-field"><label for="est-name">Ansprechpartner</label><input id="est-name" class="est-input" type="text" autocomplete="name" required></div>
-                    <div class="est-field"><label for="est-email">E-Mail</label><input id="est-email" class="est-input" type="email" autocomplete="email" required></div>
-                    <div class="est-field"><label for="est-phone" data-phone-label>Telefon (optional)</label><input id="est-phone" class="est-input" type="tel" autocomplete="tel"></div>
-                    <label class="est-checkbox" for="est-callback"><input id="est-callback" type="checkbox" data-callback><span>Ich möchte kurz zurückgerufen werden.</span></label>
-                    <div class="est-field"><label for="est-note">Anmerkung (optional)</label><input id="est-note" class="est-input" type="text" maxlength="500"></div>
-                    <div class="hp-field" aria-hidden="true"><label for="est-website">Website (bitte freilassen)</label><input id="est-website" type="text" tabindex="-1" autocomplete="off"></div>
-                    <label class="est-consent" for="est-consent"><input id="est-consent" type="checkbox" required><span>Ich bin damit einverstanden, dass meine Angaben zur Bearbeitung der Anfrage verarbeitet werden. Details in der <a href="datenschutz.html">Datenschutzerklärung</a>.</span></label>
-                    <button type="submit" class="btn btn-primary">Anfrage senden</button>
-                    <p class="est-status" role="status" aria-live="polite" data-status></p>
-                </form>
-
-                <div class="est-panel" data-quote-done hidden tabindex="-1">
-                    <h2>Vielen Dank. Ihre Angaben wurden übermittelt.</h2>
-                    <p>Ich sehe mir Ihre Angaben in Ruhe an und melde mich persönlich bei Ihnen. Wenn es schneller gehen soll, erreichen Sie mich direkt unter <a href="tel:+4917657748528">0176&nbsp;577&nbsp;48&nbsp;528</a>.</p>
-                </div>
+                <p class="est-lead-hint">Im nächsten Schritt reicht zuerst Ihre E-Mail-Adresse. Weitere Angaben folgen einzeln und dauern nur einen Moment.</p>
 
                 <div class="est-panel">
                     <h2>Persönliche Rückfrage?</h2>
@@ -163,12 +148,31 @@
                 </p>
             </section>
 
+            <section class="est-screen" data-screen="contact" hidden></section>
+
+            <section class="est-screen est-success" data-screen="success" hidden>
+                <div class="est-success-card" data-success-panel tabindex="-1" role="status">
+                    <span class="est-success-icon" aria-hidden="true"></span>
+                    <h2>Vielen Dank. Ihre Anfrage wurde erfolgreich übermittelt.</h2>
+                    <p>Ich prüfe Ihre Angaben und melde mich persönlich bei Ihnen.</p>
+                    <p>Die angezeigte Kostenschätzung bleibt unverbindlich. Vor einem Auftrag werden Umfang und Anforderungen noch einmal geprüft.</p>
+                    <div class="est-contact-actions">
+                        <a class="btn btn-primary" href="index.html">Zur Startseite</a>
+                        <a class="btn btn-ghost" href="kontakt-sebastien-schanen.vcf" download data-act="vcard" data-track="estimator-vcard">Kontakt speichern</a>
+                        <a class="btn btn-ghost" href="tel:+4917657748528" data-track="estimator-anrufen">Direkt anrufen</a>
+                    </div>
+                </div>
+            </section>
+
         </main>
 
         <footer class="est-foot" data-nav hidden>
             <div class="est-foot-inner">
                 <button type="button" class="btn btn-ghost" data-act="back">Zurück</button>
-                <button type="button" class="btn btn-primary btn-next" data-act="next">Weiter</button>
+                <div class="est-foot-actions">
+                    <button type="button" class="btn btn-ghost" data-act="skip" hidden>Überspringen</button>
+                    <button type="button" class="btn btn-primary btn-next" data-act="next">Weiter</button>
+                </div>
             </div>
         </footer>
     </div>

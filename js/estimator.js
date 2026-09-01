@@ -1,5 +1,5 @@
 /* ============================================================
-   Kostenschätzer — questionnaire, result and quote request
+   Kostenschätzer — questionnaire, result and progressive contact flow
    ------------------------------------------------------------
    Loaded only on kostenschaetzer.html, after js/site.min.js so that
    DocScanConsent and DocScanAnalytics are available.
@@ -29,9 +29,21 @@
        Conditional logic lives in `when`, nowhere else.
        --------------------------------------------------------- */
 
+    /* Keep in sync with backend/functions/estimator/questions.js */
+    function steppedRange(ranges) {
+        var out = [];
+        for (var r = 0; r < ranges.length; r++) {
+            var from = ranges[r][0];
+            var to = ranges[r][1];
+            var step = ranges[r][2];
+            for (var n = from; n <= to; n += step) out.push(n);
+        }
+        return out;
+    }
+
     var QUANTITY_STEPS = {
-        ordner: [5, 10, 20, 30, 50, 75, 100, 150, 200, 300, 500],
-        kartons: [2, 5, 10, 15, 20, 30, 50, 75, 100, 150, 200]
+        ordner: steppedRange([[1, 100, 1], [105, 200, 5], [210, 500, 10]]),
+        kartons: steppedRange([[1, 50, 1], [55, 100, 5], [110, 200, 10]])
     };
 
     var CONDITION_STAGES = [
@@ -49,9 +61,9 @@
         { value: "t4", label: "mehr als 50 Personen" }
     ];
 
-    /* Loose paper is counted in boxes, everything else in folders. */
+    /* Loose paper and mixed piles are counted in boxes, not folders. */
     function unitFor(answers) {
-        return answers.documentType === "lose" ? "kartons" : "ordner";
+        return answers.documentType === "lose" || answers.documentType === "gemischt" ? "kartons" : "ordner";
     }
 
     function unitNoun(unit, value) {
@@ -84,11 +96,15 @@
         {
             id: "quantity",
             type: "slider",
-            legend: "Ca. wie groß ist der Bestand?",
-            hint: "Eine grobe Einschätzung genügt.",
+            legend: function (answers) {
+                return unitFor(answers) === "kartons"
+                    ? "Ca. wie viele Kartons / Behälter sind es?"
+                    : "Ca. wie viele Aktenordner sollen digitalisiert werden?";
+            },
+            hint: "Eine grobe Einschätzung genügt. Sie müssen den Bestand nicht zählen.",
             unsureLabel: "Weiß ich nicht",
             steps: function (answers) { return QUANTITY_STEPS[unitFor(answers)]; },
-            defaultIndex: 3,
+            defaultIndex: function (answers) { return unitFor(answers) === "kartons" ? 4 : 19; },
             format: function (index, answers) {
                 var unit = unitFor(answers);
                 var steps = QUANTITY_STEPS[unit];
@@ -244,8 +260,23 @@
         sent: {},
         completed: false,
         estimate: null,
-        view: "intro"
+        view: "intro",
+        contact: emptyContact(),
+        contactStep: 0,
+        contactSubmitted: false
     };
+
+    function emptyContact() {
+        return {
+            email: "",
+            name: "",
+            company: "",
+            phone: "",
+            callback: false,
+            consent: false,
+            note: ""
+        };
+    }
 
     function store() {
         try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
@@ -267,6 +298,9 @@
             state.completed = !!saved.completed;
             state.estimate = saved.estimate || null;
             state.view = saved.view || "intro";
+            state.contact = Object.assign(emptyContact(), saved.contact && typeof saved.contact === "object" ? saved.contact : {});
+            state.contactStep = Math.min(Math.max(parseInt(saved.contactStep, 10) || 0, 0), 3);
+            state.contactSubmitted = !!saved.contactSubmitted;
             return true;
         } catch (e) { return false; }
     }
@@ -476,7 +510,9 @@
     var screens = {
         intro: root.querySelector('[data-screen="intro"]'),
         question: root.querySelector('[data-screen="question"]'),
-        result: root.querySelector('[data-screen="result"]')
+        result: root.querySelector('[data-screen="result"]'),
+        contact: root.querySelector('[data-screen="contact"]'),
+        success: root.querySelector('[data-screen="success"]')
     };
     var head = {
         label: root.querySelector("[data-step-label]"),
@@ -486,15 +522,16 @@
     var foot = root.querySelector("[data-nav]");
     var backButton = root.querySelector('[data-act="back"]');
     var nextButton = root.querySelector('[data-act="next"]');
+    var skipButton = root.querySelector('[data-act="skip"]');
 
     function setView(name) {
         state.view = name;
         Object.keys(screens).forEach(function (key) {
             if (screens[key]) screens[key].hidden = key !== name;
         });
-        /* Only the questionnaire itself is pinned to the viewport. */
-        document.body.classList.toggle("is-locked", name === "question");
-        if (foot) foot.hidden = name !== "question";
+        /* Questionnaire and contact steps stay pinned to the viewport. */
+        document.body.classList.toggle("is-locked", name === "question" || name === "contact");
+        if (foot) foot.hidden = name !== "question" && name !== "contact";
     }
 
     function setProgress(percent, text) {
@@ -607,7 +644,10 @@
         range.setAttribute("aria-labelledby", "est-question-title");
 
         var stored = question.read(state.answers);
-        var index = stored === null ? question.defaultIndex : stored;
+        var fallback = typeof question.defaultIndex === "function"
+            ? question.defaultIndex(state.answers)
+            : question.defaultIndex;
+        var index = stored === null ? fallback : stored;
         var unsure = question.isUnsure(state.answers);
         range.value = String(index);
 
@@ -730,7 +770,8 @@
         container.innerHTML = "";
 
         /* The intro screen owns the page h1, so questions use h2. */
-        var title = element("h2", "est-question", question.legend);
+        var legend = typeof question.legend === "function" ? question.legend(state.answers) : question.legend;
+        var title = element("h2", "est-question", legend);
         title.id = "est-question-title";
         title.tabIndex = -1;
         container.appendChild(title);
@@ -794,6 +835,10 @@
     }
 
     function goBack() {
+        if (state.view === "contact") {
+            goBackContact();
+            return;
+        }
         var index = stepIndex();
         track("estimator_back", { step: index + 1 });
         if (index === 0) {
@@ -895,90 +940,433 @@
     }
 
     /* ---------------------------------------------------------
-       Quote / callback request
+       Progressive contact flow after the estimate
        --------------------------------------------------------- */
 
-    var form = root.querySelector("[data-quote-form]");
-    var formStatus = form ? form.querySelector("[data-status]") : null;
-    var callbackBox = form ? form.querySelector("[data-callback]") : null;
-    var phoneField = form ? form.querySelector("#est-phone") : null;
-    var phoneLabel = form ? form.querySelector("[data-phone-label]") : null;
+    var CONTACT_FLOW = [
+        {
+            id: "email",
+            title: "Wie können wir Sie erreichen?",
+            hint: "An diese Adresse melde ich mich persönlich.",
+            field: "email",
+            inputType: "email",
+            autocomplete: "email",
+            label: "E-Mail-Adresse",
+            required: true
+        },
+        {
+            id: "person",
+            title: "Wie dürfen wir Sie ansprechen?",
+            hint: "Damit die Rückmeldung an die richtige Person geht.",
+            field: "name",
+            inputType: "text",
+            autocomplete: "name",
+            label: "Ansprechpartner / Name",
+            required: true
+        },
+        {
+            id: "company",
+            title: "Für welches Unternehmen ist die Anfrage?",
+            hint: "Für die Zuordnung hilfreich, aber kein Muss.",
+            field: "company",
+            inputType: "text",
+            autocomplete: "organization",
+            label: "Unternehmen",
+            required: false,
+            skipLabel: "Ohne Unternehmensnamen fortfahren"
+        },
+        {
+            id: "phone",
+            title: "Wie können wir Sie bei Rückfragen erreichen?",
+            hint: "Optional, falls eine kurze Rückfrage schneller telefonisch geklärt werden kann.",
+            field: "phone",
+            inputType: "tel",
+            autocomplete: "tel",
+            label: "Telefonnummer",
+            required: false,
+            skipLabel: "Ohne Telefonnummer absenden",
+            isFinal: true
+        }
+    ];
 
-    function openForm(withCallback) {
-        if (!form) return;
-        form.hidden = false;
-        if (callbackBox && withCallback) callbackBox.checked = true;
-        syncPhoneRequirement();
-        track(withCallback ? "callback_requested" : "quote_form_opened", funnelParams(),
-              withCallback ? "CallbackRequested" : null, funnelParams());
-        var first = form.querySelector("input:not([type='hidden'])");
-        form.scrollIntoView({ behavior: "smooth", block: "start" });
-        if (first) setTimeout(function () { first.focus(); }, 240);
+    var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var contactBusy = false;
+
+    function contactParams() {
+        return Object.assign({
+            contact_step: CONTACT_FLOW[state.contactStep] ? CONTACT_FLOW[state.contactStep].id : "",
+            callback: state.contact.callback ? "ja" : "nein",
+            estimate_bucket: state.estimate ? estimateBucket(state.estimate.estimatedNetPrice) : ""
+        }, funnelParams());
     }
 
-    function syncPhoneRequirement() {
-        if (!phoneField || !callbackBox) return;
-        var required = callbackBox.checked;
-        phoneField.required = required;
-        if (phoneLabel) phoneLabel.textContent = required ? "Telefon" : "Telefon (optional)";
+    function phoneRequired() {
+        return !!state.contact.callback;
     }
 
-    function setStatus(message, kind) {
-        if (!formStatus) return;
-        formStatus.textContent = message;
-        formStatus.className = "est-status" + (kind ? " " + kind : "");
+    function currentContactStep() {
+        return CONTACT_FLOW[state.contactStep] || CONTACT_FLOW[0];
     }
 
-    function submitQuote(event) {
-        event.preventDefault();
-        if (form.dataset.busy) return;
+    function readContactField(step) {
+        return String(state.contact[step.field] || "").trim();
+    }
 
-        var honeypot = form.querySelector("#est-website");
-        if (honeypot && honeypot.value) { setStatus("Vielen Dank. Ihre Angaben wurden übermittelt.", "ok"); return; }
+    function validateContactStep(step) {
+        var value = readContactField(step);
+        if (step.id === "email") {
+            if (!EMAIL_RE.test(value)) return "Bitte eine gültige E-Mail-Adresse angeben.";
+            if (!state.contact.consent) return "Bitte bestätigen Sie die Verarbeitung Ihrer Angaben.";
+            return "";
+        }
+        if (step.id === "person") {
+            return value.length < 2 ? "Bitte den Namen der Ansprechperson angeben." : "";
+        }
+        if (step.id === "phone" && (step.required || phoneRequired())) {
+            return value.replace(/\D/g, "").length < 6
+                ? "Für einen Rückruf wird eine Telefonnummer benötigt."
+                : "";
+        }
+        return "";
+    }
 
-        var contact = {
-            company: form.querySelector("#est-company").value.trim(),
-            name: form.querySelector("#est-name").value.trim(),
-            email: form.querySelector("#est-email").value.trim(),
-            phone: phoneField ? phoneField.value.trim() : "",
-            callback: !!(callbackBox && callbackBox.checked),
-            note: form.querySelector("#est-note") ? form.querySelector("#est-note").value.trim() : ""
-        };
-        var consentBox = form.querySelector("#est-consent");
+    function startContactFlow(withCallback) {
+        if (state.contactSubmitted) {
+            showSuccess();
+            return;
+        }
+        state.contact.callback = !!withCallback;
+        if (state.contactStep > 3) state.contactStep = 0;
+        track(withCallback ? "callback_requested" : "contact_flow_started", contactParams(),
+              withCallback ? "CallbackRequested" : "ContactFlowStarted", {
+                  callback: withCallback ? "ja" : "nein"
+              });
+        renderContactStep();
+    }
 
-        if (!contact.company || !contact.name) { setStatus("Bitte Unternehmen und Ansprechpartner angeben.", "err"); return; }
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact.email)) { setStatus("Bitte eine gültige E-Mail-Adresse angeben.", "err"); return; }
-        if (contact.callback && !contact.phone) { setStatus("Für einen Rückruf wird eine Telefonnummer benötigt.", "err"); return; }
-        if (consentBox && !consentBox.checked) { setStatus("Bitte bestätigen Sie die Verarbeitung Ihrer Angaben.", "err"); return; }
+    function contactProgressLabel() {
+        return "Angaben " + (state.contactStep + 1) + " von " + CONTACT_FLOW.length;
+    }
 
-        form.dataset.busy = "1";
-        var button = form.querySelector("button[type='submit']");
-        if (button) button.disabled = true;
-        setStatus("Wird übermittelt …");
+    function renderContactStep() {
+        var step = currentContactStep();
+        var container = screens.contact;
+        if (!container) return;
+        container.innerHTML = "";
 
+        var title = element("h2", "est-question", step.title);
+        title.id = "est-contact-title";
+        title.tabIndex = -1;
+        container.appendChild(title);
+        if (step.hint) container.appendChild(element("p", "est-hint", step.hint));
+
+        var block = element("div", "est-contact-block");
+        var label = element("label", "visually-hidden", step.label);
+        label.setAttribute("for", "est-contact-input");
+
+        var input = element("input", "est-contact-input");
+        input.id = "est-contact-input";
+        input.type = step.inputType;
+        input.autocomplete = step.autocomplete;
+        input.setAttribute("aria-labelledby", "est-contact-title");
+        input.value = state.contact[step.field] || "";
+        if (step.inputType === "email") input.inputMode = "email";
+        if (step.inputType === "tel") input.inputMode = "tel";
+
+        var error = element("p", "est-error");
+        error.id = "est-contact-error";
+        error.setAttribute("role", "alert");
+
+        input.addEventListener("input", function () {
+            state.contact[step.field] = input.value;
+            error.textContent = "";
+            hideContactFail();
+            touch();
+            updateContactNext();
+        });
+        input.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                submitContactStep(false);
+            }
+        });
+
+        block.appendChild(label);
+        block.appendChild(input);
+        block.appendChild(error);
+
+        if (step.id === "email") {
+            var consent = element("label", "est-consent");
+            consent.setAttribute("for", "est-contact-consent");
+            var box = document.createElement("input");
+            box.type = "checkbox";
+            box.id = "est-contact-consent";
+            box.checked = !!state.contact.consent;
+            box.addEventListener("change", function () {
+                state.contact.consent = box.checked;
+                error.textContent = "";
+                touch();
+                updateContactNext();
+            });
+            var consentText = element("span");
+            consentText.innerHTML = "Ich bin damit einverstanden, dass meine Angaben zur Bearbeitung der Anfrage verarbeitet werden. Details in der <a href=\"datenschutz.html\">Datenschutzerklärung</a>.";
+            consent.appendChild(box);
+            consent.appendChild(consentText);
+            block.appendChild(consent);
+        }
+
+        if (step.id === "phone") {
+            var call = element("label", "est-checkbox");
+            call.setAttribute("for", "est-contact-callback");
+            var callBox = document.createElement("input");
+            callBox.type = "checkbox";
+            callBox.id = "est-contact-callback";
+            callBox.checked = !!state.contact.callback;
+            callBox.addEventListener("change", function () {
+                state.contact.callback = callBox.checked;
+                error.textContent = "";
+                touch();
+                updateContactNext();
+            });
+            call.appendChild(callBox);
+            call.appendChild(element("span", null, "Bitte rufen Sie mich zurück."));
+            block.appendChild(call);
+        }
+
+        var fail = element("div", "est-contact-fail");
+        fail.setAttribute("data-contact-fail", "");
+        fail.hidden = true;
+        fail.innerHTML =
+            "<h3>Die Anfrage konnte gerade nicht übermittelt werden.</h3>" +
+            "<p>Ihre Angaben bleiben erhalten. Sie können es erneut versuchen oder mich direkt erreichen.</p>";
+        var failActions = element("div", "est-contact-actions");
+        var retry = element("button", "btn btn-primary", "Erneut versuchen");
+        retry.type = "button";
+        retry.addEventListener("click", function () { submitContactStep(false); });
+        failActions.appendChild(retry);
+        var callLink = document.createElement("a");
+        callLink.className = "btn btn-ghost";
+        callLink.href = "tel:+4917657748528";
+        callLink.textContent = "Direkt anrufen";
+        failActions.appendChild(callLink);
+        var mailLink = document.createElement("a");
+        mailLink.className = "btn btn-ghost";
+        mailLink.href = "mailto:schanen.sebastien@outlook.de";
+        mailLink.textContent = "E-Mail schreiben";
+        failActions.appendChild(mailLink);
+        fail.appendChild(failActions);
+        block.appendChild(fail);
+
+        var honey = element("div", "hp-field");
+        honey.setAttribute("aria-hidden", "true");
+        honey.innerHTML = "<label for=\"est-website\">Website (bitte freilassen)</label>" +
+            "<input id=\"est-website\" type=\"text\" tabindex=\"-1\" autocomplete=\"off\">";
+        block.appendChild(honey);
+
+        container.appendChild(block);
+
+        setView("contact");
+        setProgress(75 + (state.contactStep / CONTACT_FLOW.length) * 25, contactProgressLabel());
+        updateContactNext();
+        title.focus();
+        setTimeout(function () { input.focus(); }, 80);
+        store();
+    }
+
+    function hideContactFail() {
+        var fail = screens.contact ? screens.contact.querySelector("[data-contact-fail]") : null;
+        if (fail) fail.hidden = true;
+    }
+
+    function showContactFail() {
+        var fail = screens.contact ? screens.contact.querySelector("[data-contact-fail]") : null;
+        if (fail) fail.hidden = false;
+        track("estimator_submission_error", contactParams(), "EstimatorSubmissionError", {
+            contact_step: currentContactStep().id
+        });
+    }
+
+    function updateContactNext() {
+        if (!nextButton) return;
+        var step = currentContactStep();
+        var requiredNow = step.required || (step.id === "phone" && phoneRequired());
+        var value = readContactField(step);
+        var ready = !requiredNow || (step.id === "email"
+            ? EMAIL_RE.test(value) && state.contact.consent
+            : value.length > 0);
+        if (step.id === "email") ready = EMAIL_RE.test(value) && state.contact.consent;
+        if (step.id === "person") ready = value.length >= 2;
+        if (step.id === "phone" && phoneRequired()) ready = value.replace(/\D/g, "").length >= 6;
+        nextButton.disabled = !ready;
+        nextButton.textContent = step.isFinal ? "Anfrage senden" : "Weiter";
+        if (skipButton) {
+            var canSkip = !step.required && !(step.id === "phone" && phoneRequired()) && !!step.skipLabel;
+            skipButton.hidden = !canSkip;
+            if (canSkip) skipButton.textContent = step.skipLabel;
+        }
+    }
+
+    function goBackContact() {
+        track("contact_step_back", contactParams());
+        if (state.contactStep <= 0) {
+            setView("result");
+            setProgress(100, "Kostenschätzung");
+            store();
+            return;
+        }
+        state.contactStep -= 1;
+        renderContactStep();
+    }
+
+    function showSuccess() {
+        state.contactSubmitted = true;
+        state.view = "success";
+        setView("success");
+        setProgress(100, "Anfrage gesendet");
+        var panel = root.querySelector("[data-success-panel]");
+        if (panel) panel.focus();
+        store();
+        window.scrollTo(0, 0);
+    }
+
+    function postContactStep(step, skipped) {
         var payload = basePayload();
-        payload.eventId = eventIdFor("contact", contact.email + "|" + contact.company + "|" + contact.callback);
-        payload.contact = contact;
-        payload.completed = true;
-
-        post(ENDPOINTS.contact, payload).then(function (response) {
+        payload.contactStep = step.isFinal && !skipped ? "complete" : step.id;
+        if (step.isFinal) payload.contactStep = "complete";
+        if (skipped && step.id === "phone") payload.contactStep = "complete";
+        if (skipped && step.id === "company") {
+            return Promise.resolve({ ok: true, skipped: true });
+        }
+        if (step.id === "phone" && !skipped && readContactField(step)) {
+            /* Persist the number first, then send the completion notice. */
+            payload.contactStep = "phone";
+        }
+        payload.eventId = eventIdFor("c" + payload.contactStep, contactEventValue(payload.contactStep));
+        payload.contact = {
+            email: String(state.contact.email || "").trim(),
+            name: String(state.contact.name || "").trim(),
+            company: String(state.contact.company || "").trim(),
+            phone: String(state.contact.phone || "").trim(),
+            callback: !!state.contact.callback,
+            consent: !!state.contact.consent,
+            note: String(state.contact.note || "").trim()
+        };
+        payload.completed = payload.contactStep === "complete";
+        var honey = document.getElementById("est-website");
+        payload.website = honey ? honey.value : "";
+        return post(ENDPOINTS.contact, payload).then(function (response) {
             if (!response || response.ok !== true) throw new Error("bad_response");
-            form.reset();
-            form.hidden = true;
-            var done = root.querySelector("[data-quote-done]");
-            if (done) { done.hidden = false; done.focus(); }
-            track("quote_requested", Object.assign({
-                callback: contact.callback ? "ja" : "nein",
-                estimate_bucket: state.estimate ? estimateBucket(state.estimate.estimatedNetPrice) : ""
-            }, funnelParams()), "Lead", {
-                content_name: "Kostenschätzer Angebotsanfrage",
-                content_category: "Dokumentendigitalisierung"
-            }, true);
+            return response;
+        });
+    }
+
+    function contactEventValue(stepId) {
+        var c = state.contact;
+        if (stepId === "email") return String(c.email || "").trim().toLowerCase();
+        if (stepId === "person") return String(c.name || "").trim();
+        if (stepId === "company") return String(c.company || "").trim();
+        if (stepId === "phone") return String(c.phone || "").trim();
+        return [c.email, c.name, c.company, c.phone, c.callback].join("|");
+    }
+
+    function trackContactStep(step, skipped) {
+        var name = step.id;
+        var params = contactParams();
+        if (name === "email") {
+            track("contact_email_entered", params);
+            track("contact_email_step_completed", params, "ContactEmailStepCompleted", { step: name });
+        } else if (name === "person") {
+            track("contact_person_step_completed", params, "ContactPersonStepCompleted", { step: name });
+        } else if (name === "company") {
+            track("contact_company_step_completed", Object.assign({ skipped: skipped ? "ja" : "nein" }, params),
+                  "ContactCompanyStepCompleted", { step: name });
+        } else if (name === "phone") {
+            track("contact_phone_step_completed", Object.assign({ skipped: skipped ? "ja" : "nein" }, params),
+                  "ContactPhoneStepCompleted", { step: name });
+        }
+        track("contact_step_completed", Object.assign({ step: name, skipped: skipped ? "ja" : "nein" }, params));
+    }
+
+    function finishContact() {
+        track("estimator_lead_submitted", contactParams(), "Lead", {
+            content_name: "Kostenschätzer Angebotsanfrage",
+            content_category: "Dokumentendigitalisierung"
+        }, true);
+        track("estimator_submission_success", contactParams(), "EstimatorSubmissionSuccess", {
+            callback: state.contact.callback ? "ja" : "nein"
+        });
+        track("contact_flow_completed", contactParams(), "ContactFlowCompleted", {
+            callback: state.contact.callback ? "ja" : "nein"
+        });
+        showSuccess();
+    }
+
+    function submitContactStep(skipped) {
+        if (contactBusy) return;
+        var step = currentContactStep();
+        if (!skipped) {
+            var message = validateContactStep(step);
+            var error = document.getElementById("est-contact-error");
+            if (message) {
+                if (error) error.textContent = message;
+                return;
+            }
+        } else if (step.id === "phone" && phoneRequired()) {
+            var err = document.getElementById("est-contact-error");
+            if (err) err.textContent = "Für einen Rückruf wird eine Telefonnummer benötigt.";
+            return;
+        }
+
+        if (skipped && step.id === "phone") state.contact.phone = "";
+        if (skipped && step.id === "company") state.contact.company = "";
+        touch();
+
+        var honey = document.getElementById("est-website");
+        if (honey && honey.value) { showSuccess(); return; }
+
+        contactBusy = true;
+        if (nextButton) nextButton.disabled = true;
+        if (skipButton) skipButton.disabled = true;
+
+        var chain = Promise.resolve();
+        if (step.id === "phone" && !skipped && readContactField(step)) {
+            chain = postContactStep(step, false).then(function () {
+                var completePayload = basePayload();
+                completePayload.contactStep = "complete";
+                completePayload.eventId = eventIdFor("ccomplete", contactEventValue("complete"));
+                completePayload.contact = {
+                    email: String(state.contact.email || "").trim(),
+                    name: String(state.contact.name || "").trim(),
+                    company: String(state.contact.company || "").trim(),
+                    phone: String(state.contact.phone || "").trim(),
+                    callback: !!state.contact.callback,
+                    consent: !!state.contact.consent,
+                    note: String(state.contact.note || "").trim()
+                };
+                completePayload.completed = true;
+                return post(ENDPOINTS.contact, completePayload).then(function (response) {
+                    if (!response || response.ok !== true) throw new Error("bad_response");
+                    return response;
+                });
+            });
+        } else {
+            chain = postContactStep(step, skipped);
+        }
+
+        chain.then(function () {
+            trackContactStep(step, skipped);
+            if (step.isFinal) {
+                finishContact();
+            } else {
+                state.contactStep += 1;
+                renderContactStep();
+            }
         }).catch(function () {
-            setStatus("Die Übermittlung hat nicht geklappt. Bitte rufen Sie kurz an oder schreiben Sie eine E-Mail.", "err");
+            showContactFail();
         }).then(function () {
-            form.dataset.busy = "";
-            if (button) button.disabled = false;
+            contactBusy = false;
+            if (skipButton) skipButton.disabled = false;
+            updateContactNext();
         });
     }
 
@@ -999,6 +1387,9 @@
         state.estimate = null;
         state.completed = false;
         state.currentStep = "";
+        state.contact = emptyContact();
+        state.contactStep = 0;
+        state.contactSubmitted = false;
         store();
         setView("intro");
         setProgress(0, "Kostenschätzung");
@@ -1030,29 +1421,36 @@
         });
         if (backButton) backButton.addEventListener("click", function () { goBack(); });
         if (nextButton) nextButton.addEventListener("click", function () {
+            if (state.view === "contact") { submitContactStep(false); return; }
             var question = applicable()[stepIndex()];
             if (question) advance(question);
+        });
+        if (skipButton) skipButton.addEventListener("click", function () {
+            if (state.view === "contact") submitContactStep(true);
         });
 
         var quoteButton = root.querySelector("[data-act='quote']");
         var callbackButton = root.querySelector("[data-act='callback']");
-        if (quoteButton) quoteButton.addEventListener("click", function () { openForm(false); });
-        if (callbackButton) callbackButton.addEventListener("click", function () { openForm(true); });
-        if (callbackBox) callbackBox.addEventListener("change", syncPhoneRequirement);
-        if (form) form.addEventListener("submit", submitQuote);
+        if (quoteButton) quoteButton.addEventListener("click", function () { startContactFlow(false); });
+        if (callbackButton) callbackButton.addEventListener("click", function () { startContactFlow(true); });
 
         root.querySelectorAll("[data-act='vcard']").forEach(function (node) {
             node.addEventListener("click", function () { track("contact_save", { method: "vcard" }); });
         });
 
         wireConsentSpacing();
+        wireKeyboardInset();
 
         track("estimator_view", { page_path: location.pathname }, "ViewContent", {
             content_name: "Kostenschätzer",
             content_category: "Dokumentendigitalisierung"
         }, true);
 
-        if (state.view === "result" && state.estimate) {
+        if (state.contactSubmitted || state.view === "success") {
+            showSuccess();
+        } else if (state.view === "contact") {
+            renderContactStep();
+        } else if (state.view === "result" && state.estimate) {
             setView("result");
             setProgress(100, "Kostenschätzung");
             paintResult(state.estimate);
@@ -1063,6 +1461,18 @@
             setProgress(0, "Kostenschätzung");
         }
         store();
+    }
+
+    function wireKeyboardInset() {
+        var viewport = window.visualViewport;
+        if (!viewport) return;
+        function sync() {
+            var occluded = Math.max(0, window.innerHeight - viewport.height - viewport.offsetTop);
+            document.documentElement.style.setProperty("--est-keyboard", occluded + "px");
+        }
+        viewport.addEventListener("resize", sync);
+        viewport.addEventListener("scroll", sync);
+        sync();
     }
 
     if (document.readyState === "loading") {
