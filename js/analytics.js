@@ -202,6 +202,22 @@
         return loc || "internal_link";
     }
 
+    function ctaText(node) {
+        return (node.textContent || "").replace(/\s+/g, " ").trim().slice(0, 80);
+    }
+
+    function aboutPage() {
+        return (location.pathname || "").indexOf("portfolio") !== -1;
+    }
+
+    function aboutCtaParams(node, locationId) {
+        return {
+            cta_location: locationId || String(node.getAttribute("data-cta-location") || "").replace(/[^a-z0-9_]/gi, "").slice(0, 80) || "about",
+            source_page: location.pathname || "/",
+            cta_text: ctaText(node)
+        };
+    }
+
     function rememberEstimatorEntry(locationId) {
         try {
             sessionStorage.setItem("docscan-estimator-entry", JSON.stringify({
@@ -216,18 +232,28 @@
         if (location.pathname.indexOf("kostenschaetzer") !== -1) return;
         var ctaLocation = estimatorLocation(node);
         rememberEstimatorEntry(ctaLocation);
-        var text = (node.textContent || "").replace(/\s+/g, " ").trim().slice(0, 80);
+        var text = ctaText(node);
         googleEvent("cost_estimator_cta_click", {
             cta_location: ctaLocation,
             source_page: location.pathname || "/",
             link_target: "/kostenschaetzer.html",
             cta_text: text
         });
-        if (ctaLocation === "about") {
+        if (aboutPage() || ctaLocation.indexOf("about") === 0) {
+            googleEvent("about_cost_estimator_click", {
+                cta_location: ctaLocation,
+                source_page: location.pathname || "/",
+                cta_text: text
+            });
             googleEvent("about_estimator_cta_click", {
                 cta_location: ctaLocation,
-                source_page: location.pathname || "/"
+                source_page: location.pathname || "/",
+                cta_text: text
             });
+            metaEvent("AboutCostEstimatorCTA", {
+                location: ctaLocation,
+                source_page: location.pathname || "/"
+            }, true);
         }
         metaEvent("CostEstimatorCTA", {
             location: ctaLocation,
@@ -242,12 +268,24 @@
             var node = trackedNode(event.target);
             if (!node) return;
 
-            if ((node.getAttribute("data-track") || "") === "about-contact") {
-                googleEvent("about_contact_cta_click", {
-                    source_page: location.pathname || "/",
-                    cta_destination: destination(node)
-                });
-                metaEvent("AboutContactCTA", { source_page: location.pathname || "/" }, true);
+            var track = node.getAttribute("data-track") || "";
+            if (track === "about-services") {
+                var serviceParams = aboutCtaParams(node, node.getAttribute("data-cta-location"));
+                googleEvent("about_services_click", serviceParams);
+                metaEvent("AboutServicesCTA", {
+                    location: serviceParams.cta_location,
+                    source_page: serviceParams.source_page
+                }, true);
+            }
+            if (track === "about-contact") {
+                var contactParams = aboutCtaParams(node, node.getAttribute("data-cta-location"));
+                contactParams.cta_destination = destination(node);
+                googleEvent("about_contact_click", contactParams);
+                googleEvent("about_contact_cta_click", contactParams);
+                metaEvent("AboutContactCTA", {
+                    location: contactParams.cta_location,
+                    source_page: contactParams.source_page
+                }, true);
             }
 
             if (node.getAttribute("data-estimator-cta") || estimatorHref(node)) {
