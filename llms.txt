@@ -9,7 +9,7 @@ Relevante deutsche Suchformulierungen: „Dokumente digitalisieren Würzburg“,
 
 ## Hauptseiten
 - [Dokumentenservice Würzburg](https://schanensebastien.com/): Überblick der drei Leistungsbereiche Dokumente & Archiv, Inventar & Schadenlisten sowie Software & private KI.
-- [Dokumente & Archiv Würzburg](https://schanensebastien.com/dokumente-archiv-wuerzburg.html): Übersicht zu Digitalisierung, OCR, Dateistruktur und durchsuchbarem Archiv.
+- [Dokumente & Archiv Würzburg](https://schanensebastien.com/dokumente-archiv-wuerzburg.html): Vor-Ort-Digitalisierung, OCR, Dateinamen, Ordnerstruktur und durchsuchbares Archiv auf Netzlaufwerk, lokalem Server oder Nextcloud.
 - [Dokumente digitalisieren Würzburg](https://schanensebastien.com/dokumente-digitalisieren-wuerzburg.html): Vor-Ort-Digitalisierung, Qualitätsprüfung, OCR, Dateinamen und Übergabe.
 - [Dokumentenmanagement Würzburg](https://schanensebastien.com/dokumentenmanagement-wuerzburg.html): bestehende digitale Ablagen, OCR, Netzlaufwerk, lokaler Server und Nextcloud.
 - [Inventar- und Schadenlisten](https://schanensebastien.com/inventar-schadenlisten.html): Bestände aus Fotos und Unterlagen erfassen, besonders für Sachverständige und Schadenfälle; mit recherchierbaren Vergleichspreisen und Quellen. Keine Gutachtenleistung.

@@ -5,23 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#FBFAF6">
     <meta name="theme-color" content="#102019" media="(prefers-color-scheme: dark)">
-    <meta name="description" content="Dokumente und Archive in Würzburg: Papier digitalisieren, Dateien ordnen, OCR nutzen und eine durchsuchbare Ablage auf Server oder Nextcloud aufbauen.">
+    <meta name="description" content="Dokumente und Archive in Würzburg: Akten vor Ort scannen, bestehende Dateien ordnen, OCR nutzen und eine durchsuchbare Ablage auf Netzlaufwerk, Server oder Nextcloud aufbauen.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://schanensebastien.com/dokumente-archiv-wuerzburg.html">
     <meta property="og:title" content="Dokumente &amp; Archiv Würzburg | Scannen, OCR, Ablage">
-    <meta property="og:description" content="Papier und vorhandene Dateien in eine nachvollziehbare, durchsuchbare Ablage überführen. Mit OCR, klaren Dateinamen und Archiv auf Ihrer Infrastruktur.">
-    <meta property="og:image" content="https://schanensebastien.com/images/linkedin-preview.jpg">
+    <meta property="og:description" content="Papier digitalisieren und vorhandene Dateien in eine nachvollziehbare, durchsuchbare Ablage überführen. Mit OCR, klaren Dateinamen und Archiv auf Ihrer Infrastruktur.">
+    <meta property="og:image" content="https://schanensebastien.com/images/document-scan-workflow.webp">
     <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Dokumentenservice Würzburg: Das Problem ist nicht Papier, sondern die Suche.">
+    <meta property="og:image:height" content="800">
+    <meta property="og:image:alt" content="Geschäftsunterlagen werden in einen Dokumentenscanner eingelegt.">
     <meta property="og:url" content="https://schanensebastien.com/dokumente-archiv-wuerzburg.html">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Sébastien Schanen · Dokumentenservice">
     <meta property="og:locale" content="de_DE">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Dokumente &amp; Archiv Würzburg | Scannen, OCR, Ablage">
-    <meta name="twitter:description" content="Papier und vorhandene Dateien in eine nachvollziehbare, durchsuchbare Ablage überführen.">
-    <meta name="twitter:image" content="https://schanensebastien.com/images/linkedin-preview.jpg">
+    <meta name="twitter:description" content="Papier digitalisieren und vorhandene Dateien in eine nachvollziehbare, durchsuchbare Ablage überführen.">
+    <meta name="twitter:image" content="https://schanensebastien.com/images/document-scan-workflow.webp">
     <title>Dokumente &amp; Archiv Würzburg | Scannen, OCR, Ablage</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
@@ -38,7 +38,21 @@
           "description": "Papier und bestehende Dateien werden in eine nachvollziehbare, durchsuchbare Ablage überführt: scannen, per OCR erfassen, benennen, strukturieren und auf Netzlaufwerk, lokalem Server oder Nextcloud bereitstellen.",
           "provider": {"@id": "https://schanensebastien.com/#business"},
           "areaServed": [{"@type": "City", "name": "Würzburg"}, {"@type": "AdministrativeArea", "name": "Mainfranken"}],
+          "serviceOutput": "Geprüfte, durchsuchbare PDF-Dateien mit abgestimmten Dateinamen und einer verständlichen Ordnerstruktur",
           "url": "https://schanensebastien.com/dokumente-archiv-wuerzburg.html"
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {"@type": "Question", "name": "Muss ich die Akten vor dem Termin sortieren?", "acceptedAnswer": {"@type": "Answer", "text": "Nein. Eine Vorsortierung kann helfen, ist aber keine Voraussetzung. Zuerst wird geklärt, welche vorhandene Ordnung sinnvoll ist und an welchen Stellen Regeln fehlen."}},
+            {"@type": "Question", "name": "Was bedeutet OCR bei gescannten Dokumenten?", "acceptedAnswer": {"@type": "Answer", "text": "OCR steht für Texterkennung. Sie legt über dem gescannten Bild eine durchsuchbare Textebene an. Dadurch lassen sich Begriffe, Nummern und Namen im Dokumentinhalt finden."}},
+            {"@type": "Question", "name": "In welchem Dateiformat werden die Unterlagen übergeben?", "acceptedAnswer": {"@type": "Answer", "text": "In der Regel als durchsuchbare PDF-Dateien. Abhängig vom Zweck können weitere Anforderungen wie PDF/A, getrennte Dokumente oder eine bestimmte Benennung vereinbart werden."}},
+            {"@type": "Question", "name": "Was passiert mit den Papieroriginalen?", "acceptedAnswer": {"@type": "Answer", "text": "Beim Vor-Ort-Ablauf bleiben die Originale im Betrieb. Ob und wann Papier anschließend aufbewahrt oder vernichtet werden darf, muss anhand der gesetzlichen und betrieblichen Anforderungen geklärt werden."}},
+            {"@type": "Question", "name": "Können vorhandene PDF-Dateien nachträglich durchsuchbar werden?", "acceptedAnswer": {"@type": "Answer", "text": "Ja, viele Bild-PDFs können nachträglich per OCR eine Textebene erhalten. Die Erkennungsqualität hängt unter anderem von Scanqualität, Sprache, Schriftbild und Zustand der Vorlage ab."}},
+            {"@type": "Question", "name": "Brauchen wir ein neues Dokumentenmanagementsystem?", "acceptedAnswer": {"@type": "Answer", "text": "Nicht zwingend. Für viele regionale Betriebe kann eine konsequent strukturierte vorhandene Ablage ausreichen. Ob zusätzliche Software sinnvoll ist, hängt von Zugriffen, Suche, Versionierung, Freigaben und Aufbewahrungsanforderungen ab."}},
+            {"@type": "Question", "name": "Kann die Ablage auf unserem lokalen Server bleiben?", "acceptedAnswer": {"@type": "Answer", "text": "Ja. Wenn Ihr vorhandener Server geeignet ist, kann die Struktur dort umgesetzt werden. Wichtig sind geregelte Zugriffe, ein belastbares Backup und eine nachvollziehbare Übergabe."}},
+            {"@type": "Question", "name": "Wie wird der Preis berechnet?", "acceptedAnswer": {"@type": "Answer", "text": "Relevant sind unter anderem Umfang, Zustand, Sortieraufwand, Benennung und die gewünschte Ablage- oder Archivlösung. Der Kostenschätzer liefert in wenigen Schritten eine unverbindliche Einschätzung. Ein repräsentativer Testordner schafft danach eine belastbare Grundlage für ein Festpreisangebot."}}
+          ]
         },
         {
           "@type": "BreadcrumbList",
@@ -55,7 +69,7 @@
     <a class="skip-link" href="#main">Zum Inhalt springen</a>
     <header class="topbar">
         <div class="wrap">
-            <div class="brand"><a href="index.html">Sébastien Schanen</a><small>Dokumente · Inventar · KI</small></div>
+            <div class="brand"><a href="index.html">Sébastien Schanen</a><small>Dokumente · Daten · KI</small></div>
             <button class="nav-toggle" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="primary-nav">Menü</button>
             <nav class="nav" id="primary-nav" aria-label="Hauptnavigation">
                 <a href="index.html">Start</a>
@@ -72,50 +86,81 @@
     <main id="main">
         <div class="wrap breadcrumb"><nav aria-label="Brotkrümelnavigation"><ol><li><a href="index.html">Start</a></li><li><span aria-current="page">Dokumente &amp; Archiv</span></li></ol></nav></div>
 
-        <section class="scan-hero hub-hero">
-            <div class="wrap">
-                <p class="kicker">Dokumente &amp; Archiv · Würzburg &amp; Mainfranken</p>
-                <h1>Von Papier und Dateien zu einem durchsuchbaren Archiv</h1>
-                <p class="lead">Ich überführe Papier und bestehende Dateien in eine nachvollziehbare Ablage: scannen, per OCR durchsuchbar machen, sinnvoll benennen und so strukturieren, dass Ihr Team den Vorgang danach wiederfindet.</p>
-                <div class="cta-row">
-                    <a class="btn btn-primary" href="kostenschaetzer.html" data-estimator-cta="hub_hero">Projektkosten einschätzen</a>
-                    <a class="btn btn-ghost" href="testordner.html" data-track="hub-testordner">Ablage am Testordner prüfen</a>
+        <section class="scan-hero">
+            <div class="wrap scan-hero-grid">
+                <div>
+                    <p class="kicker">Dokumente &amp; Archiv · Würzburg &amp; Mainfranken</p>
+                    <h1>Aus Papier und Dateien wird eine Ablage, die Sie wirklich finden.</h1>
+                    <p class="lead">Ich digitalisiere Akten vor Ort und ordne bestehende Scans und Dateien. Mit Qualitätskontrolle, Texterkennung, nachvollziehbaren Dateinamen und einer Struktur, die auf Netzlaufwerk, lokalem Server oder Nextcloud verständlich funktioniert.</p>
+                    <div class="cta-row"><a class="btn btn-primary" href="kostenschaetzer.html" data-estimator-cta="hub_hero">Projektkosten einschätzen</a><a class="btn btn-ghost" href="testordner.html" data-track="hub-testordner">Kostenlosen Testordner anfragen</a></div>
+                    <ul class="hero-proof-row" aria-label="Wichtige Merkmale">
+                        <li>Originale bleiben im Betrieb</li>
+                        <li>OCR statt Bild-PDF</li>
+                        <li>persönlich vor Ort</li>
+                    </ul>
                 </div>
-                <ol class="hub-chain" aria-label="Weg zur durchsuchbaren Ablage">
-                    <li>Papier / Dateien</li>
-                    <li>OCR</li>
-                    <li>Benennung</li>
-                    <li>Struktur</li>
-                    <li>durchsuchbare Ablage</li>
-                    <li>Archiv / Nextcloud / lokaler Server</li>
-                </ol>
+                <figure class="hero-photo">
+                    <img
+                        src="images/document-scan-workflow.webp"
+                        srcset="images/document-scan-workflow-480.webp 480w, images/document-scan-workflow-800.webp 800w, images/document-scan-workflow.webp 1200w"
+                        sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 900px) calc(100vw - 48px), 620px"
+                        alt="Eine Mitarbeiterin legt einen Stapel Geschäftsunterlagen in einen Dokumentenscanner ein."
+                        width="1200" height="800" fetchpriority="high" decoding="async">
+                    <figcaption class="hero-photo-caption"><strong>Vom Original zur nutzbaren Datei</strong><span>scannen · prüfen · erkennen · ablegen</span></figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="search-answer" aria-labelledby="search-answer-title">
+            <div class="wrap">
+                <div class="search-answer-card">
+                    <p class="section-label">Kurzantwort für Betriebe aus der Region</p>
+                    <h2 id="search-answer-title">Wer digitalisiert Dokumente in Würzburg?</h2>
+                    <p><strong>Sébastien Schanen bietet persönliche Dokumentendigitalisierung für Betriebe in Würzburg und Mainfranken.</strong> Die Unterlagen werden auf Wunsch vor Ort gescannt, auf Qualität geprüft, per OCR durchsuchbar gemacht, verständlich benannt und in eine passende Ordnerstruktur übergeben. Dasselbe gilt für bereits vorhandene Scan-Ordner und Netzlaufwerke. Ein repräsentativer Testordner ist kostenlos und unverbindlich.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="digitalisieren">
+            <div class="wrap">
+                <p class="section-label">Mehr als ein Scanservice</p>
+                <h2>Drei Ebenen machen Dokumente nutzbar</h2>
+                <p class="section-intro">Eine Bilddatei löst das Suchproblem nicht. Deshalb gehören Lesbarkeit, Inhaltssuche und Ordnung in einem Projekt zusammen, egal ob der Einstieg Papier oder ein bestehender Ordner ist.</p>
+                <div class="outcome-grid">
+                    <article class="outcome-card"><span class="outcome-icon">1</span><h3>Sauber erfassen</h3><p>Seiten werden vorbereitet, richtig ausgerichtet und auf Vollständigkeit sowie Lesbarkeit geprüft. Vorhandene Dateien werden auf Dubletten, Bild-PDFs und fehlende Zuordnungen angesehen.</p></article>
+                    <article class="outcome-card"><span class="outcome-icon">2</span><h3>Inhalt durchsuchbar machen</h3><p>OCR erkennt den Text im Dokument. So lassen sich Begriffe, Nummern und Namen später im Volltext finden, auch in bereits gescannten Beständen.</p></article>
+                    <article class="outcome-card"><span class="outcome-icon">3</span><h3>Verständlich ablegen</h3><p>Dateinamen und Ordner beantworten die Frage, zu welchem Kunden, Vorgang, Objekt oder Jahr eine Datei gehört.</p></article>
+                </div>
             </div>
         </section>
 
         <section>
             <div class="wrap">
-                <p class="section-label">Drei Arbeitsebenen</p>
-                <h2>Digitalisieren, ordnen, bereitstellen</h2>
-                <p class="section-intro">Die Details stehen auf den jeweiligen Leistungsseiten. Diese Übersicht zeigt, welcher Schritt zu welcher Aufgabe gehört.</p>
-                <div class="grid grid-3">
-                    <a class="card card-link" href="dokumente-digitalisieren-wuerzburg.html" data-track="documents-archive" data-cta-location="hub_scan">
-                        <span class="card-kicker">Papier digitalisieren</span>
-                        <h3>Akten scannen, prüfen und benennen</h3>
-                        <p>Vor Ort in Würzburg und Mainfranken: Qualitätskontrolle, OCR und Dateinamen, die im Alltag verständlich bleiben.</p>
-                        <span class="arrow-link">Dokumentendigitalisierung ansehen</span>
-                    </a>
-                    <a class="card card-link" href="dokumentenmanagement-wuerzburg.html" data-track="documents-archive" data-cta-location="hub_files">
-                        <span class="card-kicker">Bestehende Dateien strukturieren</span>
-                        <h3>Scan-Ordner und Netzlaufwerke aufräumen</h3>
-                        <p>Uneinheitliche Namen, Bild-PDFs und verteilte Speicherorte wieder in eine gemeinsame, durchsuchbare Logik bringen.</p>
-                        <span class="arrow-link">Dokumentenmanagement ansehen</span>
-                    </a>
-                    <a class="card card-link" href="dokumentenmanagement-wuerzburg.html#archiv" data-track="documents-archive" data-cta-location="hub_archive">
-                        <span class="card-kicker">Durchsuchbares Archiv bereitstellen</span>
-                        <h3>Lokal, Netzlaufwerk oder Nextcloud</h3>
-                        <p>Die Ablage richtet sich nach vorhandener Technik, Zugriffen und Sicherung, nicht nach einem vorgeschriebenen System.</p>
-                        <span class="arrow-link">Archiv und Zugriffswege ansehen</span>
-                    </a>
+                <p class="section-label">Ein konkretes Beispiel</p>
+                <h2>Von „Scan0034“ zu einer verständlichen Datei</h2>
+                <p class="section-intro">Ein guter Name zeigt bereits vor dem Öffnen, was im Dokument steckt. OCR ergänzt diese Orientierung um die Suche im Inhalt.</p>
+                <div class="before-after" role="group" aria-label="Beispiel für die Verbesserung eines Dateinamens">
+                    <div class="file-state bad"><small>Vorher</small><div class="file-code">Scan0034.pdf</div></div>
+                    <div class="transform-arrow" aria-hidden="true">→</div>
+                    <div class="file-state good"><small>Nachher</small><div class="file-code">2026-07-15_Mueller-GmbH_Rechnung_4711.pdf</div></div>
+                </div>
+                <p class="note">Die genaue Benennung wird nicht pauschal vorgegeben. Sie richtet sich danach, wonach Ihr Team tatsächlich sucht und welche Angaben zuverlässig vorhanden sind.</p>
+            </div>
+        </section>
+
+        <section id="ablauf">
+            <div class="wrap">
+                <p class="section-label">Qualität in sieben Schritten</p>
+                <h2>So läuft die Dokumentendigitalisierung ab</h2>
+                <p class="section-intro">Der Umfang kann klein beginnen. Wichtig ist, dass die Regeln vor dem großen Bestand am Beispiel funktionieren.</p>
+                <div class="process-7">
+                    <article class="process-item"><h3>Bestand verstehen</h3><p>Dokumentarten, Zustand, heutige Ablage und typische Suchwege gemeinsam ansehen.</p></article>
+                    <article class="process-item"><h3>Vorbereiten</h3><p>Klammern entfernen, Reihenfolge sichern und Besonderheiten für den Scan kennzeichnen.</p></article>
+                    <article class="process-item"><h3>Scannen</h3><p>Unterlagen in einem passenden Format, einer sinnvollen Auflösung und der richtigen Ausrichtung erfassen.</p></article>
+                    <article class="process-item"><h3>Qualität prüfen</h3><p>Stichproben und definierte Prüfungen für Lesbarkeit, Vollständigkeit und korrekte Seitenfolge durchführen.</p></article>
+                    <article class="process-item"><h3>OCR anwenden</h3><p>Text erkennen, damit die PDF-Dateien nicht nur angezeigt, sondern auch durchsucht werden können.</p></article>
+                    <article class="process-item"><h3>Benennen &amp; strukturieren</h3><p>Einheitliche Dateinamen vergeben und Dokumente nach der vereinbarten Logik zuordnen.</p></article>
+                    <article class="process-item"><h3>Sicher übergeben</h3><p>Dateien auf der abgestimmten Zielablage bereitstellen und gemeinsam prüfen, ob Suche und Zugriff funktionieren.</p></article>
                 </div>
             </div>
         </section>
@@ -123,17 +168,118 @@
         <section>
             <div class="wrap split-section">
                 <div>
-                    <p class="section-label">Zusammenhang</p>
-                    <h2>Der Scan ist ein Schritt, nicht das Ziel</h2>
-                    <p class="section-intro">Eine Bilddatei löst das Suchproblem nicht. Deshalb gehören Erfassung, Texterkennung und Ordnung in einem Projekt zusammen, auch wenn der Einstieg nur ein Ordner ist.</p>
-                    <p>Für Handwerksbetriebe gibt es zusätzlich eine eigene Darstellung entlang der Auftragsakte.</p>
-                    <p><a class="arrow-link" href="digitalisierung-handwerk-wuerzburg.html">Digitalisierung im Handwerk</a></p>
+                    <p class="section-label">Typische Unterlagen</p>
+                    <h2>Was sich digitalisieren und ordnen lässt</h2>
+                    <p class="section-intro">Vom einzelnen Projektordner bis zu einem gewachsenen Archiv. Vorab prüfen wir, welche Unterlagen im Alltag, bei Rückfragen oder für die Dokumentation wirklich relevant sind.</p>
                 </div>
-                <div class="hub-path">
-                    <p><strong>Papier oder vorhandene Datei</strong> wird erfasst.</p>
-                    <p><strong>OCR</strong> macht den Inhalt suchbar.</p>
-                    <p><strong>Dateiname und Ordner</strong> machen den Vorgang erkennbar.</p>
-                    <p><strong>Archiv</strong> liegt dort, wo Ihr Team bereits arbeitet: Netzlaufwerk, lokaler Server oder Nextcloud.</p>
+                <div class="document-chips">
+                    <span>Rechnungen</span><span>Verträge</span><span>Angebote</span><span>Aufträge</span><span>Lieferscheine</span><span>Projektakten</span><span>Objektordner</span><span>Protokolle</span><span>Garantieunterlagen</span><span>Fahrzeugakten</span><span>Belege</span><span>Korrespondenz</span>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap">
+                <p class="section-label">Persönlich in der Region</p>
+                <h2>Vor-Ort-Digitalisierung in Würzburg</h2>
+                <div class="content-narrow">
+                    <p>Der reguläre Ablauf findet in Ihren Räumen statt. Dadurch müssen sensible Originale nicht verschickt werden und Ihr Team behält jederzeit den Überblick. Das ist besonders hilfreich, wenn Unterlagen weiterhin kurzfristig gebraucht werden oder ein gewachsenes Archiv zunächst gemeinsam verstanden werden muss.</p>
+                    <p>Für Betriebe in Würzburg und Mainfranken bedeutet das: ein fester Ansprechpartner, kurze Abstimmungswege und eine Lösung, die sich an der vorhandenen Technik orientiert. Auf Wunsch kann die digitale Ablage anschließend auf einem lokalen Server, Netzlaufwerk oder einer geeigneten Nextcloud-Struktur weitergeführt werden.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="prinzip">
+            <div class="wrap">
+                <p class="section-label">Das Prinzip</p>
+                <h2>OCR, Dateiname und Ordner beantworten verschiedene Fragen</h2>
+                <p class="section-intro">Kein einzelnes Werkzeug löst alles. Eine belastbare digitale Ablage verbindet drei Orientierungsebenen.</p>
+                <div class="outcome-grid">
+                    <article class="outcome-card"><span class="outcome-icon">A</span><h3>OCR: Was steht darin?</h3><p>Die Volltextsuche findet Namen, Nummern, Adressen oder Begriffe direkt im Inhalt einer PDF-Datei.</p></article>
+                    <article class="outcome-card"><span class="outcome-icon">B</span><h3>Dateiname: Was ist es?</h3><p>Datum, Absender, Vorgang und Dokumentart helfen, eine Datei vor dem Öffnen eindeutig zu erkennen.</p></article>
+                    <article class="outcome-card"><span class="outcome-icon">C</span><h3>Ordner: Wo gehört es hin?</h3><p>Eine schlanke Hierarchie ordnet Dokumente nach Kunde, Objekt, Projekt, Jahr oder einem anderen stabilen Bezug.</p></article>
+                </div>
+                <p class="claim">OCR ersetzt keine Struktur. Struktur ersetzt keine Suche. Beides muss zusammenpassen.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap split-section">
+                <div>
+                    <p class="section-label">Nicht nur Papier</p>
+                    <h2>Auch eine bestehende digitale Ablage kann aufgeräumt werden</h2>
+                    <p class="section-intro">Viele Betriebe haben längst gescannt, nur ohne gemeinsame Regeln. Dann ist das Papier weg, die Suchzeit aber geblieben.</p>
+                </div>
+                <div class="metric-stack">
+                    <article class="metric"><span class="metric-num">01</span><div><h3>Bestand analysieren</h3><p>Welche Dateitypen, Benennungen und Ordner gibt es? Wo liegen Dubletten und wo fehlen eindeutige Zuordnungen?</p></div></article>
+                    <article class="metric"><span class="metric-num">02</span><div><h3>Regeln vereinfachen</h3><p>Wenige, klare Regeln für Dateinamen und Ablage festlegen, die auch unter Zeitdruck funktionieren.</p></div></article>
+                    <article class="metric"><span class="metric-num">03</span><div><h3>Schrittweise umsetzen</h3><p>Mit einem begrenzten Bereich starten, Qualität prüfen und die Lösung erst danach auf weitere Bestände übertragen.</p></div></article>
+                </div>
+            </div>
+        </section>
+
+        <section id="archiv">
+            <div class="wrap">
+                <p class="section-label">Ablageort</p>
+                <h2>Das System richtet sich nach Ihrem Betrieb</h2>
+                <p class="section-intro">Ein regionaler Betrieb braucht nicht automatisch ein schweres Dokumentenmanagementsystem. Entscheidend sind sichere Zugriffe, eine verständliche Suche und eine Ablage, die zuverlässig gesichert werden kann.</p>
+                <div class="grid grid-3">
+                    <article class="card"><h3>Netzlaufwerk</h3><p>Eine aufgeräumte Ordnerstruktur auf der vorhandenen Infrastruktur. Sinnvoll, wenn Ihr Team bereits zentral im lokalen Netzwerk arbeitet.</p></article>
+                    <article class="card"><h3>Lokaler Server</h3><p>Dokumente bleiben im eigenen Haus und sind für festgelegte Nutzer im Netzwerk erreichbar. Zugriffe und Sicherung werden bewusst geplant.</p></article>
+                    <article class="card"><h3>Nextcloud</h3><p>Eine zentrale Dateiablage mit Webzugriff und Synchronisation, sofern sie zu Ihren Datenschutz-, Betriebs- und Sicherheitsanforderungen passt.</p></article>
+                </div>
+                <p class="note">Ich empfehle keine Plattform nur um der Plattform willen. Vorhandene Technik, Nutzerzahl, Zugriff von unterwegs und Ihr Sicherungskonzept bestimmen, welche Lösung angemessen ist.</p>
+                <p class="note">Bei wiederkehrenden Dokumenteneingängen kann eine <a href="private-dokumenten-ki.html">private Dokumenten-KI</a> Klassifikation, Metadatenvorschläge und die Übergabe an das vorhandene System unterstützen, mit menschlicher Prüfung statt einer unkontrollierten Vollautomatik.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap split-section">
+                <div>
+                    <p class="section-label">Beispielstruktur</p>
+                    <h2>Wenige Ebenen, eindeutige Zuordnung</h2>
+                    <p class="section-intro">Die richtige Logik ist betriebsspezifisch. Dieses vereinfachte Beispiel zeigt, wie ein Kundenprojekt ohne tiefe Ordnerlabyrinthe aufgebaut sein kann.</p>
+                </div>
+                <div class="folder-example" role="group" aria-label="Beispiel einer digitalen Projektstruktur">
+                    <strong>Dokumente</strong><br>
+                    └── Kunden<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;└── Mueller-GmbH<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Projekt-4711<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── <span>01_Angebot</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── <span>02_Auftrag</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── <span>03_Ausfuehrung</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <span>04_Rechnung</span>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap">
+                <p class="section-label">Zugriff &amp; Verantwortung</p>
+                <h2>Eine gute Ablage braucht klare Zuständigkeiten</h2>
+                <div class="grid grid-3">
+                    <article class="card"><h3>Wer darf was sehen?</h3><p>Berechtigungen sollten so einfach wie möglich und so differenziert wie nötig sein. Nicht jede Datei gehört in jeden Zugriff.</p></article>
+                    <article class="card"><h3>Wer legt neue Dateien ab?</h3><p>Ein verständlicher Eingang und klare Verantwortliche verhindern, dass Dokumente wieder auf Schreibtischen und in E-Mail-Postfächern verschwinden.</p></article>
+                    <article class="card"><h3>Wie wird gesichert?</h3><p>Eine zentrale Ablage ist erst belastbar, wenn Wiederherstellung, Sicherungskopien und Zuständigkeiten regelmäßig geprüft werden.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap">
+                <p class="section-label">Häufige Fragen</p>
+                <h2>Digitalisieren und ablegen, praktisch erklärt</h2>
+                <div class="faq-list">
+                    <details><summary>Muss ich die Akten vor dem Termin sortieren?</summary><p>Nein. Eine Vorsortierung kann helfen, ist aber keine Voraussetzung. Zuerst wird geklärt, welche vorhandene Ordnung sinnvoll ist und an welchen Stellen Regeln fehlen.</p></details>
+                    <details><summary>Was bedeutet OCR bei gescannten Dokumenten?</summary><p>OCR steht für Texterkennung. Sie legt über dem gescannten Bild eine durchsuchbare Textebene an. Dadurch können Sie beispielsweise nach einer Kundennummer suchen, auch wenn sie nur im Dokumenttext vorkommt.</p></details>
+                    <details><summary>In welchem Dateiformat werden die Unterlagen übergeben?</summary><p>In der Regel als durchsuchbare PDF-Dateien. Abhängig vom Zweck können weitere Anforderungen wie PDF/A, getrennte Dokumente oder eine bestimmte Benennung vereinbart werden.</p></details>
+                    <details><summary>Was passiert mit den Papieroriginalen?</summary><p>Die Originale bleiben beim Vor-Ort-Ablauf in Ihrem Betrieb. Ob und wann Papier anschließend aufbewahrt oder vernichtet werden darf, sollten Sie anhand Ihrer gesetzlichen und betrieblichen Anforderungen klären; ich ersetze keine Rechts- oder Steuerberatung.</p></details>
+                    <details><summary>Können vorhandene PDF-Dateien nachträglich durchsuchbar werden?</summary><p>Ja, viele Bild-PDFs können nachträglich per OCR eine Textebene erhalten. Die Erkennungsqualität hängt unter anderem von Scanqualität, Sprache, Schriftbild und Zustand der Vorlage ab.</p></details>
+                    <details><summary>Brauchen wir ein neues Dokumentenmanagementsystem?</summary><p>Nicht zwingend. Für viele regionale Betriebe kann eine konsequent strukturierte vorhandene Ablage ausreichen. Ob zusätzliche Software sinnvoll ist, hängt von Zugriffen, Suche, Versionierung, Freigaben und Aufbewahrungsanforderungen ab.</p></details>
+                    <details><summary>Kann die Ablage auf unserem lokalen Server bleiben?</summary><p>Ja. Wenn Ihr vorhandener Server geeignet ist, kann die Struktur dort umgesetzt werden. Wichtig sind geregelte Zugriffe, ein belastbares Backup und eine nachvollziehbare Übergabe.</p></details>
+                    <details><summary>Was ist mit Datenschutz und Aufbewahrungsfristen?</summary><p>Technik und Ablage sollten Ihre internen sowie gesetzlichen Anforderungen unterstützen. Welche Fristen und Nachweise für Ihren Betrieb gelten, klären Sie bitte mit Ihrer Rechts- oder Steuerberatung; die technische Struktur wird darauf abgestimmt.</p></details>
+                    <details><summary>Wie verhindern wir, dass wieder Chaos entsteht?</summary><p>Mit wenigen verbindlichen Regeln, einem klaren Eingang für neue Dokumente und festgelegten Verantwortlichkeiten. Die Lösung muss so einfach sein, dass sie im Alltag tatsächlich genutzt wird.</p></details>
+                    <details><summary>Wie wird der Preis berechnet?</summary><p>Der Aufwand hängt unter anderem von Umfang, Zustand, Sortieraufwand und gewünschter Ablage- oder Archivlösung ab. Mit dem Kostenschätzer erhalten Sie sofort eine unverbindliche Einschätzung; ein repräsentativer Testordner schafft danach die Grundlage für ein Festpreisangebot.</p><p class="faq-cta"><a class="arrow-link" href="kostenschaetzer.html" data-estimator-cta="hub_faq">Projektkosten jetzt einschätzen</a></p></details>
                 </div>
             </div>
         </section>
@@ -142,7 +288,8 @@
             <div class="wrap">
                 <p class="section-label">Weitere Leistungen</p>
                 <h2>Wenn Dokumente nicht der einzige Bestand sind</h2>
-                <p class="section-intro">Neben der klassischen Ablage strukturiere ich Inventare nach Schäden und entwickle private KI-Unterstützung für wiederkehrende Dokumentenarbeit.</p>
+                <p class="section-intro">Für Handwerksbetriebe gibt es eine eigene Darstellung entlang der Auftragsakte. Daneben strukturiere ich Inventare nach Schäden und entwickle private KI-Unterstützung für wiederkehrende Dokumentenarbeit.</p>
+                <p><a class="arrow-link" href="digitalisierung-handwerk-wuerzburg.html">Digitalisierung im Handwerk</a></p>
                 <div class="grid grid-2">
                     <a class="card card-link" href="inventar-schadenlisten.html">
                         <span class="card-kicker">Inventar &amp; Schadenlisten</span>
@@ -163,11 +310,11 @@
         <section class="cta-band">
             <div class="wrap">
                 <div>
-                    <h2>Welcher Bestand soll zuerst auffindbar werden?</h2>
+                    <h2>Starten Sie mit einem überschaubaren Ordner.</h2>
                     <p>Ein Testordner zeigt Scan, OCR und Struktur an Ihrem Material. Der Kostenschätzer gibt zuvor eine unverbindliche Größenordnung.</p>
                 </div>
                 <div class="cta-band-actions">
-                    <a class="btn btn-light" href="testordner.html" data-track="hub-cta-testordner">Testordner anfragen</a>
+                    <a class="btn btn-light" href="testordner.html" data-track="hub-cta-testordner">Kostenlosen Testordner anfragen</a>
                     <a class="btn btn-ghost" href="kostenschaetzer.html" data-estimator-cta="hub_bottom">Projektkosten einschätzen</a>
                 </div>
             </div>
@@ -177,7 +324,7 @@
     <footer class="site-footer">
         <div class="wrap">
             <div class="footer-grid">
-                <div class="footer-brand"><strong>Sébastien Schanen</strong><p>Nicht nur gescannt, sondern auffindbar. Dokumente, Inventarlisten und private KI für Würzburg &amp; Mainfranken.</p></div>
+                <div class="footer-brand"><strong>Sébastien Schanen</strong><p>Nicht nur gescannt, sondern auffindbar. Dokumente, Daten und private KI für Würzburg &amp; Mainfranken.</p></div>
                 <div class="footer-col"><strong>Leistungen</strong><a href="dokumente-archiv-wuerzburg.html">Dokumente &amp; Archiv</a><a href="inventar-schadenlisten.html">Inventar &amp; Schadenlisten</a><a href="private-dokumenten-ki.html">Software &amp; KI</a><a href="digitalisierung-handwerk-wuerzburg.html">Für Handwerk</a></div>
                 <div class="footer-col"><strong>Kontakt</strong><a href="testordner.html">Kostenloser Testordner</a><a href="kostenschaetzer.html" data-estimator-cta="footer">Kostenschätzer</a><a href="index.html#kontakt">Kontakt</a><a href="tel:+4917657748528">0176&nbsp;577&nbsp;48&nbsp;528</a><a href="mailto:schanen.sebastien@outlook.de">E-Mail schreiben</a></div>
                 <div class="footer-col"><strong>Mehr</strong><a href="portfolio.html">Über mich</a><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><button type="button" class="consent-reopen" data-cookie-settings>Cookie-Einstellungen</button><div class="footer-social" aria-label="Social Media"><a href="https://de.linkedin.com/in/schanensebastien" target="_blank" rel="noopener" data-track="social-linkedin">LinkedIn</a><a href="https://www.instagram.com/schanensebastien/" target="_blank" rel="noopener" data-track="social-instagram">Instagram</a><a href="https://www.facebook.com/schanensebastien/" target="_blank" rel="noopener" data-track="social-facebook">Facebook</a><a href="https://medium.com/@schanensebastien" target="_blank" rel="noopener" data-track="social-medium">Medium</a></div></div>
@@ -185,7 +332,6 @@
             <div class="footer-bottom"><span>&copy; <span data-year>2026</span> Sébastien Schanen</span><span>Würzburg · Mainfranken · persönlich vor Ort</span></div>
         </div>
     </footer>
-
     <script src="js/site.min.js" defer></script>
 </body>
 </html>

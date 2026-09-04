@@ -50,7 +50,7 @@ Auch bereits digital vorhandene Dokumente können schwer auffindbar sein. Typisc
 
 Grundsatz: OCR beantwortet, was im Dokument steht. Der Dateiname zeigt, was die Datei ist. Der Ordner zeigt, wo sie hingehört. Keine dieser Ebenen ersetzt die anderen.
 
-Die Übersichtsseite zu diesem Leistungsbereich ist https://schanensebastien.com/dokumente-archiv-wuerzburg.html.
+Die zusammengeführte Leistungsseite zu Digitalisierung und Archiv ist https://schanensebastien.com/dokumente-archiv-wuerzburg.html. Sie enthält den Vor-Ort-Scan, OCR, Dateinamen, Ordnerstruktur und die Ablage auf Netzlaufwerk, lokalem Server oder Nextcloud.
 
 ## Inventar- und Schadenlisten
 
