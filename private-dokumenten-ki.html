@@ -35,7 +35,7 @@
           "@id": "https://schanensebastien.com/private-dokumenten-ki.html#service",
           "name": "Private Dokumenten-KI, Software und API",
           "serviceType": "Softwareentwicklung und private KI-Infrastruktur für Dokumentenprozesse",
-          "description": "Dokumente werden automatisiert klassifiziert, relevante Daten extrahiert, einem menschlichen Prüfschritt zugeführt und über Schnittstellen an bestehende Ablage- oder DMS-Lösungen übergeben.",
+          "description": "Dokumente werden automatisiert klassifiziert, relevante Daten extrahiert, einem menschlichen Prüfschritt zugeführt und über Schnittstellen an bestehende Ablage- oder DMS-Lösungen übergeben. Dieselbe private Infrastruktur kann Inventar- und Schadenlisten aus Fotos und Unterlagen vorbereiten.",
           "provider": {"@id": "https://schanensebastien.com/#business"},
           "areaServed": [{"@type": "Country", "name": "Deutschland"}, {"@type": "AdministrativeArea", "name": "Mainfranken"}],
           "audience": {"@type": "BusinessAudience", "audienceType": "Unternehmen und DMS-Integrationspartner"},
@@ -96,16 +96,15 @@
 
     <header class="topbar">
         <div class="wrap">
-            <div class="brand"><a href="index.html">Sébastien Schanen</a><small>Dokumente · OCR · klare Ablage</small></div>
+            <div class="brand"><a href="index.html">Sébastien Schanen</a><small>Dokumente · Inventar · KI</small></div>
             <button class="nav-toggle" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="primary-nav">Menü</button>
             <nav class="nav" id="primary-nav" aria-label="Hauptnavigation">
                 <a href="index.html">Start</a>
-                <a href="dokumente-digitalisieren-wuerzburg.html">Digitalisieren</a>
-                <a href="dokumentenmanagement-wuerzburg.html">Archiv &amp; OCR</a>
-                <a href="digitalisierung-handwerk-wuerzburg.html">Für Handwerk</a>
+                <a href="dokumente-archiv-wuerzburg.html">Dokumente &amp; Archiv</a>
+                <a href="inventar-schadenlisten.html">Inventar &amp; Schadenlisten</a>
                 <a href="private-dokumenten-ki.html" aria-current="page">Software &amp; KI</a>
                 <a href="portfolio.html">Über mich</a>
-                <a href="testordner.html" class="nav-cta-secondary">Testordner</a>
+                <a href="testordner.html" class="nav-cta-secondary nav-mobile-only">Testordner</a>
                 <a href="kostenschaetzer.html" class="nav-cta" data-estimator-cta="navigation">Kostenschätzer</a>
             </nav>
         </div>
@@ -119,7 +118,7 @@
                 <div class="ai-hero-copy">
                     <p class="kicker">Software · API · private KI-Infrastruktur</p>
                     <h1>Dokumente verstehen. Systeme weiterarbeiten lassen.</h1>
-                    <p class="lead">Ich entwickle eine private Software-Schicht, die Geschäftsdokumente klassifiziert, relevante Daten vorschlägt und geprüfte Ergebnisse an Ihre bestehende Ablage übergibt.</p>
+                    <p class="lead">Ich entwickle eine private Software-Schicht, die Geschäftsdokumente klassifiziert, relevante Daten vorschlägt und geprüfte Ergebnisse an Ihre bestehende Ablage übergibt. Dieselbe Infrastruktur kann Inventar- und Schadenlisten aus Fotos und Unterlagen vorbereiten.</p>
                     <div class="cta-row">
                         <a class="btn btn-primary" href="#pilot" data-track="ai-hero-pilot">Pilotprozess ansehen</a>
                         <a class="btn btn-ghost" href="#zusammenarbeit" data-track="ai-hero-collaboration">Zusammenarbeit ansehen</a>
@@ -160,6 +159,24 @@
                     <article class="capability"><span>04</span><div><h3>Prüfen</h3><p>Dubletten, unsichere Zuordnungen oder möglicherweise fehlende Unterlagen markieren.</p></div></article>
                     <article class="capability"><span>05</span><div><h3>Finden</h3><p>Dokumentbestände semantisch durchsuchen und Antworten mit nachvollziehbarer Quelle liefern.</p></div></article>
                     <article class="capability"><span>06</span><div><h3>Übergeben</h3><p>Geprüfte Dateien und Metadaten per API oder abgestimmtem Import an Bestandssysteme senden.</p></div></article>
+                </div>
+            </div>
+        </section>
+
+        <section id="inventar-ki">
+            <div class="wrap split-section">
+                <div>
+                    <p class="section-label">Konkreter Anwendungsfall</p>
+                    <h2>Inventar- und Schadenlisten als dokumentierte KI-Arbeit</h2>
+                    <p class="section-intro">Nicht jede KI-Leistung ist ein Chatbot. Bei Inventaraufnahmen erkennt die Software Produkte und Merkmale, schlägt Tabellenzeilen vor und überlässt unsichere Stellen der Prüfung.</p>
+                    <p>Für sensible Schadendaten kann die Verarbeitung auf eigener Infrastruktur erfolgen. Die Daten müssen dadurch nicht für jeden Analyseschritt an öffentliche KI-Dienste übertragen werden.</p>
+                    <a class="arrow-link" href="inventar-schadenlisten.html">Inventar- und Schadenlisten im Detail ansehen</a>
+                </div>
+                <div class="ai-teaser-flow" role="group" aria-label="Kurzablauf einer Inventaraufbereitung">
+                    <div><span>01</span><strong>Fotos kommen an</strong><small>Bestand, Etiketten, Unterlagen</small></div>
+                    <div><span>02</span><strong>KI macht Vorschläge</strong><small>Produkt, Menge, Merkmale</small></div>
+                    <div><span>03</span><strong>Mensch prüft</strong><small>Unsicherheiten bleiben sichtbar</small></div>
+                    <div><span>04</span><strong>Liste entsteht</strong><small>PDF, Excel, Quellen</small></div>
                 </div>
             </div>
         </section>
@@ -290,9 +307,9 @@
     <footer class="site-footer">
         <div class="wrap">
             <div class="footer-grid">
-                <div class="footer-brand"><strong>Sébastien Schanen</strong><p>Nicht nur gescannt, sondern auffindbar. Dokumentendigitalisierung, OCR und klare Ablagestrukturen für Würzburg &amp; Mainfranken.</p></div>
-                <div class="footer-col"><strong>Leistungen</strong><a href="dokumente-digitalisieren-wuerzburg.html">Dokumente digitalisieren</a><a href="dokumentenmanagement-wuerzburg.html">Archiv &amp; OCR</a><a href="digitalisierung-handwerk-wuerzburg.html">Für Handwerk</a><a href="private-dokumenten-ki.html">Software &amp; private KI</a></div>
-                <div class="footer-col"><strong>Kontakt</strong><a href="testordner.html">Kostenloser Testordner</a><a href="kostenschaetzer.html" data-estimator-cta="footer">Kostenschätzer</a><a href="tel:+4917657748528">0176&nbsp;577&nbsp;48&nbsp;528</a><a href="mailto:schanen.sebastien@outlook.de">E-Mail schreiben</a></div>
+                <div class="footer-brand"><strong>Sébastien Schanen</strong><p>Nicht nur gescannt, sondern auffindbar. Dokumente, Inventarlisten und private KI für Würzburg &amp; Mainfranken.</p></div>
+                <div class="footer-col"><strong>Leistungen</strong><a href="dokumente-archiv-wuerzburg.html">Dokumente &amp; Archiv</a><a href="inventar-schadenlisten.html">Inventar &amp; Schadenlisten</a><a href="private-dokumenten-ki.html">Software &amp; KI</a><a href="digitalisierung-handwerk-wuerzburg.html">Für Handwerk</a></div>
+                <div class="footer-col"><strong>Kontakt</strong><a href="testordner.html">Kostenloser Testordner</a><a href="kostenschaetzer.html" data-estimator-cta="footer">Kostenschätzer</a><a href="index.html#kontakt">Kontakt</a><a href="tel:+4917657748528">0176&nbsp;577&nbsp;48&nbsp;528</a><a href="mailto:schanen.sebastien@outlook.de">E-Mail schreiben</a></div>
                 <div class="footer-col"><strong>Mehr</strong><a href="portfolio.html">Über mich</a><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><button type="button" class="consent-reopen" data-cookie-settings>Cookie-Einstellungen</button><div class="footer-social" aria-label="Social Media"><a href="https://de.linkedin.com/in/schanensebastien" target="_blank" rel="noopener" data-track="social-linkedin">LinkedIn</a><a href="https://www.instagram.com/schanensebastien/" target="_blank" rel="noopener" data-track="social-instagram">Instagram</a><a href="https://www.facebook.com/schanensebastien/" target="_blank" rel="noopener" data-track="social-facebook">Facebook</a><a href="https://medium.com/@schanensebastien" target="_blank" rel="noopener" data-track="social-medium">Medium</a></div></div>
             </div>
             <div class="footer-bottom"><span>&copy; <span data-year>2026</span> Sébastien Schanen</span><span>Würzburg · Mainfranken · persönlich vor Ort</span></div>

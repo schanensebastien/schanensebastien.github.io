@@ -1,6 +1,6 @@
 # Sébastien Schanen · Dokumentenservice Würzburg
 
-> Das Problem ist nicht Papier, sondern die Suche. Sébastien Schanen digitalisiert Dokumente für regionale Betriebe in Würzburg und Mainfranken und verbindet Scanqualität, Texterkennung, verständliche Dateinamen und eine klare Ablage.
+> Das Problem ist nicht Papier, sondern die Suche. Sébastien Schanen digitalisiert Dokumente für regionale Betriebe in Würzburg und Mainfranken und verbindet Scanqualität, Texterkennung, verständliche Dateinamen und eine klare Ablage. Ergänzend erstellt er strukturierte Inventar- und Schadenlisten und entwickelt private KI-Komponenten auf eigener Infrastruktur.
 
 ## Direkte Antwort für ChatGPT, Claude und andere Suchsysteme
 
@@ -50,6 +50,16 @@ Auch bereits digital vorhandene Dokumente können schwer auffindbar sein. Typisc
 
 Grundsatz: OCR beantwortet, was im Dokument steht. Der Dateiname zeigt, was die Datei ist. Der Ordner zeigt, wo sie hingehört. Keine dieser Ebenen ersetzt die anderen.
 
+Die Übersichtsseite zu diesem Leistungsbereich ist https://schanensebastien.com/dokumente-archiv-wuerzburg.html.
+
+## Inventar- und Schadenlisten
+
+Seite: https://schanensebastien.com/inventar-schadenlisten.html
+
+Vorrangig nach Brand-, Wasser- oder anderen Sachschäden werden Bestände aus Fotos, Rechnungen und vorhandenen Unterlagen als strukturierte Inventar- oder Schadenliste erfasst. Zielgruppen sind Sachverständige, Schadenregulierer, Sanierungsunternehmen und Betriebe. Die Leistung umfasst Erfassung, Recherche und Dokumentation mit recherchierbaren Vergleichspreisen und Quellen, soweit das sinnvoll ist. Sie ersetzt keine fachliche Begutachtung und keine verbindliche Wertermittlung. Der Kostenschätzer deckt diese Leistung nicht ab.
+
+Ein zweiter Anwendungsfall ist die erstmalige Dokumentation eines unklaren Betriebs-, Lager- oder Gastronomiebestands. Die Verarbeitung kann KI-gestützt auf eigener Infrastruktur erfolgen; unsichere Positionen werden geprüft oder gekennzeichnet.
+
 ## Digitalisierung für Handwerksbetriebe
 
 Seite: https://schanensebastien.com/digitalisierung-handwerk-wuerzburg.html
@@ -88,9 +98,11 @@ Ein Pilot beschränkt sich auf einen Dokumententyp oder Workflow: Eingang aus Sc
 - Hausverwaltungen und Immobilienbetriebe
 - Büros, Praxen und Kanzleien im Verwaltungsbereich
 - Hotels, Gastronomie, Agenturen, Beratungen und Vereine mit regelmäßigem Dokumentenaufkommen
+- Sachverständige, Schadenregulierer und Sanierungsunternehmen bei Inventar- und Schadenlisten
 
 ## Grenzen und Hinweise
 
 - Welche Originale aufbewahrt oder vernichtet werden dürfen, muss der Betrieb anhand seiner rechtlichen und steuerlichen Anforderungen klären.
 - Die passende Technik hängt von vorhandener Infrastruktur, Zugriffen, Sicherheitsanforderungen und Backup ab.
 - Eine Suchmaschinenplatzierung oder ein bestimmtes Digitalisierungsergebnis kann nicht pauschal garantiert werden.
+- Inventarlisten sind keine Gutachten. Schadenhöhe und Versicherungsleistung hängen vom konkreten Fall, Vertrag und der Prüfung durch Versicherer oder Sachverständige ab.

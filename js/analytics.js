@@ -23,6 +23,9 @@
     var metaStarted = false;
     var metaActive = false;
     var clicksWired = false;
+    var inventoryViewSent = false;
+    var inventoryMetaViewSent = false;
+    var viewsWired = false;
 
     function ensureGtag() {
         window.dataLayer = window.dataLayer || [];
@@ -76,6 +79,7 @@
                 page_path: location.pathname + location.search,
                 page_title: document.title
             });
+            pageSpecificViews();
             return;
         }
 
@@ -100,6 +104,7 @@
             }
         }
         startTagManager();
+        pageSpecificViews();
     }
 
     function installMetaBase() {
@@ -126,6 +131,7 @@
             window.fbq("consent", "grant");
             window.fbq("track", "PageView");
             metaActive = true;
+            pageSpecificViews();
             return;
         }
 
@@ -135,6 +141,7 @@
         window.fbq("init", metaId);
         window.fbq("track", "PageView");
         metaActive = true;
+        pageSpecificViews();
     }
 
     function stopMeta() {
@@ -152,6 +159,63 @@
     function metaEvent(name, parameters, custom) {
         if (!metaActive || !window.fbq) return;
         window.fbq(custom ? "trackCustom" : "track", name, parameters || {});
+    }
+
+    function pageSpecificViews() {
+        if ((location.pathname || "").indexOf("inventar-schadenlisten") === -1) return;
+        if (!inventoryViewSent && googleActive) {
+            inventoryViewSent = true;
+            googleEvent("inventory_service_view", {
+                source_page: location.pathname || "/",
+                service_name: "inventar_schadenlisten"
+            });
+        }
+        if (!inventoryMetaViewSent && metaActive) {
+            inventoryMetaViewSent = true;
+            metaEvent("InventoryServiceView", {
+                source_page: location.pathname || "/"
+            }, true);
+        }
+    }
+
+    function inventoryParams(node) {
+        return {
+            source_page: location.pathname || "/",
+            cta_location: String(node.getAttribute("data-cta-location") || "").replace(/[^a-z0-9_]/gi, "").slice(0, 80) || "inventory",
+            service_name: "inventar_schadenlisten",
+            content_section: String(node.getAttribute("data-content-section") || "").replace(/[^a-z0-9_]/gi, "").slice(0, 80)
+        };
+    }
+
+    function wireViews() {
+        if (viewsWired || !("IntersectionObserver" in window)) return;
+        viewsWired = true;
+        var seen = {};
+        var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                var id = entry.target.getAttribute("data-view") || "";
+                if (!id || seen[id]) return;
+                seen[id] = true;
+                observer.unobserve(entry.target);
+                if (id === "inventory-example") {
+                    googleEvent("inventory_example_view", {
+                        source_page: location.pathname || "/",
+                        content_section: "example",
+                        service_name: "inventar_schadenlisten"
+                    });
+                } else if (id === "inventory-ai") {
+                    googleEvent("inventory_ai_section_view", {
+                        source_page: location.pathname || "/",
+                        content_section: "local_ai",
+                        service_name: "inventar_schadenlisten"
+                    });
+                }
+            });
+        }, { threshold: 0.35 });
+        document.querySelectorAll("[data-view]").forEach(function (el) {
+            observer.observe(el);
+        });
     }
 
     function trackedNode(target) {
@@ -287,6 +351,28 @@
                     source_page: contactParams.source_page
                 }, true);
             }
+            if (track === "inventory-damage-cta" || track === "inventory-contact") {
+                var inventoryCta = inventoryParams(node);
+                if (track === "inventory-damage-cta") {
+                    googleEvent("inventory_damage_cta_click", inventoryCta);
+                    metaEvent("DamageListCTA", {
+                        location: inventoryCta.cta_location,
+                        source_page: inventoryCta.source_page
+                    }, true);
+                }
+                googleEvent("inventory_contact_click", inventoryCta);
+                metaEvent("InventoryContact", {
+                    location: inventoryCta.cta_location,
+                    source_page: inventoryCta.source_page
+                }, true);
+            }
+            if (track === "documents-archive") {
+                googleEvent("documents_archive_cta_click", {
+                    source_page: location.pathname || "/",
+                    cta_location: String(node.getAttribute("data-cta-location") || "").replace(/[^a-z0-9_]/gi, "").slice(0, 80) || "documents",
+                    service_name: "dokumente_archiv"
+                });
+            }
 
             if (node.getAttribute("data-estimator-cta") || estimatorHref(node)) {
                 try { trackEstimatorCta(node); } catch (e) {}
@@ -344,6 +430,11 @@
 
     wireClicks();
     googleConsentDefault();
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", wireViews);
+    } else {
+        wireViews();
+    }
     window.DocScanAnalytics = {
         event: googleEvent,
         metaEvent: metaEvent,

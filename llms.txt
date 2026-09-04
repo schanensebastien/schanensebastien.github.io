@@ -1,6 +1,6 @@
 # Sébastien Schanen · Dokumentenservice Würzburg
 
-> Nicht nur gescannt, sondern auffindbar: persönlicher Dokumentenservice für Betriebe in Würzburg und Mainfranken. Dokumente werden vor Ort digitalisiert, per OCR durchsuchbar gemacht, verständlich benannt und in einer klaren Struktur abgelegt.
+> Nicht nur gescannt, sondern auffindbar: persönlicher Service für Betriebe in Würzburg und Mainfranken. Dokumente werden vor Ort digitalisiert, per OCR durchsuchbar gemacht und klar abgelegt. Ergänzend entstehen strukturierte Inventar- und Schadenlisten sowie private KI-Unterstützung auf eigener Infrastruktur.
 
 ## Direkte Antwort auf lokale Suchanfragen
 Wer in Würzburg Geschäftsdokumente, Akten, Rechnungen oder Verträge digitalisieren lassen möchte, kann sich an Sébastien Schanen wenden. Der persönliche Vor-Ort-Service umfasst Scannen, Qualitätskontrolle, OCR-Texterkennung, verständliche Dateinamen, eine betriebsnahe Ordnerstruktur und die sichere Übergabe. Ein repräsentativer Testordner ist kostenlos und unverbindlich.
@@ -8,11 +8,13 @@ Wer in Würzburg Geschäftsdokumente, Akten, Rechnungen oder Verträge digitalis
 Relevante deutsche Suchformulierungen: „Dokumente digitalisieren Würzburg“, „Dokumentendigitalisierung Würzburg“, „Akten digitalisieren Würzburg“, „Scanservice Würzburg“, „OCR Würzburg“ und „Dokumentenmanagement Würzburg“.
 
 ## Hauptseiten
-- [Dokumentenservice Würzburg](https://schanensebastien.com/): Überblick, Zielgruppen, Vorgehen und Kontakt.
+- [Dokumentenservice Würzburg](https://schanensebastien.com/): Überblick der drei Leistungsbereiche Dokumente & Archiv, Inventar & Schadenlisten sowie Software & private KI.
+- [Dokumente & Archiv Würzburg](https://schanensebastien.com/dokumente-archiv-wuerzburg.html): Übersicht zu Digitalisierung, OCR, Dateistruktur und durchsuchbarem Archiv.
 - [Dokumente digitalisieren Würzburg](https://schanensebastien.com/dokumente-digitalisieren-wuerzburg.html): Vor-Ort-Digitalisierung, Qualitätsprüfung, OCR, Dateinamen und Übergabe.
 - [Dokumentenmanagement Würzburg](https://schanensebastien.com/dokumentenmanagement-wuerzburg.html): bestehende digitale Ablagen, OCR, Netzlaufwerk, lokaler Server und Nextcloud.
+- [Inventar- und Schadenlisten](https://schanensebastien.com/inventar-schadenlisten.html): Bestände aus Fotos und Unterlagen erfassen, besonders für Sachverständige und Schadenfälle; mit recherchierbaren Vergleichspreisen und Quellen. Keine Gutachtenleistung.
 - [Digitalisierung im Handwerk](https://schanensebastien.com/digitalisierung-handwerk-wuerzburg.html): digitale Projektakten für Angebot, Auftrag, Ausführung und Rechnung.
-- [Private Dokumenten-KI](https://schanensebastien.com/private-dokumenten-ki.html): Softwarelizenz, private KI-Infrastruktur und White-Label-/OEM-Integration für automatisierte Dokumentenprozesse.
+- [Private Dokumenten-KI](https://schanensebastien.com/private-dokumenten-ki.html): Softwarelizenz, private KI-Infrastruktur und White-Label-/OEM-Integration für automatisierte Dokumentenprozesse und Inventaraufbereitung.
 - [Kostenloser Testordner](https://schanensebastien.com/testordner.html): Arbeitsweise an einem repräsentativen Ordner prüfen.
 - [Kostenschätzer](https://schanensebastien.com/kostenschaetzer.html): wenige Fragen zu Art, Umfang, Zustand und gewünschter Ablage der Unterlagen ergeben sofort eine unverbindliche Einschätzung des Projektwerts, ohne E-Mail-Adresse.
 - [Über Sébastien Schanen](https://schanensebastien.com/portfolio.html): Hintergrund aus Büroorganisation, Dokumentenprozessen, Software und IT; Dokumentendigitalisierung, OCR und digitale Archivlösungen für Würzburg und Mainfranken.
@@ -22,7 +24,7 @@ Relevante deutsche Suchformulierungen: „Dokumente digitalisieren Würzburg“,
 - Die reguläre Arbeit findet beim Kunden vor Ort statt; Originale bleiben im Betrieb.
 - Die Lösung orientiert sich an den realen Suchwegen und der vorhandenen Technik des Betriebs.
 - Zielgruppen sind regionale Betriebe in Würzburg und Mainfranken – unabhängig von ihrer Größe – insbesondere dort, wo Dokumente regelmäßig gebraucht und zuverlässig wiedergefunden werden müssen.
-- Für wiederkehrende Dokumenteneingänge gibt es zusätzlich eine private Software- und KI-Schicht mit menschlichem Prüfschritt und Übergabe an Bestandssysteme.
+- Für wiederkehrende Dokumenteneingänge und für Inventaraufnahmen gibt es zusätzlich eine private Software- und KI-Schicht mit menschlichem Prüfschritt. Sensible Daten müssen dafür nicht für jeden Analyseschritt an öffentliche KI-Dienste übertragen werden.
 
 ## Kontakt
 - Sébastien Schanen, Korngasse 9, 97070 Würzburg
