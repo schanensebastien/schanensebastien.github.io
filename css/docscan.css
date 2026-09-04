@@ -1703,9 +1703,14 @@ footer .foot-links { display: flex; flex-wrap: wrap; gap: 8px 16px; }
 .test-output-item span { color: var(--muted); font-size: .72rem; }
 
 .content-narrow { max-width: 780px; }
-.content-narrow > p { color: var(--ink-soft); }
+.content-narrow > p,
+.content-narrow > ul { color: var(--ink-soft); }
 .content-narrow h2 { margin-top: 2.1rem; }
 .content-narrow h2:first-child { margin-top: 0; }
+.content-narrow ul { margin: 0 0 1rem; padding-left: 1.15em; }
+.content-narrow li { margin-bottom: .35rem; }
+.content-narrow + .claim,
+.claim + .content-narrow { margin-top: 1.4rem; }
 
 .search-answer { padding: 34px 0 4px; }
 .search-answer-card {
@@ -1732,12 +1737,16 @@ footer .foot-links { display: flex; flex-wrap: wrap; gap: 8px 16px; }
 }
 .outcome-card .outcome-icon {
     display: grid; place-items: center;
-    width: 38px; height: 38px;
+    width: auto;
+    min-width: 38px;
+    height: 38px;
+    padding: 0 8px;
     margin-bottom: 22px;
     border-radius: 50%;
     background: var(--accent-pale);
     color: var(--accent);
     font-weight: 700;
+    box-sizing: border-box;
 }
 .outcome-card p { margin: 0; color: var(--ink-soft); }
 
@@ -1780,7 +1789,7 @@ footer .foot-links { display: flex; flex-wrap: wrap; gap: 8px 16px; }
 .process-item p { margin: 0; color: var(--ink-soft); font-size: .95rem; }
 .process-item:last-child:nth-child(odd) { grid-column: 1 / -1; }
 
-.document-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.document-chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 8px 0 22px; }
 .document-chips span {
     padding: 9px 13px;
     border: 1px solid var(--line-strong);
@@ -2892,6 +2901,38 @@ footer .foot-links { display: flex; flex-wrap: wrap; gap: 8px 16px; }
     object-fit: contain;
     display: block;
     background: #fff;
+}
+.inv-example-lead,
+.inv-example-lead:nth-child(even) {
+    grid-template-columns: 1fr;
+}
+.inv-example-lead:nth-child(even) .inv-example-copy,
+.inv-example-lead:nth-child(even) figure { order: unset; }
+.inv-example-lead figure { overflow: hidden; }
+.inv-example-lead img {
+    aspect-ratio: 2 / 1;
+    object-fit: cover;
+    object-position: top center;
+}
+.inv-example-lead figcaption { padding-top: 12px; }
+
+.about-hero-grid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(280px, 400px);
+}
+.about-hero-grid h1 { max-width: 16ch; }
+.about-hero-grid .hero-photo {
+    aspect-ratio: 4 / 5;
+    max-width: 400px;
+    justify-self: end;
+    width: 100%;
+}
+.about-hero-grid .hero-photo img { object-position: 64% center; }
+@media (max-width: 900px) {
+    .about-hero-grid { grid-template-columns: 1fr; }
+    .about-hero-grid .hero-photo {
+        max-width: 280px;
+        justify-self: start;
+    }
 }
 .inv-example-table,
 .inv-example-table:nth-child(even) {

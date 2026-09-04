@@ -60,7 +60,7 @@
     }
     </script>
 </head>
-<body class="about-page">
+<body>
     <a class="skip-link" href="#main">Zum Inhalt springen</a>
 
     <header class="topbar">
@@ -83,19 +83,12 @@
     </header>
 
     <main id="main">
-        <nav class="breadcrumb" aria-label="Breadcrumb">
-            <div class="wrap">
-                <ol>
-                    <li><a href="index.html">Start</a></li>
-                    <li aria-current="page">Über mich</li>
-                </ol>
-            </div>
-        </nav>
+        <div class="wrap breadcrumb"><nav aria-label="Brotkrümelnavigation"><ol><li><a href="index.html">Start</a></li><li><span aria-current="page">Über mich</span></li></ol></nav></div>
 
-        <section class="hero portfolio-hero">
-            <div class="wrap portfolio-hero-grid">
-                <div class="portfolio-hero-copy">
-                    <p class="kicker">Über Sébastien Schanen</p>
+        <section class="scan-hero">
+            <div class="wrap scan-hero-grid about-hero-grid">
+                <div>
+                    <p class="kicker">Über Sébastien Schanen · Würzburg &amp; Mainfranken</p>
                     <h1>Dokumente, Prozesse und Technik zusammenbringen.</h1>
                     <p class="lead">Ich unterstütze Unternehmen in Würzburg und Mainfranken dabei, aus Papier, Dateien und gewachsenen Ablagen einen digitalen Bestand zu machen, der im Arbeitsalltag tatsächlich funktioniert.</p>
                     <p>Mein Hintergrund verbindet praktische Erfahrung aus Büroorganisation und Dokumentenprozessen mit Softwareentwicklung, IT-Infrastruktur und Automatisierung.</p>
@@ -103,13 +96,29 @@
                         <a class="btn btn-primary" href="kostenschaetzer.html" data-estimator-cta="about_hero">Projektkosten einschätzen</a>
                         <a class="btn btn-ghost" href="dokumente-archiv-wuerzburg.html" data-track="about-services" data-cta-location="about_hero">Leistungen ansehen</a>
                     </div>
+                    <ul class="hero-proof-row" aria-label="Wichtige Merkmale">
+                        <li>persönlich vor Ort</li>
+                        <li>Büro und Technik</li>
+                        <li>Ergebnisse geprüft</li>
+                    </ul>
                 </div>
-                <figure class="profile-photo">
+                <figure class="hero-photo">
                     <picture>
                         <source srcset="images/sebastien-schanen-portrait-320.webp 320w, images/sebastien-schanen-portrait-640.webp 640w" sizes="(max-width: 640px) 200px, 340px" type="image/webp">
                         <img src="images/sebastien-schanen-portrait-640.webp" width="640" height="630" alt="Sébastien Schanen, Dokumentendigitalisierung und digitale Ablage in Würzburg" decoding="async" fetchpriority="high">
                     </picture>
+                    <figcaption class="hero-photo-caption"><strong>Sébastien Schanen</strong><span>Dokumente · Daten · KI</span></figcaption>
                 </figure>
+            </div>
+        </section>
+
+        <section class="search-answer" aria-labelledby="about-answer-title">
+            <div class="wrap">
+                <div class="search-answer-card">
+                    <p class="section-label">Kurz zu meiner Person</p>
+                    <h2 id="about-answer-title">Verwaltung und Technik in einer Hand</h2>
+                    <p><strong>Ich verbinde praktische Erfahrung aus Büroorganisation und Dokumentenprozessen mit Softwareentwicklung und IT.</strong> Daraus ist der heutige Schwerpunkt entstanden: Papier, Dateien und gewachsene Ablagen in einen Bestand zu überführen, der im Arbeitsalltag auffindbar ist.</p>
+                </div>
             </div>
         </section>
 
@@ -117,108 +126,58 @@
             <div class="wrap">
                 <p class="section-label">Mein Hintergrund</p>
                 <h2>Die Idee entstand nicht am Scanner.</h2>
-                <div class="about-copy">
+                <div class="content-narrow">
                     <p>Bevor ich Dokumentendigitalisierung als Dienstleistung angeboten habe, habe ich selbst mit den Problemen gearbeitet, die heute bei meinen Kunden gelöst werden sollen.</p>
                     <p>In der Büroorganisation gehörten Rechnungen, DATEV-Vorbereitung, E-Mail-Konten, digitale Ordnerstrukturen und laufende Verwaltungsunterlagen zu meinem Alltag. Gleichzeitig habe ich Websites, Backends und Datenbankanwendungen entwickelt und mich intensiv mit Linux, Automatisierung und IT-Systemen beschäftigt.</p>
                     <p>Dabei tauchte immer wieder dasselbe Problem auf:</p>
                 </div>
                 <p class="claim">Die Information ist vorhanden – aber sie ist nicht dort, wo man sie schnell und zuverlässig findet.</p>
-                <div class="about-copy">
+                <div class="content-narrow">
                     <p>Eine Rechnung liegt im E-Mail-Postfach, die zugehörigen Unterlagen im Ordner, andere Dateien auf einem Netzlaufwerk und niemand weiß mehr genau, welche Version aktuell ist.</p>
                     <p>Aus dieser Verbindung von Verwaltung und Technik ist mein heutiger Schwerpunkt entstanden.</p>
                 </div>
             </div>
         </section>
 
-        <section id="erfahrung" class="about-band">
+        <section id="erfahrung">
             <div class="wrap">
                 <p class="section-label">Erfahrung</p>
                 <h2>Nicht nur Theorie.</h2>
                 <p class="section-intro">Einige Zahlen aus der Praxis zeigen ziemlich gut, aus welchem Umfeld meine heutige Dienstleistung entstanden ist.</p>
-                <div class="about-facts">
-                    <article class="about-fact">
-                        <p class="about-fact-num">4</p>
-                        <p class="about-fact-label">verbundene Unternehmen</p>
-                        <p>Digitale Ordner-, E-Mail- und Dokumentenstrukturen für vier miteinander verbundene Unternehmen aufgebaut und im laufenden Büroalltag gepflegt.</p>
-                    </article>
-                    <article class="about-fact">
-                        <p class="about-fact-num">ca. 350</p>
-                        <p class="about-fact-label">Dokumente im Monat</p>
-                        <p>Rechnungen und andere Unternehmensunterlagen strukturiert, geprüft und für Buchhaltung beziehungsweise DATEV vorbereitet.</p>
-                    </article>
-                    <article class="about-fact">
-                        <p class="about-fact-num">14</p>
-                        <p class="about-fact-label">E-Mail-Konten</p>
-                        <p>E-Mail-Konten, Passwörter und die damit verbundenen Dokumenten- und Verwaltungsabläufe betreut und strukturiert.</p>
-                    </article>
-                    <article class="about-fact">
-                        <p class="about-fact-num">14</p>
-                        <p class="about-fact-label">Mitarbeitende</p>
-                        <p>Mitarbeitende bei der Einarbeitung in operative Abläufe, Service- und Rezeptionsprozesse unterstützt.</p>
-                    </article>
-                    <article class="about-fact">
-                        <p class="about-fact-num">ca. 92&nbsp;%</p>
-                        <p class="about-fact-label">durchschnittliche Belegung</p>
-                        <p>Während meiner Mitarbeit im Bereich Prozessoptimierung des Hotel Dortmunder Hof lag die durchschnittliche Belegung im betrachteten Zeitraum bei rund 92&nbsp;% bei 13 Zimmern und etwa 105&nbsp;€ durchschnittlichem Preis pro belegter Nacht.</p>
-                        <p>Neben Buchungs- und Preisprozessen gehörten dort auch digitale Arbeitsabläufe, Dokumentenstrukturen und Personalplanung zu meinen Aufgaben.</p>
-                    </article>
+                <div class="outcome-grid">
+                    <article class="outcome-card"><span class="outcome-icon">4</span><h3>verbundene Unternehmen</h3><p>Digitale Ordner-, E-Mail- und Dokumentenstrukturen für vier miteinander verbundene Unternehmen aufgebaut und im laufenden Büroalltag gepflegt.</p></article>
+                    <article class="outcome-card"><span class="outcome-icon">350</span><h3>ca. 350 Dokumente im Monat</h3><p>Rechnungen und andere Unternehmensunterlagen strukturiert, geprüft und für Buchhaltung beziehungsweise DATEV vorbereitet.</p></article>
+                    <article class="outcome-card"><span class="outcome-icon">14</span><h3>E-Mail-Konten</h3><p>E-Mail-Konten, Passwörter und die damit verbundenen Dokumenten- und Verwaltungsabläufe betreut und strukturiert.</p></article>
+                    <article class="outcome-card"><span class="outcome-icon">14</span><h3>Mitarbeitende</h3><p>Mitarbeitende bei der Einarbeitung in operative Abläufe, Service- und Rezeptionsprozesse unterstützt.</p></article>
+                    <article class="outcome-card"><span class="outcome-icon">92%</span><h3>durchschnittliche Belegung</h3><p>Während meiner Mitarbeit im Bereich Prozessoptimierung des Hotel Dortmunder Hof lag die durchschnittliche Belegung im betrachteten Zeitraum bei rund 92&nbsp;% bei 13 Zimmern und etwa 105&nbsp;€ durchschnittlichem Preis pro belegter Nacht. Neben Buchungs- und Preisprozessen gehörten dort auch digitale Arbeitsabläufe, Dokumentenstrukturen und Personalplanung zu meinen Aufgaben.</p></article>
                 </div>
             </div>
         </section>
 
-        <section id="technik" class="about-band">
+        <section id="technik">
             <div class="wrap">
                 <p class="section-label">Technischer Hintergrund</p>
                 <h2>Wenn Standardsoftware nicht reicht, kann ich eine Ebene tiefer gehen.</h2>
                 <p class="section-intro">Parallel zur Arbeit in Verwaltung und Operations habe ich mich über Jahre praktisch mit Softwareentwicklung, Datenbanken, Webtechnologien, Linux und Automatisierung beschäftigt.</p>
-                <p class="about-copy">Mein technischer Hintergrund umfasst unter anderem:</p>
-                <div class="about-skills">
-                    <article class="about-skill">
+                <div class="grid grid-4">
+                    <article class="card">
                         <h3>Software &amp; Web</h3>
-                        <ul>
-                            <li>Python</li>
-                            <li>JavaScript</li>
-                            <li>HTML &amp; CSS</li>
-                            <li>Node.js</li>
-                            <li>Django</li>
-                            <li>React / Next.js</li>
-                        </ul>
+                        <p>Python, JavaScript, HTML &amp; CSS, Node.js, Django, React / Next.js.</p>
                     </article>
-                    <article class="about-skill">
+                    <article class="card">
                         <h3>Daten &amp; Automatisierung</h3>
-                        <ul>
-                            <li>SQL</li>
-                            <li>PostgreSQL</li>
-                            <li>SQLite</li>
-                            <li>Datenverarbeitung mit Python</li>
-                            <li>Automatisierung und Skripting</li>
-                        </ul>
+                        <p>SQL, PostgreSQL, SQLite, Datenverarbeitung mit Python, Automatisierung und Skripting.</p>
                     </article>
-                    <article class="about-skill">
+                    <article class="card">
                         <h3>Systeme</h3>
-                        <ul>
-                            <li>GNU/Linux</li>
-                            <li>Docker</li>
-                            <li>Git</li>
-                            <li>Server- und Webinfrastruktur</li>
-                            <li>lokale und gehostete Anwendungen</li>
-                        </ul>
+                        <p>GNU/Linux, Docker, Git, Server- und Webinfrastruktur, lokale und gehostete Anwendungen.</p>
                     </article>
-                    <article class="about-skill">
+                    <article class="card">
                         <h3>Büro &amp; Dokumente</h3>
-                        <ul>
-                            <li>DATEV</li>
-                            <li>digitale Dokumentenablage</li>
-                            <li>Finanzdokumentation</li>
-                            <li>Microsoft Office</li>
-                            <li>LibreOffice</li>
-                        </ul>
+                        <p>DATEV, digitale Dokumentenablage, Finanzdokumentation, Microsoft Office, LibreOffice.</p>
                     </article>
                 </div>
-                <div class="about-copy about-copy-follow">
-                    <p>Diese Kenntnisse sind für meine Kunden vor allem dann relevant, wenn die Digitalisierung nicht an einem Ordner enden soll.</p>
-                    <p>Bestehende Systeme können angebunden, Abläufe automatisiert und bei Bedarf individuelle Werkzeuge entwickelt werden.</p>
-                </div>
+                <p class="section-intro">Diese Kenntnisse sind für meine Kunden vor allem dann relevant, wenn die Digitalisierung nicht an einem Ordner enden soll. Bestehende Systeme können angebunden, Abläufe automatisiert und bei Bedarf individuelle Werkzeuge entwickelt werden.</p>
             </div>
         </section>
 
@@ -226,11 +185,11 @@
             <div class="wrap">
                 <p class="section-label">Meine heutige Arbeit</p>
                 <h2>Scannen ist nur ein Arbeitsschritt.</h2>
-                <div class="about-copy">
+                <div class="content-narrow">
                     <p>Mein Ziel ist nicht, Papier lediglich in PDFs umzuwandeln.</p>
                     <p>Ein sinnvoller Dokumentenprozess besteht aus mehreren Schritten:</p>
                 </div>
-                <div class="about-process">
+                <div class="process-7">
                     <article class="process-item">
                         <h3>Erfassen</h3>
                         <p>Papierunterlagen, bestehende Dateien oder andere Dokumenteneingänge werden aufgenommen.</p>
@@ -253,38 +212,30 @@
                     </article>
                     <article class="process-item">
                         <h3>Weitergeben</h3>
-                        <p>Die fertigen Dokumente landen dort, wo sie im Betrieb gebraucht werden:</p>
-                        <ul>
-                            <li>bestehende Dateiablage</li>
-                            <li>Netzlaufwerk</li>
-                            <li>Nextcloud</li>
-                            <li>lokaler Archivserver</li>
-                            <li>DMS</li>
-                            <li>Lexware</li>
-                            <li>andere Zielsysteme oder Schnittstellen</li>
-                        </ul>
+                        <p>Die fertigen Dokumente landen dort, wo sie im Betrieb gebraucht werden: bestehende Dateiablage, Netzlaufwerk, Nextcloud, lokaler Archivserver, DMS, Lexware oder andere Zielsysteme.</p>
                     </article>
                 </div>
                 <p class="claim">Ein Dokument soll nicht nur digital vorhanden sein. Es soll wiedergefunden und weiterverwendet werden können.</p>
             </div>
         </section>
 
-        <section id="archiv" class="about-band">
+        <section id="archiv">
             <div class="wrap">
                 <p class="section-label">Archiv &amp; Infrastruktur</p>
                 <h2>Daten müssen nicht zwangsläufig irgendwo in einer fremden Cloud liegen.</h2>
-                <div class="about-copy">
-                    <p>Für Unternehmen, die ihre Dokumente selbst kontrollieren möchten, richte ich auch lokale Archivlösungen ein.</p>
-                    <p>Dazu können beispielsweise gehören:</p>
-                    <ul>
-                        <li>lokaler Server im Unternehmen</li>
-                        <li>Nextcloud</li>
-                        <li>OCR- und Volltextsuche</li>
-                        <li>Benutzer- und Rechteverwaltung</li>
-                        <li>sicherer Fernzugriff</li>
-                        <li>Backup-Konzept</li>
-                        <li>strukturierte Dateiablage</li>
-                    </ul>
+                <div class="content-narrow">
+                    <p>Für Unternehmen, die ihre Dokumente selbst kontrollieren möchten, richte ich auch lokale Archivlösungen ein. Dazu können beispielsweise gehören:</p>
+                </div>
+                <p class="document-chips" role="list">
+                    <span role="listitem">lokaler Server im Unternehmen</span>
+                    <span role="listitem">Nextcloud</span>
+                    <span role="listitem">OCR- und Volltextsuche</span>
+                    <span role="listitem">Benutzer- und Rechteverwaltung</span>
+                    <span role="listitem">sicherer Fernzugriff</span>
+                    <span role="listitem">Backup-Konzept</span>
+                    <span role="listitem">strukturierte Dateiablage</span>
+                </p>
+                <div class="content-narrow">
                     <p>Welche Lösung sinnvoll ist, hängt vom Betrieb ab.</p>
                     <p>Ein kleines Büro mit wenigen Nutzern benötigt eine andere Infrastruktur als ein Unternehmen, in dem viele Personen gleichzeitig mit dem Archiv arbeiten.</p>
                     <p>Deshalb steht am Anfang nicht das Produkt, sondern die Frage:</p>
@@ -297,39 +248,40 @@
             <div class="wrap">
                 <p class="section-label">Eine Ebene weiter</p>
                 <h2>Wiederkehrende Dokumentenarbeit lässt sich zunehmend automatisieren.</h2>
-                <div class="about-copy">
+                <div class="content-narrow">
                     <p>Viele Dokumentenprozesse bestehen aus denselben Schritten:</p>
                     <p>Ein Dokument kommt an, muss erkannt, einem Vorgang zugeordnet, geprüft und anschließend an das richtige System weitergegeben werden.</p>
-                    <p>Für solche Abläufe entwickle ich Software und Automatisierungen.</p>
-                    <p>Dazu gehören beispielsweise Funktionen für:</p>
-                    <ul>
-                        <li>Dokumentklassifikation</li>
-                        <li>Extraktion relevanter Informationen</li>
-                        <li>Vorschläge für Dateinamen</li>
-                        <li>Zuordnung zu Kunden, Projekten oder Akten</li>
-                        <li>Erkennung von Dubletten</li>
-                        <li>Prüfung auf fehlende Unterlagen</li>
-                        <li>semantische Suche</li>
-                        <li>Übergabe an bestehende Systeme</li>
-                    </ul>
+                    <p>Für solche Abläufe entwickle ich Software und Automatisierungen. Dazu gehören beispielsweise Funktionen für:</p>
+                </div>
+                <p class="document-chips" role="list">
+                    <span role="listitem">Dokumentklassifikation</span>
+                    <span role="listitem">Extraktion relevanter Informationen</span>
+                    <span role="listitem">Vorschläge für Dateinamen</span>
+                    <span role="listitem">Zuordnung zu Kunden, Projekten oder Akten</span>
+                    <span role="listitem">Erkennung von Dubletten</span>
+                    <span role="listitem">Prüfung auf fehlende Unterlagen</span>
+                    <span role="listitem">semantische Suche</span>
+                    <span role="listitem">Übergabe an bestehende Systeme</span>
+                </p>
+                <div class="content-narrow">
                     <p>Dabei ist mir wichtig, dass Automatisierung nicht mit blindem Vertrauen verwechselt wird.</p>
                     <p>Wo Ergebnisse nicht eindeutig sind, sollte ein Mensch prüfen können, bevor ein System die Information endgültig übernimmt.</p>
                 </div>
             </div>
         </section>
 
-        <section id="ki" class="about-band">
+        <section id="ki">
             <div class="wrap">
                 <p class="section-label">Woran ich weiterarbeite</p>
                 <h2>KI dort einsetzen, wo sie einen konkreten Prozess verbessert.</h2>
-                <div class="about-copy">
+                <div class="content-narrow">
                     <p>Ich beschäftige mich zunehmend mit privaten und lokal betriebenen KI-Systemen für Dokumentenprozesse.</p>
                     <p>Der interessante Teil ist für mich nicht ein weiterer Chatbot.</p>
                     <p>Interessant wird KI dort, wo sie mit vorhandenen Unternehmensinformationen arbeiten und einen konkreten Arbeitsschritt übernehmen kann.</p>
                     <p>Zum Beispiel:</p>
                 </div>
-                <p class="about-chain">Dokument kommt an<br>→ Inhalt erkennen<br>→ Informationen extrahieren<br>→ Vorgang zuordnen<br>→ Unsicherheiten anzeigen<br>→ Mensch prüft<br>→ Zielsystem übernimmt</p>
-                <div class="about-copy about-copy-follow">
+                <p class="claim">Dokument kommt an → Inhalt erkennen → Informationen extrahieren → Vorgang zuordnen → Unsicherheiten anzeigen → Mensch prüft → Zielsystem übernimmt</p>
+                <div class="content-narrow">
                     <p>Gerade bei internen oder sensiblen Unternehmensdaten kann eine lokal kontrollierte Infrastruktur dabei eine interessante Alternative zu rein öffentlichen KI-Diensten sein.</p>
                     <p>Diese Systeme sind eine Weiterentwicklung meiner heutigen Arbeit mit Dokumenten, Ablagen und Automatisierung – nicht deren Ersatz.</p>
                 </div>
@@ -340,7 +292,7 @@
             <div class="wrap">
                 <p class="section-label">Verwaltung + IT</p>
                 <h2>Ich kenne beide Seiten.</h2>
-                <div class="about-copy">
+                <div class="content-narrow">
                     <p>Auf der einen Seite habe ich selbst Rechnungen sortiert, Unterlagen für die Buchhaltung vorbereitet, E-Mail-Strukturen verwaltet und tägliche Verwaltungsprozesse erlebt.</p>
                     <p>Auf der anderen Seite beschäftige ich mich mit Softwareentwicklung, Datenbanken, Linux, Servern und Automatisierung.</p>
                     <p>Dadurch betrachte ich Dokumentenprozesse weder ausschließlich als Büroproblem noch ausschließlich als IT-Projekt.</p>
@@ -350,28 +302,28 @@
             </div>
         </section>
 
-        <section id="arbeitsweise" class="about-band">
+        <section id="arbeitsweise">
             <div class="wrap">
                 <p class="section-label">Wie ich arbeite</p>
                 <h2>Verständliche Systeme statt unnötiger Komplexität.</h2>
-                <div class="about-principles">
-                    <article class="about-principle">
+                <div class="grid grid-3">
+                    <article class="card">
                         <h3>Verständlich statt kompliziert</h3>
                         <p>Ein System ist nur dann hilfreich, wenn die Menschen, die täglich damit arbeiten, nachvollziehen können, wo ihre Dokumente liegen und wie neue Unterlagen hinzukommen.</p>
                     </article>
-                    <article class="about-principle">
+                    <article class="card">
                         <h3>Ergebnis statt Scanmenge</h3>
                         <p>Entscheidend ist nicht, wie viele Seiten durch einen Scanner gelaufen sind. Entscheidend ist, ob die Information anschließend gefunden werden kann.</p>
                     </article>
-                    <article class="about-principle">
+                    <article class="card">
                         <h3>Erst verstehen, dann umsetzen</h3>
                         <p>Bevor eine Ablage verändert wird, schaue ich mir an, wie Unterlagen heute entstehen, gesucht und weitergegeben werden.</p>
                     </article>
-                    <article class="about-principle">
+                    <article class="card">
                         <h3>Persönlicher Ansprechpartner</h3>
                         <p>Ich begleite die Projekte selbst und arbeite regional in Würzburg und Mainfranken.</p>
                     </article>
-                    <article class="about-principle">
+                    <article class="card">
                         <h3>Kontrollierbare Technik</h3>
                         <p>Wo sensible Unternehmensdaten verarbeitet werden, bevorzuge ich nachvollziehbare und kontrollierbare Lösungen statt unnötiger technischer Abhängigkeiten.</p>
                     </article>
