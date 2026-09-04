@@ -2889,7 +2889,24 @@ footer .foot-links { display: flex; flex-wrap: wrap; gap: 8px 16px; }
 .inv-example-step img {
     width: 100%;
     height: auto;
-    object-fit: cover;
+    object-fit: contain;
+    display: block;
+    background: #fff;
+}
+.inv-example-table,
+.inv-example-table:nth-child(even) {
+    grid-template-columns: 1fr;
+}
+.inv-example-table:nth-child(even) .inv-example-copy,
+.inv-example-table:nth-child(even) figure { order: unset; }
+.inv-table-figure {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.inv-table-figure img {
+    width: max(100%, 720px);
+    max-width: none;
+    height: auto;
 }
 .inv-example-step figcaption {
     padding: 10px 14px 12px;
